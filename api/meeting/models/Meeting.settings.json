@@ -1,0 +1,38 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "meeting",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "sid": {
+      "type": "integer"
+    },
+    "committee": {
+      "model": "committee",
+      "via": "meetings"
+    },
+    "desicions": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "protocol": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "transcript": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    }
+  }
+}

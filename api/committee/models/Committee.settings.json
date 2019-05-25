@@ -1,0 +1,26 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "committee",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "serial": {
+      "type": "integer"
+    },
+    "parent": {
+      "model": "committee"
+    },
+    "meetings": {
+      "collection": "meeting",
+      "via": "committee"
+    }
+  }
+}

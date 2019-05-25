@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "defaultLocale": "he",
+  "modes": [
+    "query",
+    "subdomain",
+    "cookie",
+    "header",
+    "url",
+    "tld"
+  ],
+  "cookieName": "locale"
+}

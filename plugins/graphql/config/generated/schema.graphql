@@ -1,3 +1,61 @@
+type Area {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  committees(sort: String, limit: Int, start: Int, where: JSON): [Committee]
+}
+
+type AreaAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type AreaConnection {
+  values: [Area]
+  groupBy: AreaGroupBy
+  aggregate: AreaAggregator
+}
+
+type AreaConnection_id {
+  key: ID
+  connection: AreaConnection
+}
+
+type AreaConnectionCreatedAt {
+  key: DateTime
+  connection: AreaConnection
+}
+
+type AreaConnectionId {
+  key: ID
+  connection: AreaConnection
+}
+
+type AreaConnectionName {
+  key: String
+  connection: AreaConnection
+}
+
+type AreaConnectionUpdatedAt {
+  key: DateTime
+  connection: AreaConnection
+}
+
+type AreaGroupBy {
+  _id: [AreaConnection_id]
+  id: [AreaConnectionId]
+  createdAt: [AreaConnectionCreatedAt]
+  updatedAt: [AreaConnectionUpdatedAt]
+  name: [AreaConnectionName]
+}
+
+input AreaInput {
+  name: String
+  committees: [ID]
+}
+
 type Committee {
   _id: ID!
   id: ID!
@@ -6,6 +64,8 @@ type Committee {
   name: String
   serial: Int
   parent: Committee
+  area: Area
+  meetings(sort: String, limit: Int, start: Int, where: JSON): [Meeting]
 }
 
 type CommitteeAggregator {
@@ -40,6 +100,11 @@ type CommitteeConnection {
 }
 
 type CommitteeConnection_id {
+  key: ID
+  connection: CommitteeConnection
+}
+
+type CommitteeConnectionArea {
   key: ID
   connection: CommitteeConnection
 }
@@ -82,12 +147,23 @@ type CommitteeGroupBy {
   name: [CommitteeConnectionName]
   serial: [CommitteeConnectionSerial]
   parent: [CommitteeConnectionParent]
+  area: [CommitteeConnectionArea]
 }
 
 input CommitteeInput {
   name: String
   serial: Int
   parent: ID
+  meetings: [ID]
+  area: ID
+}
+
+input createAreaInput {
+  data: AreaInput
+}
+
+type createAreaPayload {
+  area: Area
 }
 
 input createCommitteeInput {
@@ -96,6 +172,22 @@ input createCommitteeInput {
 
 type createCommitteePayload {
   committee: Committee
+}
+
+input createMeetingInput {
+  data: MeetingInput
+}
+
+type createMeetingPayload {
+  meeting: Meeting
+}
+
+input createPlanInput {
+  data: PlanInput
+}
+
+type createPlanPayload {
+  plan: Plan
 }
 
 input createRoleInput {
@@ -119,12 +211,36 @@ The `DateTime` scalar represents a date and time following the ISO 8601 standard
 """
 scalar DateTime
 
+input deleteAreaInput {
+  where: InputID
+}
+
+type deleteAreaPayload {
+  area: Area
+}
+
 input deleteCommitteeInput {
   where: InputID
 }
 
 type deleteCommitteePayload {
   committee: Committee
+}
+
+input deleteMeetingInput {
+  where: InputID
+}
+
+type deleteMeetingPayload {
+  meeting: Meeting
+}
+
+input deletePlanInput {
+  where: InputID
+}
+
+type deletePlanPayload {
+  plan: Plan
 }
 
 input deleteRoleInput {
@@ -143,10 +259,17 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
+input editAreaInput {
+  name: String
+  committees: [ID]
+}
+
 input editCommitteeInput {
   name: String
   serial: Int
   parent: ID
+  meetings: [ID]
+  area: ID
 }
 
 input editFileInput {
@@ -160,6 +283,30 @@ input editFileInput {
   provider: String
   public_id: String
   related: [ID]
+}
+
+input editMeetingInput {
+  date: DateTime
+  sid: Int
+  committee: ID
+  desicions: ID
+  protocol: ID
+  transcript: ID
+  plans: [ID]
+}
+
+input editPlanInput {
+  sid: Int
+  name: String
+  status: String
+  lastUpdate: DateTime
+  location: String
+  municipality: String
+  settlement: String
+  targets: String
+  sections: String
+  meetings: [ID]
+  type: String
 }
 
 input editRoleInput {
@@ -206,12 +353,139 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Committee | createCommitteePayload | updateCommitteePayload | deleteCommitteePayload | CommitteeConnection | CommitteeAggregator | CommitteeAggregatorSum | CommitteeAggregatorAvg | CommitteeAggregatorMin | CommitteeAggregatorMax | CommitteeGroupBy | CommitteeConnection_id | CommitteeConnectionId | CommitteeConnectionCreatedAt | CommitteeConnectionUpdatedAt | CommitteeConnectionName | CommitteeConnectionSerial | CommitteeConnectionParent | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
+type Meeting {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  date: DateTime
+  sid: Int
+  committee: Committee
+  desicions: UploadFile
+  protocol: UploadFile
+  transcript: UploadFile
+  plans(sort: String, limit: Int, start: Int, where: JSON): [Plan]
+}
+
+type MeetingAggregator {
+  count: Int
+  totalCount: Int
+  sum: MeetingAggregatorSum
+  avg: MeetingAggregatorAvg
+  min: MeetingAggregatorMin
+  max: MeetingAggregatorMax
+}
+
+type MeetingAggregatorAvg {
+  sid: Float
+}
+
+type MeetingAggregatorMax {
+  sid: Float
+}
+
+type MeetingAggregatorMin {
+  sid: Float
+}
+
+type MeetingAggregatorSum {
+  sid: Float
+}
+
+type MeetingConnection {
+  values: [Meeting]
+  groupBy: MeetingGroupBy
+  aggregate: MeetingAggregator
+}
+
+type MeetingConnection_id {
+  key: ID
+  connection: MeetingConnection
+}
+
+type MeetingConnectionCommittee {
+  key: ID
+  connection: MeetingConnection
+}
+
+type MeetingConnectionCreatedAt {
+  key: DateTime
+  connection: MeetingConnection
+}
+
+type MeetingConnectionDate {
+  key: DateTime
+  connection: MeetingConnection
+}
+
+type MeetingConnectionDesicions {
+  key: ID
+  connection: MeetingConnection
+}
+
+type MeetingConnectionId {
+  key: ID
+  connection: MeetingConnection
+}
+
+type MeetingConnectionProtocol {
+  key: ID
+  connection: MeetingConnection
+}
+
+type MeetingConnectionSid {
+  key: Int
+  connection: MeetingConnection
+}
+
+type MeetingConnectionTranscript {
+  key: ID
+  connection: MeetingConnection
+}
+
+type MeetingConnectionUpdatedAt {
+  key: DateTime
+  connection: MeetingConnection
+}
+
+type MeetingGroupBy {
+  _id: [MeetingConnection_id]
+  id: [MeetingConnectionId]
+  createdAt: [MeetingConnectionCreatedAt]
+  updatedAt: [MeetingConnectionUpdatedAt]
+  date: [MeetingConnectionDate]
+  sid: [MeetingConnectionSid]
+  committee: [MeetingConnectionCommittee]
+  desicions: [MeetingConnectionDesicions]
+  protocol: [MeetingConnectionProtocol]
+  transcript: [MeetingConnectionTranscript]
+}
+
+input MeetingInput {
+  date: DateTime
+  sid: Int
+  committee: ID
+  desicions: ID
+  protocol: ID
+  transcript: ID
+  plans: [ID]
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Area | createAreaPayload | updateAreaPayload | deleteAreaPayload | AreaConnection | AreaAggregator | AreaGroupBy | AreaConnection_id | AreaConnectionId | AreaConnectionCreatedAt | AreaConnectionUpdatedAt | AreaConnectionName | Committee | createCommitteePayload | updateCommitteePayload | deleteCommitteePayload | CommitteeConnection | CommitteeAggregator | CommitteeAggregatorSum | CommitteeAggregatorAvg | CommitteeAggregatorMin | CommitteeAggregatorMax | CommitteeGroupBy | CommitteeConnection_id | CommitteeConnectionId | CommitteeConnectionCreatedAt | CommitteeConnectionUpdatedAt | CommitteeConnectionName | CommitteeConnectionSerial | CommitteeConnectionParent | CommitteeConnectionArea | Meeting | createMeetingPayload | updateMeetingPayload | deleteMeetingPayload | MeetingConnection | MeetingAggregator | MeetingAggregatorSum | MeetingAggregatorAvg | MeetingAggregatorMin | MeetingAggregatorMax | MeetingGroupBy | MeetingConnection_id | MeetingConnectionId | MeetingConnectionCreatedAt | MeetingConnectionUpdatedAt | MeetingConnectionDate | MeetingConnectionSid | MeetingConnectionCommittee | MeetingConnectionDesicions | MeetingConnectionProtocol | MeetingConnectionTranscript | Plan | createPlanPayload | updatePlanPayload | deletePlanPayload | PlanConnection | PlanAggregator | PlanAggregatorSum | PlanAggregatorAvg | PlanAggregatorMin | PlanAggregatorMax | PlanGroupBy | PlanConnection_id | PlanConnectionId | PlanConnectionCreatedAt | PlanConnectionUpdatedAt | PlanConnectionSid | PlanConnectionName | PlanConnectionStatus | PlanConnectionLastUpdate | PlanConnectionLocation | PlanConnectionMunicipality | PlanConnectionSettlement | PlanConnectionTargets | PlanConnectionSections | PlanConnectionType | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
 
 type Mutation {
+  createArea(input: createAreaInput): createAreaPayload
+  updateArea(input: updateAreaInput): updateAreaPayload
+  deleteArea(input: deleteAreaInput): deleteAreaPayload
   createCommittee(input: createCommitteeInput): createCommitteePayload
   updateCommittee(input: updateCommitteeInput): updateCommitteePayload
   deleteCommittee(input: deleteCommitteeInput): deleteCommitteePayload
+  createMeeting(input: createMeetingInput): createMeetingPayload
+  updateMeeting(input: updateMeetingInput): updateMeetingPayload
+  deleteMeeting(input: deleteMeetingInput): deleteMeetingPayload
+  createPlan(input: createPlanInput): createPlanPayload
+  updatePlan(input: updatePlanInput): updatePlanPayload
+  deletePlan(input: deletePlanInput): deletePlanPayload
 
   """Create a new role"""
   createRole(input: createRoleInput): createRolePayload
@@ -233,10 +507,169 @@ type Mutation {
   upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
 }
 
+type Plan {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  sid: Int
+  name: String
+  status: String
+  lastUpdate: DateTime
+  location: String
+  municipality: String
+  settlement: String
+  targets: String
+  sections: String
+  type: String
+  meetings(sort: String, limit: Int, start: Int, where: JSON): [Meeting]
+}
+
+type PlanAggregator {
+  count: Int
+  totalCount: Int
+  sum: PlanAggregatorSum
+  avg: PlanAggregatorAvg
+  min: PlanAggregatorMin
+  max: PlanAggregatorMax
+}
+
+type PlanAggregatorAvg {
+  sid: Float
+}
+
+type PlanAggregatorMax {
+  sid: Float
+}
+
+type PlanAggregatorMin {
+  sid: Float
+}
+
+type PlanAggregatorSum {
+  sid: Float
+}
+
+type PlanConnection {
+  values: [Plan]
+  groupBy: PlanGroupBy
+  aggregate: PlanAggregator
+}
+
+type PlanConnection_id {
+  key: ID
+  connection: PlanConnection
+}
+
+type PlanConnectionCreatedAt {
+  key: DateTime
+  connection: PlanConnection
+}
+
+type PlanConnectionId {
+  key: ID
+  connection: PlanConnection
+}
+
+type PlanConnectionLastUpdate {
+  key: DateTime
+  connection: PlanConnection
+}
+
+type PlanConnectionLocation {
+  key: String
+  connection: PlanConnection
+}
+
+type PlanConnectionMunicipality {
+  key: String
+  connection: PlanConnection
+}
+
+type PlanConnectionName {
+  key: String
+  connection: PlanConnection
+}
+
+type PlanConnectionSections {
+  key: String
+  connection: PlanConnection
+}
+
+type PlanConnectionSettlement {
+  key: String
+  connection: PlanConnection
+}
+
+type PlanConnectionSid {
+  key: Int
+  connection: PlanConnection
+}
+
+type PlanConnectionStatus {
+  key: String
+  connection: PlanConnection
+}
+
+type PlanConnectionTargets {
+  key: String
+  connection: PlanConnection
+}
+
+type PlanConnectionType {
+  key: String
+  connection: PlanConnection
+}
+
+type PlanConnectionUpdatedAt {
+  key: DateTime
+  connection: PlanConnection
+}
+
+type PlanGroupBy {
+  _id: [PlanConnection_id]
+  id: [PlanConnectionId]
+  createdAt: [PlanConnectionCreatedAt]
+  updatedAt: [PlanConnectionUpdatedAt]
+  sid: [PlanConnectionSid]
+  name: [PlanConnectionName]
+  status: [PlanConnectionStatus]
+  lastUpdate: [PlanConnectionLastUpdate]
+  location: [PlanConnectionLocation]
+  municipality: [PlanConnectionMunicipality]
+  settlement: [PlanConnectionSettlement]
+  targets: [PlanConnectionTargets]
+  sections: [PlanConnectionSections]
+  type: [PlanConnectionType]
+}
+
+input PlanInput {
+  sid: Int
+  name: String
+  status: String
+  lastUpdate: DateTime
+  location: String
+  municipality: String
+  settlement: String
+  targets: String
+  sections: String
+  meetings: [ID]
+  type: String
+}
+
 type Query {
+  area(id: ID!): Area
+  areas(sort: String, limit: Int, start: Int, where: JSON): [Area]
+  areasConnection(sort: String, limit: Int, start: Int, where: JSON): AreaConnection
   committee(id: ID!): Committee
   committees(sort: String, limit: Int, start: Int, where: JSON): [Committee]
   committeesConnection(sort: String, limit: Int, start: Int, where: JSON): CommitteeConnection
+  meeting(id: ID!): Meeting
+  meetings(sort: String, limit: Int, start: Int, where: JSON): [Meeting]
+  meetingsConnection(sort: String, limit: Int, start: Int, where: JSON): MeetingConnection
+  plan(id: ID!): Plan
+  plans(sort: String, limit: Int, start: Int, where: JSON): [Plan]
+  plansConnection(sort: String, limit: Int, start: Int, where: JSON): PlanConnection
   files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
   filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
   role(id: ID!): UsersPermissionsRole
@@ -260,6 +693,15 @@ input RoleInput {
   users: [ID]
 }
 
+input updateAreaInput {
+  where: InputID
+  data: editAreaInput
+}
+
+type updateAreaPayload {
+  area: Area
+}
+
 input updateCommitteeInput {
   where: InputID
   data: editCommitteeInput
@@ -267,6 +709,24 @@ input updateCommitteeInput {
 
 type updateCommitteePayload {
   committee: Committee
+}
+
+input updateMeetingInput {
+  where: InputID
+  data: editMeetingInput
+}
+
+type updateMeetingPayload {
+  meeting: Meeting
+}
+
+input updatePlanInput {
+  where: InputID
+  data: editPlanInput
+}
+
+type updatePlanPayload {
+  plan: Plan
 }
 
 input updateRoleInput {

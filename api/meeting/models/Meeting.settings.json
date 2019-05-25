@@ -33,6 +33,10 @@
       "model": "file",
       "via": "related",
       "plugin": "upload"
+    },
+    "plans": {
+      "collection": "plan",
+      "via": "meetings"
     }
   }
 }

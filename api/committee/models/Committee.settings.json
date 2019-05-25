@@ -21,6 +21,10 @@
     "meetings": {
       "collection": "meeting",
       "via": "committee"
+    },
+    "area": {
+      "model": "area",
+      "via": "committees"
     }
   }
 }

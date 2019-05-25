@@ -1,0 +1,48 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "plan",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "sid": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "lastUpdate": {
+      "type": "date"
+    },
+    "location": {
+      "type": "string"
+    },
+    "municipality": {
+      "type": "string"
+    },
+    "settlement": {
+      "type": "string"
+    },
+    "targets": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "text"
+    },
+    "meetings": {
+      "collection": "meeting",
+      "via": "plans",
+      "dominant": true
+    },
+    "type": {
+      "type": "string"
+    }
+  }
+}

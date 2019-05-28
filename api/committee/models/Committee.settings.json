@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "committee",
   "info": {
     "name": "committee",
     "description": ""
@@ -11,9 +11,6 @@
   "attributes": {
     "name": {
       "type": "string"
-    },
-    "serial": {
-      "type": "integer"
     },
     "parent": {
       "model": "committee"

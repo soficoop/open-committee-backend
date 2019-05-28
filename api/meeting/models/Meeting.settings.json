@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "meeting",
   "info": {
     "name": "meeting",
     "description": ""
@@ -13,7 +13,8 @@
       "type": "date"
     },
     "sid": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "committee": {
       "model": "committee",

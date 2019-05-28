@@ -19,23 +19,17 @@
     "eslint-plugin-react": "^7.7.0"
   },
   "dependencies": {
+    "jsdom": "^15.1.1",
     "lodash": "^4.17.5",
     "strapi": "3.0.0-alpha.26.2",
-    "strapi-utils": "3.0.0-alpha.26.2",
-    "strapi-hook-mongoose": "3.0.0-alpha.26.2"
+    "strapi-hook-mongoose": "3.0.0-alpha.26.2",
+    "strapi-utils": "3.0.0-alpha.26.2"
   },
   "author": {
     "name": "aviran",
-    "email": "",
-    "url": ""
+    "email": "aviran@soficoop.com",
+    "url": "http://soficoop.com"
   },
-  "maintainers": [
-    {
-      "name": "aviran",
-      "email": "",
-      "url": ""
-    }
-  ],
   "strapi": {
     "packageManager": "npm",
     "uuid": "6894f9eb-3e34-451b-a771-8c30b819277b"

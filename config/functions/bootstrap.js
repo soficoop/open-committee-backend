@@ -1,4 +1,5 @@
 'use strict';
+const Scraper = require('../../utils/scraper');
 
 /**
  * An asynchronous bootstrap function that runs before
@@ -8,6 +9,9 @@
  * run jobs, or perform some special logic.
  */
 
-module.exports = cb => {
+module.exports = async cb => {
+  const parsers = await strapi.services.parser.fetchAll({active: true}, false);
+  const scraper = new Scraper(parsers);
+  scraper.scrapeAll();
   cb();
 };

@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "area",
   "info": {
     "name": "area",
     "description": ""
@@ -9,8 +9,10 @@
     "timestamps": true
   },
   "attributes": {
-    "name": {
-      "type": "string"
+    "sid": {
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "committees": {
       "collection": "committee",

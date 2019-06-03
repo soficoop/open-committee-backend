@@ -12,7 +12,7 @@
     "date": {
       "type": "date"
     },
-    "sid": {
+    "number": {
       "type": "integer",
       "required": true
     },
@@ -38,6 +38,11 @@
     "plans": {
       "collection": "plan",
       "via": "meetings"
+    },
+    "sid": {
+      "type": "integer",
+      "unique": true,
+      "required": true
     }
   }
 }

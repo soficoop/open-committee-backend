@@ -9,8 +9,10 @@
     "timestamps": true
   },
   "attributes": {
-    "name": {
-      "type": "string"
+    "sid": {
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "parent": {
       "model": "committee"

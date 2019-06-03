@@ -32,15 +32,16 @@
     },
     "meetings": {
       "collection": "meeting",
-      "via": "plans",
-      "dominant": true
+      "dominant": true,
+      "via": "plans"
     },
     "type": {
       "type": "string"
     },
     "sid": {
       "required": true,
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "targets": {
       "type": "text"

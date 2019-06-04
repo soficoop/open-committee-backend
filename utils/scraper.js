@@ -9,8 +9,8 @@ const moment = require('moment');
  * @enum FieldType
  */
 const FieldTypes = Object.freeze({
-  SELECTOR: 1,
-  REGEX: 2
+  SELECTOR: 'selectors',
+  REGEX: 'matches'
 });
 
 /**
@@ -41,13 +41,18 @@ class Scraper {
     for (const parser of this.parsers) {
       const rawFields = yaml.safeLoad(parser.fields);
       parser.fields = [];
-      const selectors = rawFields.selectors || [];
-      for (const selector of selectors) {
-        parser.fields.push({
-          type: FieldTypes.SELECTOR,
-          for: Object.keys(selector)[0],
-          from: Object.values(selector)[0]
-        });
+      for (const key in rawFields) {
+        if (!Object.values(FieldTypes).includes(key)) {
+          continue;
+        }
+        const selectors = rawFields[key];
+        for (const selector of selectors) {
+          parser.fields.push({
+            type: key,
+            for: Object.keys(selector)[0],
+            from: Object.values(selector)[0]
+          });
+        }
       }
     }
   }
@@ -72,6 +77,11 @@ class Scraper {
     });
   }
 
+  /**
+   * Checks if an item exists by its sid. If so, updates the item. Otherwise creates the item.
+   * @param {any} service the relevant service for the item type
+   * @param {any} item the item itself
+   */
   async addOrEditItem(service, item) {
     try {
       const itemInDb = await service.fetch({
@@ -107,8 +117,13 @@ class Scraper {
     for (const field of parser.fields) {
       const key = field.for;
       let value;
-      if (field.type == FieldTypes.SELECTOR) {
-        value = item.querySelector(field.from).textContent;
+      switch (field.type) {
+        case FieldTypes.SELECTOR:
+          value = item.querySelector(field.from).textContent;
+          break;
+        case FieldTypes.REGEX:
+          value = item.innerHTML.match(field.from)[1];
+          break;
       }
       result[key] = await this.convertField(value, modelAttributes[key]);
     }
@@ -121,7 +136,7 @@ class Scraper {
    * @param {any} modelAttribute the model configuration
    */
   async convertField(rawValue, modelAttribute) {
-    let value;
+    let value = rawValue;
     if (modelAttribute.type == 'date') {
       value = moment(rawValue, 'DD/MM/YYYY').add(12, 'hours');
     } else if (modelAttribute.model != null) {
@@ -129,18 +144,9 @@ class Scraper {
       let relationOtherEnd = await relevantRelationService.fetch({
         sid: rawValue
       });
-      if (relationOtherEnd == null) {
-        try {
-          relationOtherEnd = await relevantRelationService.add({
-            sid: rawValue
-          });
-        } catch (e) {
-          console.warn(e);
-        }
-      }
-      value = relationOtherEnd.id;
+      value = relationOtherEnd != null ? relationOtherEnd.id : null;
     }
-    return value || rawValue;
+    return value;
   }
 }
 module.exports = Scraper;

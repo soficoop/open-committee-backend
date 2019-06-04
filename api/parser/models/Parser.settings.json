@@ -32,6 +32,17 @@
     },
     "fields": {
       "type": "text"
+    },
+    "byExistingItem": {
+      "default": "none",
+      "enum": [
+        "none",
+        "area",
+        "committee",
+        "meeting",
+        "plan"
+      ],
+      "type": "enumeration"
     }
   }
 }

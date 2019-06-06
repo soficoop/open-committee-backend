@@ -32,8 +32,8 @@
     },
     "meetings": {
       "collection": "meeting",
-      "dominant": true,
-      "via": "plans"
+      "via": "plans",
+      "dominant": true
     },
     "type": {
       "type": "string"
@@ -45,6 +45,9 @@
     },
     "targets": {
       "type": "text"
+    },
+    "number": {
+      "type": "string"
     }
   }
 }

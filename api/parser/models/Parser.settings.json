@@ -33,7 +33,7 @@
     "fields": {
       "type": "text"
     },
-    "byExistingItem": {
+    "urlByExistingItem": {
       "default": "none",
       "enum": [
         "none",

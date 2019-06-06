@@ -5,7 +5,6 @@ const yaml = require('js-yaml');
 const moment = require('moment');
 
 /**
- * @typedef {number} FieldType
  * @enum FieldType
  */
 const FieldTypes = Object.freeze({
@@ -21,6 +20,7 @@ const FieldTypes = Object.freeze({
  * @property {string} sidMatch
  * @property {boolean} active
  * @property {Field[]} fields
+ * @property {'none'|'meeting'|'plan'|'committee'|'area'} urlByExistingItem
  *
  * @typedef Field
  * @property {FieldType} type
@@ -68,10 +68,38 @@ class Scraper {
    * @param {Parser} parser The parser settings to scrape by
    */
   async scrapeByParser(parser) {
-    const html = await Axios.get(parser.url);
+    if (parser.urlByExistingItem == 'none') {
+      await this.scrapeStaticUrl(parser.url, parser);
+    } else {
+      await this.scrapeDynamicUrl(parser);
+    }
+  }
+
+  /**
+   * Scrapes a dynamic url (i.e. with a parameter)
+   * @param {Parser} parser The parser settings to scrape by
+   */
+  async scrapeDynamicUrl(parser) {
+    const relevantService = strapi.services[parser.urlByExistingItem];
+    const existingItems = await relevantService.fetchAll();
+    for (const existingItem of existingItems) {
+      const staticUrl = parser.url.replace(':item', existingItem.sid);
+      await this.scrapeStaticUrl(staticUrl, parser);
+    }
+  }
+
+  /**
+   * Scrapes a static url
+   * @param {string} url The url to scrape
+   * @param {Parser} parser Parsing configuration
+   */
+  async scrapeStaticUrl(url, parser) {
+    const html = await Axios.get(url);
     const document = new JSDOM(html.data).window.document;
     document.querySelectorAll(parser.objectSelector).forEach(async item => {
+      if (url.includes('MeetingID')) console.info(url);
       const parsedItem = await this.parseSingleItem(item, parser);
+      if (url.includes('MeetingID')) console.info(parsedItem);
       const relevantService = strapi.services[parser.for];
       await this.addOrEditItem(relevantService, parsedItem);
     });

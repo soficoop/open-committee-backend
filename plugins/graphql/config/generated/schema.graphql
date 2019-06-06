@@ -290,7 +290,7 @@ input editParserInput {
   objectSelector: String
   sidMatch: String
   fields: String
-  byExistingItem: ENUM_PARSER_BYEXISTINGITEM
+  urlByExistingItem: ENUM_PARSER_URLBYEXISTINGITEM
 }
 
 input editPlanInput {
@@ -305,6 +305,7 @@ input editPlanInput {
   type: String
   sid: String
   targets: String
+  number: String
 }
 
 input editRoleInput {
@@ -326,15 +327,15 @@ input editUserInput {
   role: ID
 }
 
-enum ENUM_PARSER_BYEXISTINGITEM {
-  none
+enum ENUM_PARSER_FOR {
   area
   committee
   meeting
   plan
 }
 
-enum ENUM_PARSER_FOR {
+enum ENUM_PARSER_URLBYEXISTINGITEM {
+  none
   area
   committee
   meeting
@@ -472,7 +473,7 @@ input MeetingInput {
   sid: Int!
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Area | createAreaPayload | updateAreaPayload | deleteAreaPayload | AreaConnection | AreaAggregator | AreaGroupBy | AreaConnection_id | AreaConnectionId | AreaConnectionCreatedAt | AreaConnectionUpdatedAt | AreaConnectionSid | Committee | createCommitteePayload | updateCommitteePayload | deleteCommitteePayload | CommitteeConnection | CommitteeAggregator | CommitteeGroupBy | CommitteeConnection_id | CommitteeConnectionId | CommitteeConnectionCreatedAt | CommitteeConnectionUpdatedAt | CommitteeConnectionSid | CommitteeConnectionParent | CommitteeConnectionArea | Meeting | createMeetingPayload | updateMeetingPayload | deleteMeetingPayload | MeetingConnection | MeetingAggregator | MeetingGroupBy | MeetingConnection_id | MeetingConnectionId | MeetingConnectionCreatedAt | MeetingConnectionUpdatedAt | MeetingConnectionDate | MeetingConnectionNumber | MeetingConnectionCommittee | MeetingConnectionDesicions | MeetingConnectionProtocol | MeetingConnectionTranscript | MeetingConnectionSid | Parser | createParserPayload | updateParserPayload | deleteParserPayload | ParserConnection | ParserAggregator | ParserGroupBy | ParserConnection_id | ParserConnectionId | ParserConnectionCreatedAt | ParserConnectionUpdatedAt | ParserConnectionFor | ParserConnectionUrl | ParserConnectionActive | ParserConnectionObjectSelector | ParserConnectionSidMatch | ParserConnectionFields | ParserConnectionByExistingItem | Plan | createPlanPayload | updatePlanPayload | deletePlanPayload | PlanConnection | PlanAggregator | PlanGroupBy | PlanConnection_id | PlanConnectionId | PlanConnectionCreatedAt | PlanConnectionUpdatedAt | PlanConnectionName | PlanConnectionStatus | PlanConnectionLastUpdate | PlanConnectionLocation | PlanConnectionMunicipality | PlanConnectionSettlement | PlanConnectionSections | PlanConnectionType | PlanConnectionSid | PlanConnectionTargets | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Area | createAreaPayload | updateAreaPayload | deleteAreaPayload | AreaConnection | AreaAggregator | AreaGroupBy | AreaConnection_id | AreaConnectionId | AreaConnectionCreatedAt | AreaConnectionUpdatedAt | AreaConnectionSid | Committee | createCommitteePayload | updateCommitteePayload | deleteCommitteePayload | CommitteeConnection | CommitteeAggregator | CommitteeGroupBy | CommitteeConnection_id | CommitteeConnectionId | CommitteeConnectionCreatedAt | CommitteeConnectionUpdatedAt | CommitteeConnectionSid | CommitteeConnectionParent | CommitteeConnectionArea | Meeting | createMeetingPayload | updateMeetingPayload | deleteMeetingPayload | MeetingConnection | MeetingAggregator | MeetingGroupBy | MeetingConnection_id | MeetingConnectionId | MeetingConnectionCreatedAt | MeetingConnectionUpdatedAt | MeetingConnectionDate | MeetingConnectionNumber | MeetingConnectionCommittee | MeetingConnectionDesicions | MeetingConnectionProtocol | MeetingConnectionTranscript | MeetingConnectionSid | Parser | createParserPayload | updateParserPayload | deleteParserPayload | ParserConnection | ParserAggregator | ParserGroupBy | ParserConnection_id | ParserConnectionId | ParserConnectionCreatedAt | ParserConnectionUpdatedAt | ParserConnectionFor | ParserConnectionUrl | ParserConnectionActive | ParserConnectionObjectSelector | ParserConnectionSidMatch | ParserConnectionFields | ParserConnectionUrlByExistingItem | Plan | createPlanPayload | updatePlanPayload | deletePlanPayload | PlanConnection | PlanAggregator | PlanGroupBy | PlanConnection_id | PlanConnectionId | PlanConnectionCreatedAt | PlanConnectionUpdatedAt | PlanConnectionName | PlanConnectionStatus | PlanConnectionLastUpdate | PlanConnectionLocation | PlanConnectionMunicipality | PlanConnectionSettlement | PlanConnectionSections | PlanConnectionType | PlanConnectionSid | PlanConnectionTargets | PlanConnectionNumber | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
 
 type Mutation {
   createArea(input: createAreaInput): createAreaPayload
@@ -522,7 +523,7 @@ type Parser {
   objectSelector: String
   sidMatch: String
   fields: String
-  byExistingItem: ENUM_PARSER_BYEXISTINGITEM
+  urlByExistingItem: ENUM_PARSER_URLBYEXISTINGITEM
 }
 
 type ParserAggregator {
@@ -543,11 +544,6 @@ type ParserConnection_id {
 
 type ParserConnectionActive {
   key: Boolean
-  connection: ParserConnection
-}
-
-type ParserConnectionByExistingItem {
-  key: String
   connection: ParserConnection
 }
 
@@ -591,6 +587,11 @@ type ParserConnectionUrl {
   connection: ParserConnection
 }
 
+type ParserConnectionUrlByExistingItem {
+  key: String
+  connection: ParserConnection
+}
+
 type ParserGroupBy {
   _id: [ParserConnection_id]
   id: [ParserConnectionId]
@@ -602,7 +603,7 @@ type ParserGroupBy {
   objectSelector: [ParserConnectionObjectSelector]
   sidMatch: [ParserConnectionSidMatch]
   fields: [ParserConnectionFields]
-  byExistingItem: [ParserConnectionByExistingItem]
+  urlByExistingItem: [ParserConnectionUrlByExistingItem]
 }
 
 input ParserInput {
@@ -612,7 +613,7 @@ input ParserInput {
   objectSelector: String
   sidMatch: String
   fields: String
-  byExistingItem: ENUM_PARSER_BYEXISTINGITEM
+  urlByExistingItem: ENUM_PARSER_URLBYEXISTINGITEM
 }
 
 type Plan {
@@ -630,6 +631,7 @@ type Plan {
   type: String
   sid: String!
   targets: String
+  number: String
   meetings(sort: String, limit: Int, start: Int, where: JSON): [Meeting]
 }
 
@@ -675,6 +677,11 @@ type PlanConnectionMunicipality {
 }
 
 type PlanConnectionName {
+  key: String
+  connection: PlanConnection
+}
+
+type PlanConnectionNumber {
   key: String
   connection: PlanConnection
 }
@@ -729,6 +736,7 @@ type PlanGroupBy {
   type: [PlanConnectionType]
   sid: [PlanConnectionSid]
   targets: [PlanConnectionTargets]
+  number: [PlanConnectionNumber]
 }
 
 input PlanInput {
@@ -743,6 +751,7 @@ input PlanInput {
   type: String
   sid: String!
   targets: String
+  number: String
 }
 
 type Query {

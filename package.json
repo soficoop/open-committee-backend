@@ -5,12 +5,11 @@
   "description": "A Strapi application.",
   "main": "./server.js",
   "scripts": {
-    "setup": "cd admin && npm run setup",
-    "start": "node server.js",
-    "debug": "node --inspect-brk=9229 server.js",
-    "strapi": "node_modules/strapi/bin/strapi.js",
-    "lint": "node_modules/.bin/eslint api/**/*.js config/**/*.js plugins/**/*.js",
-    "postinstall": "node node_modules/strapi/lib/utils/post-install.js"
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "lint": "node_modules/.bin/eslint api/**/*.js config/**/*.js plugins/**/*.js"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -26,9 +25,17 @@
     "jsdom": "^15.1.1",
     "lodash": "^4.17.5",
     "moment": "^2.24.0",
-    "strapi": "3.0.0-alpha.26.2",
-    "strapi-hook-mongoose": "3.0.0-alpha.26.2",
-    "strapi-utils": "3.0.0-alpha.26.2"
+    "strapi": "^3.0.0-beta.3",
+    "strapi-admin": "^3.0.0-beta.3",
+    "strapi-hook-mongoose": "^3.0.0-beta.3",
+    "strapi-plugin-content-manager": "^3.0.0-beta.3",
+    "strapi-plugin-content-type-builder": "^3.0.0-beta.3",
+    "strapi-plugin-email": "^3.0.0-beta.3",
+    "strapi-plugin-graphql": "^3.0.0-beta.3",
+    "strapi-plugin-settings-manager": "^3.0.0-beta.3",
+    "strapi-plugin-upload": "^3.0.0-beta.3",
+    "strapi-plugin-users-permissions": "^3.0.0-beta.3",
+    "strapi-utils": "^3.0.0-beta.3"
   },
   "author": {
     "name": "aviran",
@@ -36,7 +43,6 @@
     "url": "http://soficoop.com"
   },
   "strapi": {
-    "packageManager": "npm",
     "uuid": "6894f9eb-3e34-451b-a771-8c30b819277b"
   },
   "engines": {

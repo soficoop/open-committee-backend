@@ -81,7 +81,7 @@ class Scraper {
    */
   async scrapeDynamicUrl(parser) {
     const relevantService = strapi.services[parser.urlByExistingItem];
-    const existingItems = await relevantService.fetchAll();
+    const existingItems = await relevantService.find();
     for (const existingItem of existingItems) {
       const staticUrl = parser.url.replace(':item', existingItem.sid);
       await this.scrapeStaticUrl(staticUrl, parser);
@@ -112,17 +112,17 @@ class Scraper {
    */
   async addOrEditItem(service, item) {
     try {
-      const itemInDb = await service.fetch({
+      const itemInDb = await service.findOne({
         sid: item.sid
       });
       if (itemInDb == null) {
         try {
-          await service.add(item);
+          await service.create(item);
         } catch (e) {
           console.warn(e);
         }
       } else {
-        await service.edit({ id: itemInDb.id }, item);
+        await service.update({ id: itemInDb.id }, item);
       }
     } catch (e) {
       console.warn(e);
@@ -169,7 +169,7 @@ class Scraper {
       value = moment(rawValue, 'DD/MM/YYYY').add(12, 'hours');
     } else if (modelAttribute.model != null) {
       const relevantRelationService = strapi.services[modelAttribute.model];
-      let relationOtherEnd = await relevantRelationService.fetch({
+      let relationOtherEnd = await relevantRelationService.findOne({
         sid: rawValue
       });
       value = relationOtherEnd != null ? relationOtherEnd.id : null;

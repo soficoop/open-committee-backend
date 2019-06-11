@@ -43,7 +43,7 @@
     {
       "method": "DELETE",
       "path": "/meetings/:_id",
-      "handler": "Meeting.destroy",
+      "handler": "Meeting.delete",
       "config": {
         "policies": []
       }

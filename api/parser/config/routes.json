@@ -43,7 +43,7 @@
     {
       "method": "DELETE",
       "path": "/parsers/:_id",
-      "handler": "Parser.destroy",
+      "handler": "Parser.delete",
       "config": {
         "policies": []
       }

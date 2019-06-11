@@ -43,7 +43,7 @@
     {
       "method": "DELETE",
       "path": "/areas/:_id",
-      "handler": "Area.destroy",
+      "handler": "Area.delete",
       "config": {
         "policies": []
       }

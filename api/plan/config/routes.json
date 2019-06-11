@@ -43,7 +43,7 @@
     {
       "method": "DELETE",
       "path": "/plans/:_id",
-      "handler": "Plan.destroy",
+      "handler": "Plan.delete",
       "config": {
         "policies": []
       }

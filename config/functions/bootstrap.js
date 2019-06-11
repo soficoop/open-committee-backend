@@ -10,7 +10,7 @@ const Scraper = require('../../utils/scraper');
  */
 
 module.exports = async cb => {
-  const parsers = await strapi.services.parser.fetchAll({active: true}, false);
+  const parsers = await strapi.services.parser.find({active: true}, false);
   const scraper = new Scraper(parsers);
   scraper.scrapeAll();
   cb();

@@ -43,7 +43,7 @@
     {
       "method": "DELETE",
       "path": "/committees/:_id",
-      "handler": "Committee.destroy",
+      "handler": "Committee.delete",
       "config": {
         "policies": []
       }

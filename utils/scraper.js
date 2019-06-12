@@ -97,9 +97,7 @@ class Scraper {
     const html = await Axios.get(url);
     const document = new JSDOM(html.data).window.document;
     document.querySelectorAll(parser.objectSelector).forEach(async item => {
-      if (url.includes('MeetingID')) console.info(url);
       const parsedItem = await this.parseSingleItem(item, parser);
-      if (url.includes('MeetingID')) console.info(parsedItem);
       const relevantService = strapi.services[parser.for];
       await this.addOrEditItem(relevantService, parsedItem);
     });
@@ -112,9 +110,10 @@ class Scraper {
    */
   async addOrEditItem(service, item) {
     try {
-      const itemInDb = await service.findOne({
+      const foundItems = await service.find({
         sid: item.sid
       });
+      const itemInDb = foundItems.length == 1 ? foundItems[0] : null;
       if (itemInDb == null) {
         try {
           await service.create(item);

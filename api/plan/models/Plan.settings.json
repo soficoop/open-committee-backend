@@ -6,7 +6,10 @@
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "name": {
@@ -31,6 +34,7 @@
       "type": "text"
     },
     "meetings": {
+      "unique": true,
       "collection": "meeting",
       "via": "plans",
       "dominant": true

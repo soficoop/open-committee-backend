@@ -6,7 +6,10 @@
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "for": {
@@ -43,6 +46,17 @@
         "plan"
       ],
       "type": "enumeration"
+    },
+    "method": {
+      "enum": [
+        "get",
+        "post"
+      ],
+      "type": "enumeration",
+      "default": "get"
+    },
+    "requestParams": {
+      "type": "text"
     }
   }
 }

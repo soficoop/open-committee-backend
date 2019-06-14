@@ -35,14 +35,14 @@
       "via": "related",
       "plugin": "upload"
     },
-    "plans": {
-      "collection": "plan",
-      "via": "meetings"
-    },
     "sid": {
       "type": "integer",
       "unique": true,
       "required": true
+    },
+    "plans": {
+      "collection": "plan",
+      "via": "meetings"
     }
   }
 }

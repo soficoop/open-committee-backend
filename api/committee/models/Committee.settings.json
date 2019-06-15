@@ -17,13 +17,13 @@
     "parent": {
       "model": "committee"
     },
-    "meetings": {
-      "collection": "meeting",
-      "via": "committee"
-    },
     "area": {
       "model": "area",
       "via": "committees"
+    },
+    "meetings": {
+      "collection": "meeting",
+      "via": "committee"
     }
   }
 }

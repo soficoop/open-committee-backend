@@ -33,12 +33,6 @@
     "sections": {
       "type": "text"
     },
-    "meetings": {
-      "unique": true,
-      "collection": "meeting",
-      "via": "plans",
-      "dominant": true
-    },
     "type": {
       "type": "string"
     },
@@ -52,6 +46,11 @@
     },
     "number": {
       "type": "string"
+    },
+    "meetings": {
+      "collection": "meeting",
+      "dominant": true,
+      "via": "plans"
     }
   }
 }

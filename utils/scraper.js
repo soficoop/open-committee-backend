@@ -195,11 +195,6 @@ class Scraper {
     const sid = this.getItemSid(element, parser, existingItem);
     const parsedItem = await this.parseItemFields(element, parser, url);
     const result = { ...parsedItem, sid: sid };
-    if (
-      result.sid ==
-      'Ug8KAJ9RokzTpqDifaXII2Xkmnh425/G4UZnx5LDyWc5QezzJ/TU7bXi++T4wZnI0uQkGnWJ3saL3HN/wqLokmzBOEKmgL0NSF9AXSZa9yc='
-    )
-      console.info(result);
     return result;
   }
 

@@ -24,7 +24,8 @@ const FieldTypes = Object.freeze({
  * @property {string} sidMatch
  * @property {boolean} active
  * @property {Field[]} fields
- * @property {'none'|'meeting'|'plan'|'committee'|'area'} urlByExistingItem
+ * @property {'none' | 'meeting' | 'plan' | 'committee' | 'area'} urlByExistingItem
+ * @property {'On' | 'Daily' | 'Weekly' | 'Monthly' } runInterval
  *
  * @typedef Field
  * @property {FieldType} type
@@ -37,6 +38,7 @@ class Scraper {
    * @param {Parser[]} parsers Array of parsing rules to scrape by
    */
   constructor(parsers) {
+    /**@type {Parser[]} */
     this.parsers = JSON.parse(JSON.stringify(parsers));
     this.generateParserFields();
   }
@@ -61,12 +63,36 @@ class Scraper {
     }
   }
 
+  /**
+   * Runs all parsers
+   */
+  async scrapeAllRepeatedly() {
+    for (const parser of this.parsers) {
+      let interval;
+      switch (parser.runInterval) {
+        case 'Daily':
+          interval = 1000 * 3600 * 24;
+          break;
+        case 'Weekly':
+          interval = 1000 * 3600 * 24 * 7;
+          break;
+        case 'Monthly':
+          interval = 1000 * 3600 * 24 * 30;
+          break;
+      }
+      await this.scrapeByParser(parser);
+      if (interval != null) {
+        setInterval(async () => {
+          await this.scrapeByParser(parser);
+        }, interval);
+      }
+    }
+  }
+
   async scrapeAll() {
-    strapi.log.info('🖹 Scraping started...');
     for (const parser of this.parsers) {
       await this.scrapeByParser(parser);
     }
-    strapi.log.info('🖹 scraping ended.');
   }
 
   /**
@@ -74,11 +100,13 @@ class Scraper {
    * @param {Parser} parser The parser settings to scrape by
    */
   async scrapeByParser(parser) {
+    strapi.log.info(`🖹 Scraping ${parser.for}s...`);
     if (parser.urlByExistingItem == 'none') {
       await this.scrapeStaticUrl(parser.url, parser, parser.requestParams);
     } else {
       await this.scrapeDynamicUrl(parser);
     }
+    strapi.log.info(`🖹 Scraping ${parser.for}s ended.`);
   }
 
   /**

@@ -57,6 +57,16 @@
     },
     "requestParams": {
       "type": "text"
+    },
+    "runInterval": {
+      "enum": [
+        "On server startup",
+        "Daily",
+        "Weekly",
+        "Monthly"
+      ],
+      "type": "enumeration",
+      "default": "On server startup"
     }
   }
 }

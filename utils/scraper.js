@@ -260,7 +260,9 @@ class Scraper {
     }
     const relationTargetModel =
       modelAttribute.collection || modelAttribute.model;
-    if (modelAttribute.type == 'date') {
+    if (modelAttribute.type == 'string' && typeof value == 'string') {
+      value = value.trim();
+    } else if (modelAttribute.type == 'date') {
       value = moment(value || '01/01/1970', 'DD/MM/YYYY').add(12, 'hours');
     } else if (relationTargetModel) {
       value = await this.convertRelationshipField(

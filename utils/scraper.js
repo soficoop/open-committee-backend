@@ -100,13 +100,13 @@ class Scraper {
    * @param {Parser} parser The parser settings to scrape by
    */
   async scrapeByParser(parser) {
-    strapi.log.info(`🖹 Scraping ${parser.for}s...`);
+    strapi.log.info(`🧐  Scraping ${parser.for}s...`);
     if (parser.urlByExistingItem == 'none') {
       await this.scrapeStaticUrl(parser.url, parser, parser.requestParams);
     } else {
       await this.scrapeDynamicUrl(parser);
     }
-    strapi.log.info(`🖹 Scraping ${parser.for}s ended.`);
+    strapi.log.info(`🧐  Scraping ${parser.for}s ended.`);
   }
 
   /**

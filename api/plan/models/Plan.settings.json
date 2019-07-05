@@ -49,8 +49,11 @@
     },
     "meetings": {
       "collection": "meeting",
-      "dominant": true,
-      "via": "plans"
+      "via": "plans",
+      "dominant": true
+    },
+    "submission": {
+      "type": "date"
     }
   }
 }

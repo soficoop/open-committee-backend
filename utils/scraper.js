@@ -155,7 +155,6 @@ class Scraper {
           url,
           existingItem
         );
-        if (parser.for ==  'plan' && parsedItem.type == 'נושא' && url.includes('SV4')) console.info(parsedItem);
         const relevantService = strapi.services[parser.for];
         await this.addOrEditItem(relevantService, parsedItem);
       } catch (e) {

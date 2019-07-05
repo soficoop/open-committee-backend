@@ -67,7 +67,7 @@
     "city": {
       "type": "string"
     },
-    "Organization": {
+    "organization": {
       "type": "string"
     },
     "job": {

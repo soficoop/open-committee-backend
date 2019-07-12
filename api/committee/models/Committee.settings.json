@@ -6,7 +6,10 @@
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "sid": {
@@ -15,7 +18,8 @@
       "unique": true
     },
     "parent": {
-      "model": "committee"
+      "model": "committee",
+      "via": "children"
     },
     "area": {
       "model": "area",
@@ -24,6 +28,10 @@
     "meetings": {
       "collection": "meeting",
       "via": "committee"
+    },
+    "children": {
+      "collection": "committee",
+      "via": "parent"
     }
   }
 }

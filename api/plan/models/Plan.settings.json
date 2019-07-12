@@ -54,6 +54,9 @@
     },
     "submission": {
       "type": "date"
+    },
+    "stype": {
+      "type": "integer"
     }
   }
 }

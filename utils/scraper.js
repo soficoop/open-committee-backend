@@ -117,9 +117,9 @@ class Scraper {
     const relevantService = strapi.services[parser.urlByExistingItem];
     const existingItems = await relevantService.find();
     for (const existingItem of existingItems) {
-      const staticUrl = parser.url.replace(':item', existingItem.sid);
+      const staticUrl = parser.url.replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1]);
       const requestParams = yaml.safeLoad(
-        (parser.requestParams || '').replace(':item', existingItem.sid)
+        (parser.requestParams || '').replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1])
       );
       await this.scrapeStaticUrl(
         staticUrl,

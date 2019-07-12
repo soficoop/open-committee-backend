@@ -19,10 +19,6 @@
       "type": "integer",
       "required": true
     },
-    "committee": {
-      "model": "committee",
-      "via": "meetings"
-    },
     "desicions": {
       "model": "file",
       "via": "related",
@@ -42,6 +38,10 @@
       "type": "string",
       "unique": true,
       "required": true
+    },
+    "committee": {
+      "model": "committee",
+      "via": "meetings"
     },
     "plans": {
       "collection": "plan",

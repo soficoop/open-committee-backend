@@ -72,6 +72,11 @@
     },
     "job": {
       "type": "string"
+    },
+    "committees": {
+      "collection": "committee",
+      "via": "users",
+      "dominant": true
     }
   }
 }

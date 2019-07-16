@@ -82,7 +82,7 @@ ssl
 nbproject
 public/uploads/*
 !public/uploads/.gitkeep
-**/database.json
+config/environments/*/database.json
 
 ############################
 # Node.js

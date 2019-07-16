@@ -32,6 +32,11 @@
     "children": {
       "collection": "committee",
       "via": "parent"
+    },
+    "users": {
+      "collection": "user",
+      "via": "committees",
+      "plugin": "users-permissions"
     }
   }
 }

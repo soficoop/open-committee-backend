@@ -37,9 +37,7 @@
       "type": "string"
     },
     "sid": {
-      "required": true,
-      "type": "string",
-      "unique": true
+      "type": "string"
     },
     "targets": {
       "type": "text"
@@ -47,16 +45,24 @@
     "number": {
       "type": "string"
     },
-    "meetings": {
-      "collection": "meeting",
-      "via": "plans",
-      "dominant": true
-    },
     "submission": {
       "type": "date"
     },
     "stype": {
       "type": "integer"
+    },
+    "meetings": {
+      "collection": "meeting",
+      "via": "plans",
+      "dominant": true
+    },
+    "addedManually": {
+      "type": "boolean"
+    },
+    "attachedFiles": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload"
     }
   }
 }

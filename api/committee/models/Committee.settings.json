@@ -25,10 +25,6 @@
       "model": "area",
       "via": "committees"
     },
-    "meetings": {
-      "collection": "meeting",
-      "via": "committee"
-    },
     "children": {
       "collection": "committee",
       "via": "parent"
@@ -37,6 +33,10 @@
       "collection": "user",
       "via": "committees",
       "plugin": "users-permissions"
+    },
+    "meetings": {
+      "collection": "meeting",
+      "via": "committee"
     }
   }
 }

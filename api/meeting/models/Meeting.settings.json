@@ -16,10 +16,9 @@
       "type": "date"
     },
     "number": {
-      "type": "integer",
-      "required": true
+      "type": "integer"
     },
-    "desicions": {
+    "decisions": {
       "model": "file",
       "via": "related",
       "plugin": "upload"
@@ -35,13 +34,25 @@
       "plugin": "upload"
     },
     "sid": {
-      "type": "string",
-      "unique": true,
-      "required": true
+      "type": "string"
     },
     "committee": {
       "model": "committee",
       "via": "meetings"
+    },
+    "addedManually": {
+      "type": "boolean"
+    },
+    "title": {
+      "type": "string"
+    },
+    "additionalFiles": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "background": {
+      "type": "text"
     },
     "plans": {
       "collection": "plan",

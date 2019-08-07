@@ -51,11 +51,6 @@
     "stype": {
       "type": "integer"
     },
-    "meetings": {
-      "collection": "meeting",
-      "via": "plans",
-      "dominant": true
-    },
     "addedManually": {
       "type": "boolean"
     },
@@ -63,6 +58,11 @@
       "collection": "file",
       "via": "related",
       "plugin": "upload"
+    },
+    "meetings": {
+      "collection": "meeting",
+      "dominant": true,
+      "via": "plans"
     }
   }
 }

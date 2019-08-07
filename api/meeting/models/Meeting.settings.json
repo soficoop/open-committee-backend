@@ -57,6 +57,9 @@
     "plans": {
       "collection": "plan",
       "via": "meetings"
+    },
+    "summary": {
+      "type": "text"
     }
   }
 }

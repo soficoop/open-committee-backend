@@ -258,7 +258,7 @@ class Scraper {
       switch (field.type) {
         case FieldTypes.SELECTOR:
           value = [...item.querySelectorAll(field.from)].map(
-            i => i.textContent
+            i => i.innerHTML
           );
           break;
         case FieldTypes.REGEX:

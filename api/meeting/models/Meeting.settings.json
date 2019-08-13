@@ -54,12 +54,12 @@
     "background": {
       "type": "text"
     },
+    "summary": {
+      "type": "text"
+    },
     "plans": {
       "collection": "plan",
       "via": "meetings"
-    },
-    "summary": {
-      "type": "text"
     }
   }
 }

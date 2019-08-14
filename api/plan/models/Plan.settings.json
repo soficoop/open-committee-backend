@@ -63,6 +63,12 @@
       "collection": "meeting",
       "via": "plans",
       "dominant": true
+    },
+    "street": {
+      "type": "string"
+    },
+    "houseNumber": {
+      "type": "integer"
     }
   }
 }

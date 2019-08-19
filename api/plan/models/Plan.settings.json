@@ -69,6 +69,10 @@
     },
     "houseNumber": {
       "type": "integer"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "plan"
     }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "comment",
+    "description": "Comments on other content types"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "content": {
+      "type": "text"
+    },
+    "plan": {
+      "model": "plan",
+      "via": "comments"
+    }
+  }
+}

@@ -29,14 +29,14 @@
       "collection": "committee",
       "via": "parent"
     },
+    "meetings": {
+      "collection": "meeting",
+      "via": "committee"
+    },
     "users": {
       "collection": "user",
       "via": "committees",
       "plugin": "users-permissions"
-    },
-    "meetings": {
-      "collection": "meeting",
-      "via": "committee"
     }
   }
 }

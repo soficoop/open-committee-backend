@@ -77,6 +77,11 @@
       "collection": "committee",
       "via": "users",
       "dominant": true
+    },
+    "userImage": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
     }
   }
 }

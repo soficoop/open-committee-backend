@@ -1,12 +1,15 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "comment",
   "info": {
     "name": "comment",
     "description": "Comments on other content types"
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "title": {
@@ -21,6 +24,9 @@
     "plan": {
       "model": "plan",
       "via": "comments"
+    },
+    "createdAt": {
+      "type": "date"
     }
   }
 }

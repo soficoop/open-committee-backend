@@ -27,6 +27,19 @@
     },
     "createdAt": {
       "type": "date"
+    },
+    "parent": {
+      "model": "comment",
+      "via": "children"
+    },
+    "user": {
+      "model": "user",
+      "via": "comments",
+      "plugin": "users-permissions"
+    },
+    "children": {
+      "collection": "comment",
+      "via": "parent"
     }
   }
 }

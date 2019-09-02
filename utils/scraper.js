@@ -288,7 +288,9 @@ class Scraper {
     }
     const relationTargetModel =
       modelAttribute.collection || modelAttribute.model;
-    if (modelAttribute.type == 'string' && typeof value == 'string') {
+    if (modelAttribute.type == 'integer') {
+      value = parseInt(value) || 0;
+    } else if (modelAttribute.type == 'string' && typeof value == 'string') {
       value = value.trim();
     } else if (modelAttribute.type == 'date') {
       value = moment(value || '01/01/1970', 'DD/MM/YYYY').add(12, 'hours');

@@ -82,6 +82,10 @@
       "model": "file",
       "via": "related",
       "plugin": "upload"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "user"
     }
   }
 }

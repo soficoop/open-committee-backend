@@ -32,14 +32,14 @@
       "model": "comment",
       "via": "children"
     },
+    "children": {
+      "collection": "comment",
+      "via": "parent"
+    },
     "user": {
       "model": "user",
       "via": "comments",
       "plugin": "users-permissions"
-    },
-    "children": {
-      "collection": "comment",
-      "via": "parent"
     }
   }
 }

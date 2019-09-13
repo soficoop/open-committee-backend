@@ -37,6 +37,11 @@
       "collection": "user",
       "via": "committees",
       "plugin": "users-permissions"
+    },
+    "subscribedUsers": {
+      "collection": "user",
+      "via": "subscribedCommittees",
+      "plugin": "users-permissions"
     }
   }
 }

@@ -86,6 +86,11 @@
     "comments": {
       "collection": "comment",
       "via": "user"
+    },
+    "subscribedCommittees": {
+      "collection": "committee",
+      "via": "subscribedUsers",
+      "dominant": true
     }
   }
 }

@@ -82,6 +82,15 @@
       "model": "file",
       "via": "related",
       "plugin": "upload"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "user"
+    },
+    "subscribedCommittees": {
+      "collection": "committee",
+      "via": "subscribedUsers",
+      "dominant": true
     }
   }
 }

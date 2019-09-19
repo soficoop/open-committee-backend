@@ -9,9 +9,8 @@ const Scraper = require('../../utils/scraper');
  * run jobs, or perform some special logic.
  */
 
-module.exports = async cb => {
+module.exports = async () => {
   const parsers = await strapi.services.parser.find({active: true}, false);
   const scraper = new Scraper(parsers);
   scraper.scrapeAllRepeatedly();
-  cb();
 };

@@ -70,15 +70,15 @@ class Scraper {
     for (const parser of this.parsers) {
       let interval;
       switch (parser.runInterval) {
-        case 'Daily':
-          interval = 1000 * 3600 * 24;
-          break;
-        case 'Weekly':
-          interval = 1000 * 3600 * 24 * 7;
-          break;
-        case 'Monthly':
-          interval = 1000 * 3600 * 24 * 30;
-          break;
+      case 'Daily':
+        interval = 1000 * 3600 * 24;
+        break;
+      case 'Weekly':
+        interval = 1000 * 3600 * 24 * 7;
+        break;
+      case 'Monthly':
+        interval = 1000 * 3600 * 24 * 30;
+        break;
       }
       await this.scrapeByParser(parser);
       if (interval != null) {
@@ -256,17 +256,17 @@ class Scraper {
       const key = field.for;
       let value;
       switch (field.type) {
-        case FieldTypes.SELECTOR:
-          value = [...item.querySelectorAll(field.from)].map(
-            i => i.innerHTML
-          );
-          break;
-        case FieldTypes.REGEX:
-          value = [...item.innerHTML.matchAll(field.from)].map(i => i[1]);
-          break;
-        case FieldTypes.URL_PARAM:
-          value = new URL(url).searchParams.get(field.from);
-          break;
+      case FieldTypes.SELECTOR:
+        value = [...item.querySelectorAll(field.from)].map(
+          i => i.innerHTML
+        );
+        break;
+      case FieldTypes.REGEX:
+        value = [...item.innerHTML.matchAll(field.from)].map(i => i[1]);
+        break;
+      case FieldTypes.URL_PARAM:
+        value = new URL(url).searchParams.get(field.from);
+        break;
       }
       result[key] = await this.convertField(value, modelAttributes[key]);
     }

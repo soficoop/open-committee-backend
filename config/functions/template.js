@@ -6,7 +6,7 @@ handlebars.registerHelper('formatDate', (date) => {
   return `${dateList[2]}.${dateList[1]}.${dateList[0]}`;
 });
 
-handlebars.registerHelper('appUrl', () => strapi.config.environments.development.appUrl);
+handlebars.registerHelper('appUrl', () => strapi.config.currentEnvironment.appUrl);
 
 module.exports = async (templateFile, doc) => {
   const data = await fs.readFile(templateFile, 'utf8');

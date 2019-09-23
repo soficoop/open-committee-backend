@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/meetings/:id/email",
+      "handler": "Meeting.emailSubscribers",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

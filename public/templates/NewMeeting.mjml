@@ -1,0 +1,68 @@
+<!-- Download MJML (https://mjml.io) in order to edit this file -->
+<!-- Edited code should be exported to NewMeeting.html -->
+<mjml>
+  <mj-head>
+    <mj-font name="Assistant" href="https://fonts.googleapis.com/css?family=Assistant"></mj-font>
+    <mj-title>ישיבה חדשה במערכת ועדה פתוחה</mj-title>
+    <mj-style>
+      * {
+        direction: rtl;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#AB9187">
+    <mj-wrapper padding="20px">
+      <mj-section direction="rtl" background-color="white">
+        <mj-column>
+          <mj-image width="100px" src="http://oc.soficoop.com/img/logo.png"></mj-image>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#F5F2EE" padding-bottom="0">
+        <mj-column>
+          <mj-text align="right" font-size="20px" color="#004359" font-family="Assistant,Arial">
+            שלום {{user.firstName}},
+            <br /> ישנה ישיבה חדשה במערכת ועדה פתוחה.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#F5F2EE" padding="0">
+        <mj-column>
+          <mj-text align="right" align="right" color="#004359" font-family="Assistant,Arial">
+            <h2>{{meeting.committee.sid}}</h2>
+            <h3>ישיבה מספר {{meeting.number}} • {{formatDate meeting.date}}</h3>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#F5F2EE" padding="0">
+        <mj-column>
+          <mj-text>
+            {{#each meeting.plans}}
+              {{#if status}}
+          </mj-text>
+          <mj-text align="right" align="right" color="#004359" font-family="Assistant,Arial">
+            <h4 style="color: #47AA7C">{{name}} • {{number}}</h4>
+            {{#if location}}
+              <h4 style="color: #846154">מיקום התכנית:</h4>
+              {{{location}}}
+            {{/if}}
+            {{#if targets}}
+              <h4 style="color: #846154">מטרות:</h4>
+              {{{targets}}}
+            {{/if}}
+          </mj-text>
+          <mj-button font-family="Assistant, Arial" background-color="#004359" color="white" align="right" href="{{appUrl}}/plan/{{id}}">
+            הצטרפו לדיון
+          </mj-button>
+          <mj-text>
+            {{/if}}
+            {{/each}}
+          </mj-text>
+          <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
+          <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/meeting/{{meeting.id}}" border="#004359 2px solid">
+            לצפייה בסדר היום המלא
+          </mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

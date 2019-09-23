@@ -112,3 +112,4 @@ coverage
 exports
 .cache
 build
+extensions/documentation/documentation/1.0.0/full_documentation.json

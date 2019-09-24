@@ -21,7 +21,7 @@
         <mj-column>
           <mj-text align="right" font-size="16px" color="#004359" font-family="Assistant,Arial">
             שלום {{user.firstName}},
-            <br /> ישנה ישיבה חדשה במערכת ועדה פתוחה.
+            <br /> ישנו עדכון חדש בנוגע לישיבה במערכת ועדה פתוחה. להלן פרטי הישיבה העדכניים:
           </mj-text>
         </mj-column>
       </mj-section>

@@ -1,5 +1,6 @@
 'use strict';
 const parseTemplate = require('../../../config/functions/template');
+const templatesDir = 'public/templates/';
 
 module.exports = {
   /**
@@ -10,14 +11,15 @@ module.exports = {
   async emailSubscribers(ctx) {
     const meeting = await strapi.services.meeting.findOne({ id: ctx.params.id });
     const { subscribedUsers } = await strapi.services.committee.findOne({ id: meeting.committee.id });
+    const templateFile = ctx.params.isNew ? 'NewMeeting.html' : 'UpdatedMeeting.html';
+    const subject = ctx.params.isNew ? 'ישיבה חדשה במערכת ועדה פתוחה' : 'עדכון ישיבה במערכת ועדה פתוחה';
     for (const user of subscribedUsers) {
-      await strapi.plugins.email.services.email.send({
+      strapi.plugins.email.services.email.send({
         to: user.email,
-        subject: 'ישיבה חדשה במערכת ועדה פתוחה',
-        html: await parseTemplate('public/templates/NewMeeting.html', { meeting, user })
+        subject,
+        html: await parseTemplate(templatesDir + templateFile, { meeting, user })
       });
     }
-    ctx.res.statusCode = 200;
     return { meeting, recipients: subscribedUsers };
   },
 
@@ -28,6 +30,7 @@ module.exports = {
   async create(ctx) {
     const meeting = await strapi.services.meeting.create(ctx.request.body);
     ctx.params.id = meeting.id;
+    ctx.params.isNew = true;
     await strapi.controllers.meeting.emailSubscribers(ctx);
     return meeting;
   }

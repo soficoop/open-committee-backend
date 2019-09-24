@@ -1,17 +1,23 @@
 module.exports = {
   definition: `
-        type MeetingEmail {
+        type emailMeetingPayload {
             meeting: Meeting
             recipients: [UsersPermissionsUser]
         }
+
+        input EmailMeetingInput {
+          where: InputID!
+        }
     `,
   mutation: `
-        emailMeeting(id: ID!): MeetingEmail
+        emailMeeting(input: EmailMeetingInput!): emailMeetingPayload
     `,
   resolver: {
     Mutation: {
       emailMeeting: {
-        resolver: 'Meeting.emailSubscribers'
+        description: 'Email meeting to its subscribers',
+        resolverOf: 'Meeting.emailSubscribers',
+        resolver: async (obj, options, {context}) => strapi.controllers.meeting.emailSubscribers(context)
       }
     }
   }

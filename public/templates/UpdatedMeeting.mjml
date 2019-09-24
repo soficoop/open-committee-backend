@@ -65,6 +65,6 @@
         </mj-column>
       </mj-section>
     </mj-wrapper>
-    <mj-image src="{{strapiUrl}}/meeting/{{meeting.id}}/addview" />
+    <mj-image src="{{strapiUrl}}/meetings/{{meeting.id}}/addview" />
   </mj-body>
 </mjml>

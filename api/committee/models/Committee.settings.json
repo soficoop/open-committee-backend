@@ -29,10 +29,6 @@
       "collection": "committee",
       "via": "parent"
     },
-    "meetings": {
-      "collection": "meeting",
-      "via": "committee"
-    },
     "users": {
       "collection": "user",
       "via": "committees",
@@ -42,6 +38,10 @@
       "collection": "user",
       "via": "subscribedCommittees",
       "plugin": "users-permissions"
+    },
+    "meetings": {
+      "collection": "meeting",
+      "via": "committee"
     }
   }
 }

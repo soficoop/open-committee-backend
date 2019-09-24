@@ -581,12 +581,6 @@
                   "type": "string"
                 }
               },
-              "meetings": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "street": {
                 "type": "string"
               },
@@ -594,6 +588,12 @@
                 "type": "integer"
               },
               "comments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "meetings": {
                 "type": "array",
                 "items": {
                   "type": "string"

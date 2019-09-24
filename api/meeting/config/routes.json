@@ -55,6 +55,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/meetings/:id/addview",
+      "handler": "Meeting.addEmailView",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

@@ -33,5 +33,13 @@ module.exports = {
     ctx.params.isNew = true;
     await strapi.controllers.meeting.emailSubscribers(ctx);
     return meeting;
+  },
+
+  async addEmailView(ctx) {
+    console.info('inside email view');
+    const meetingSercice = strapi.services.meeting;
+    const meeting = await meetingSercice.findOne({ id: ctx.params.id });
+    meetingSercice.update({id: meeting.id},{emailViews: meeting.emailViews + 1});
+    ctx.send(200);
   }
 };

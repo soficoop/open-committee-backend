@@ -59,11 +59,6 @@
       "via": "related",
       "plugin": "upload"
     },
-    "meetings": {
-      "collection": "meeting",
-      "via": "plans",
-      "dominant": true
-    },
     "street": {
       "type": "string"
     },
@@ -73,6 +68,11 @@
     "comments": {
       "collection": "comment",
       "via": "plan"
+    },
+    "meetings": {
+      "collection": "meeting",
+      "dominant": true,
+      "via": "plans"
     }
   }
 }

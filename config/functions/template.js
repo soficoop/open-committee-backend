@@ -7,6 +7,7 @@ handlebars.registerHelper('formatDate', (date) => {
 });
 
 handlebars.registerHelper('appUrl', () => strapi.config.currentEnvironment.appUrl);
+handlebars.registerHelper('strapiUrl', () => strapi.config.currentEnvironment.strapiUrl);
 
 handlebars.registerHelper('formatMeetingTitle', meeting => meeting.title || `ישיבה מספר ${meeting.number}`);
 

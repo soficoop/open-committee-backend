@@ -546,12 +546,6 @@
                     "type": "string"
                   }
                 },
-                "meetings": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "users": {
                   "type": "array",
                   "items": {
@@ -559,6 +553,12 @@
                   }
                 },
                 "subscribedUsers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "meetings": {
                   "type": "array",
                   "items": {
                     "type": "string"

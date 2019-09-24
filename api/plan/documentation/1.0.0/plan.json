@@ -607,6 +607,52 @@
               }
             }
           },
+          "street": {
+            "type": "string"
+          },
+          "houseNumber": {
+            "type": "integer"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "plan": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "parent": {
+                  "type": "string"
+                },
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "user": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "meetings": {
             "type": "array",
             "items": {
@@ -661,52 +707,9 @@
                   "items": {
                     "type": "string"
                   }
-                }
-              }
-            }
-          },
-          "street": {
-            "type": "string"
-          },
-          "houseNumber": {
-            "type": "integer"
-          },
-          "comments": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
                 },
-                "title": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "content": {
-                  "type": "string"
-                },
-                "plan": {
-                  "type": "string"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "parent": {
-                  "type": "string"
-                },
-                "children": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "user": {
-                  "type": "string"
+                "emailViews": {
+                  "type": "integer"
                 }
               }
             }
@@ -757,12 +760,6 @@
           "addedManually": {
             "type": "boolean"
           },
-          "meetings": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
           "street": {
             "type": "string"
           },
@@ -770,6 +767,12 @@
             "type": "integer"
           },
           "comments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "meetings": {
             "type": "array",
             "items": {
               "type": "string"

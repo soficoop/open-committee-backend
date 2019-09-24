@@ -544,12 +544,6 @@
                   "type": "string"
                 }
               },
-              "meetings": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "users": {
                 "type": "array",
                 "items": {
@@ -557,6 +551,12 @@
                 }
               },
               "subscribedUsers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "meetings": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -610,12 +610,6 @@
                     "type": "string"
                   }
                 },
-                "meetings": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "users": {
                   "type": "array",
                   "items": {
@@ -623,6 +617,166 @@
                   }
                 },
                 "subscribedUsers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "meetings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "username",
+                "email",
+                "firstName",
+                "lastName"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "resetPasswordToken": {
+                  "type": "string"
+                },
+                "confirmed": {
+                  "type": "boolean"
+                },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "job": {
+                  "type": "string"
+                },
+                "committees": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "userImage": {
+                  "type": "string"
+                },
+                "comments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedCommittees": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "subscribedUsers": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "username",
+                "email",
+                "firstName",
+                "lastName"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "resetPasswordToken": {
+                  "type": "string"
+                },
+                "confirmed": {
+                  "type": "boolean"
+                },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "job": {
+                  "type": "string"
+                },
+                "committees": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "userImage": {
+                  "type": "string"
+                },
+                "comments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedCommittees": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -685,160 +839,9 @@
                   "items": {
                     "type": "string"
                   }
-                }
-              }
-            }
-          },
-          "users": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "username",
-                "email",
-                "firstName",
-                "lastName"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
                 },
-                "username": {
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string"
-                },
-                "resetPasswordToken": {
-                  "type": "string"
-                },
-                "confirmed": {
-                  "type": "boolean"
-                },
-                "blocked": {
-                  "type": "boolean"
-                },
-                "role": {
-                  "type": "string"
-                },
-                "firstName": {
-                  "type": "string"
-                },
-                "lastName": {
-                  "type": "string"
-                },
-                "city": {
-                  "type": "string"
-                },
-                "organization": {
-                  "type": "string"
-                },
-                "job": {
-                  "type": "string"
-                },
-                "committees": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "userImage": {
-                  "type": "string"
-                },
-                "comments": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "subscribedCommittees": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "subscribedUsers": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "username",
-                "email",
-                "firstName",
-                "lastName"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "username": {
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string"
-                },
-                "resetPasswordToken": {
-                  "type": "string"
-                },
-                "confirmed": {
-                  "type": "boolean"
-                },
-                "blocked": {
-                  "type": "boolean"
-                },
-                "role": {
-                  "type": "string"
-                },
-                "firstName": {
-                  "type": "string"
-                },
-                "lastName": {
-                  "type": "string"
-                },
-                "city": {
-                  "type": "string"
-                },
-                "organization": {
-                  "type": "string"
-                },
-                "job": {
-                  "type": "string"
-                },
-                "committees": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "userImage": {
-                  "type": "string"
-                },
-                "comments": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "subscribedCommittees": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                "emailViews": {
+                  "type": "integer"
                 }
               }
             }
@@ -865,12 +868,6 @@
               "type": "string"
             }
           },
-          "meetings": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
           "users": {
             "type": "array",
             "items": {
@@ -878,6 +875,12 @@
             }
           },
           "subscribedUsers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "meetings": {
             "type": "array",
             "items": {
               "type": "string"

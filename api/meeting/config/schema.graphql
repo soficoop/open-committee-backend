@@ -1,0 +1,18 @@
+module.exports = {
+  definition: `
+        type MeetingEmail {
+            meeting: Meeting
+            recipients: [UsersPermissionsUser]
+        }
+    `,
+  mutation: `
+        emailMeeting(id: ID!): MeetingEmail
+    `,
+  resolver: {
+    Mutation: {
+      emailMeeting: {
+        resolver: 'Meeting.emailSubscribers'
+      }
+    }
+  }
+};

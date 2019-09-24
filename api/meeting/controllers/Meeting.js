@@ -18,7 +18,7 @@ module.exports = {
       });
     }
     ctx.res.statusCode = 200;
-    return ctx.status;
+    return { meeting, recipients: subscribedUsers };
   },
 
   /**

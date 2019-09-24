@@ -30,6 +30,7 @@
           <mj-text align="right" align="right" color="#004359" font-family="Assistant,Arial">
             <h2>{{meeting.committee.sid}}</h2>
             <h3>ישיבה מספר {{meeting.number}} • {{formatDate meeting.date}}</h3>
+            {{meeting.background}}
           </mj-text>
         </mj-column>
       </mj-section>

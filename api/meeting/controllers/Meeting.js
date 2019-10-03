@@ -37,9 +37,24 @@ module.exports = {
 
   async addEmailView(ctx) {
     console.info('inside email view');
-    const meetingSercice = strapi.services.meeting;
-    const meeting = await meetingSercice.findOne({ id: ctx.params.id });
-    meetingSercice.update({id: meeting.id},{emailViews: meeting.emailViews + 1});
+    const meetingService = strapi.services.meeting;
+    const meeting = await meetingService.findOne({ id: ctx.params.id });
+    meetingService.update({ id: meeting.id }, { emailViews: meeting.emailViews + 1 });
     ctx.send(200);
+  },
+
+  /**
+   * Updates a meeting that the current user is an admin of
+   * @param {import("koa").ParameterizedContext} ctx Koa context
+   */
+  async updateMyMeeting(ctx) {
+    const meetingService = strapi.services.meeting;
+    const meeting = await meetingService.findOne({ id: ctx.params.id });
+    const userCommittees = !!ctx.state && !!ctx.state.user && ctx.state.user.committees;
+    const resultCommiteeId = !!meeting.committee && meeting.committee.id;
+    if (!userCommittees || !userCommittees.find(committee => committee.id == resultCommiteeId)) {
+      throw new Error('You\'re not allowed to perform this action!');
+    }
+    return { meeting: await meetingService.update({ id: meeting.id }, ctx.request.body) };
   }
 };

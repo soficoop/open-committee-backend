@@ -21,10 +21,6 @@
     "content": {
       "type": "text"
     },
-    "plan": {
-      "model": "plan",
-      "via": "comments"
-    },
     "createdAt": {
       "type": "date"
     },
@@ -40,6 +36,16 @@
       "model": "user",
       "via": "comments",
       "plugin": "users-permissions"
+    },
+    "isHidden": {
+      "type": "boolean"
+    },
+    "plan": {
+      "model": "plan",
+      "via": "comments"
+    },
+    "isPinned": {
+      "type": "boolean"
     }
   }
 }

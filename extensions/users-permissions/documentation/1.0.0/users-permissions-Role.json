@@ -629,13 +629,13 @@
                 "userImage": {
                   "type": "string"
                 },
-                "comments": {
+                "subscribedCommittees": {
                   "type": "array",
                   "items": {
                     "type": "string"
                   }
                 },
-                "subscribedCommittees": {
+                "comments": {
                   "type": "array",
                   "items": {
                     "type": "string"

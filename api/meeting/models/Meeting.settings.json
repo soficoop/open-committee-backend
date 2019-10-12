@@ -57,13 +57,13 @@
     "summary": {
       "type": "text"
     },
-    "plans": {
-      "collection": "plan",
-      "via": "meetings"
-    },
     "emailViews": {
       "type": "integer",
       "default": "0"
+    },
+    "plans": {
+      "collection": "plan",
+      "via": "meetings"
     }
   }
 }

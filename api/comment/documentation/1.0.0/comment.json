@@ -525,82 +525,6 @@
           "content": {
             "type": "string"
           },
-          "plan": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "status": {
-                "type": "string"
-              },
-              "lastUpdate": {
-                "type": "string"
-              },
-              "location": {
-                "type": "string"
-              },
-              "municipality": {
-                "type": "string"
-              },
-              "settlement": {
-                "type": "string"
-              },
-              "sections": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string"
-              },
-              "sid": {
-                "type": "string"
-              },
-              "targets": {
-                "type": "string"
-              },
-              "number": {
-                "type": "string"
-              },
-              "submission": {
-                "type": "string"
-              },
-              "stype": {
-                "type": "integer"
-              },
-              "addedManually": {
-                "type": "boolean"
-              },
-              "attachedFiles": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "street": {
-                "type": "string"
-              },
-              "houseNumber": {
-                "type": "integer"
-              },
-              "comments": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "meetings": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "createdAt": {
             "type": "string"
           },
@@ -621,9 +545,6 @@
               "content": {
                 "type": "string"
               },
-              "plan": {
-                "type": "string"
-              },
               "createdAt": {
                 "type": "string"
               },
@@ -638,6 +559,15 @@
               },
               "user": {
                 "type": "string"
+              },
+              "isHidden": {
+                "type": "boolean"
+              },
+              "plan": {
+                "type": "string"
+              },
+              "isPinned": {
+                "type": "boolean"
               }
             }
           },
@@ -660,9 +590,6 @@
                 "content": {
                   "type": "string"
                 },
-                "plan": {
-                  "type": "string"
-                },
                 "createdAt": {
                   "type": "string"
                 },
@@ -677,6 +604,15 @@
                 },
                 "user": {
                   "type": "string"
+                },
+                "isHidden": {
+                  "type": "boolean"
+                },
+                "plan": {
+                  "type": "string"
+                },
+                "isPinned": {
+                  "type": "boolean"
                 }
               }
             }
@@ -741,19 +677,104 @@
               "userImage": {
                 "type": "string"
               },
-              "comments": {
+              "subscribedCommittees": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
-              "subscribedCommittees": {
+              "comments": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               }
             }
+          },
+          "isHidden": {
+            "type": "boolean"
+          },
+          "plan": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "lastUpdate": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "municipality": {
+                "type": "string"
+              },
+              "settlement": {
+                "type": "string"
+              },
+              "sections": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "sid": {
+                "type": "string"
+              },
+              "targets": {
+                "type": "string"
+              },
+              "number": {
+                "type": "string"
+              },
+              "submission": {
+                "type": "string"
+              },
+              "stype": {
+                "type": "integer"
+              },
+              "addedManually": {
+                "type": "boolean"
+              },
+              "attachedFiles": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "street": {
+                "type": "string"
+              },
+              "houseNumber": {
+                "type": "integer"
+              },
+              "meetings": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "lockComments": {
+                "type": "boolean"
+              },
+              "comments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "isPinned": {
+            "type": "boolean"
           }
         }
       },
@@ -766,9 +787,6 @@
             "type": "string"
           },
           "content": {
-            "type": "string"
-          },
-          "plan": {
             "type": "string"
           },
           "createdAt": {
@@ -785,6 +803,15 @@
           },
           "user": {
             "type": "string"
+          },
+          "isHidden": {
+            "type": "boolean"
+          },
+          "plan": {
+            "type": "string"
+          },
+          "isPinned": {
+            "type": "boolean"
           }
         }
       }

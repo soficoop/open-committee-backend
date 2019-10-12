@@ -907,6 +907,10 @@
           "summary": {
             "type": "string"
           },
+          "emailViews": {
+            "type": "integer",
+            "default": "0"
+          },
           "plans": {
             "type": "array",
             "items": {
@@ -971,13 +975,16 @@
                 "houseNumber": {
                   "type": "integer"
                 },
-                "comments": {
+                "meetings": {
                   "type": "array",
                   "items": {
                     "type": "string"
                   }
                 },
-                "meetings": {
+                "lockComments": {
+                  "type": "boolean"
+                },
+                "comments": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -985,10 +992,6 @@
                 }
               }
             }
-          },
-          "emailViews": {
-            "type": "integer",
-            "default": "0"
           }
         }
       },
@@ -1018,15 +1021,15 @@
           "summary": {
             "type": "string"
           },
+          "emailViews": {
+            "type": "integer",
+            "default": "0"
+          },
           "plans": {
             "type": "array",
             "items": {
               "type": "string"
             }
-          },
-          "emailViews": {
-            "type": "integer",
-            "default": "0"
           }
         }
       }

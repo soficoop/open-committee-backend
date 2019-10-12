@@ -1334,46 +1334,6 @@
               }
             }
           },
-          "comments": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "content": {
-                  "type": "string"
-                },
-                "plan": {
-                  "type": "string"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "parent": {
-                  "type": "string"
-                },
-                "children": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "user": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "subscribedCommittees": {
             "type": "array",
             "items": {
@@ -1417,6 +1377,52 @@
                   "items": {
                     "type": "string"
                   }
+                }
+              }
+            }
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "parent": {
+                  "type": "string"
+                },
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "user": {
+                  "type": "string"
+                },
+                "isHidden": {
+                  "type": "boolean"
+                },
+                "plan": {
+                  "type": "string"
+                },
+                "isPinned": {
+                  "type": "boolean"
                 }
               }
             }
@@ -1481,13 +1487,13 @@
               "type": "string"
             }
           },
-          "comments": {
+          "subscribedCommittees": {
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "subscribedCommittees": {
+          "comments": {
             "type": "array",
             "items": {
               "type": "string"

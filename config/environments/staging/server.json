@@ -1,5 +1,5 @@
 {
-  "host": "localhost",
+  "host": "soficoop.com",
   "port": "${process.env.PORT || 1338}",
   "production": true,
   "proxy": {

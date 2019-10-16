@@ -36,7 +36,6 @@ module.exports = {
   },
 
   async addEmailView(ctx) {
-    console.info('inside email view');
     const meetingService = strapi.services.meeting;
     const meeting = await meetingService.findOne({ id: ctx.params.id });
     meetingService.update({ id: meeting.id }, { emailViews: meeting.emailViews + 1 });

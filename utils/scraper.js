@@ -115,7 +115,7 @@ class Scraper {
    */
   async scrapeDynamicUrl(parser) {
     const relevantService = strapi.services[parser.urlByExistingItem];
-    const existingItems = await relevantService.find();
+    const existingItems = await relevantService.find({_limit: -1});
     for (const existingItem of existingItems) {
       const staticUrl = parser.url.replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1]);
       const requestParams = yaml.safeLoad(

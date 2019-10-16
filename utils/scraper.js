@@ -115,18 +115,23 @@ class Scraper {
    */
   async scrapeDynamicUrl(parser) {
     const relevantService = strapi.services[parser.urlByExistingItem];
-    const existingItems = await relevantService.find({_limit: -1});
-    for (const existingItem of existingItems) {
-      const staticUrl = parser.url.replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1]);
-      const requestParams = yaml.safeLoad(
-        (parser.requestParams || '').replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1])
-      );
-      await this.scrapeStaticUrl(
-        staticUrl,
-        parser,
-        requestParams,
-        parser.for == parser.urlByExistingItem ? existingItem : null
-      );
+    const itemsLength = await relevantService.count();
+    for (let i = 0; i < itemsLength; i+=50) {
+      const existingItems = await relevantService.find({_limit: 50, _start: i});
+      let promises = [];
+      for (const existingItem of existingItems) {
+        const staticUrl = parser.url.replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1]);
+        const requestParams = yaml.safeLoad(
+          (parser.requestParams || '').replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1])
+        );
+        promises.push(this.scrapeStaticUrl(
+          staticUrl,
+          parser,
+          requestParams,
+          parser.for == parser.urlByExistingItem ? existingItem : null
+        ));
+      }
+      await Promise.all(promises);
     }
   }
 
@@ -147,20 +152,18 @@ class Scraper {
       }
     });
     const document = new JSDOM(html.data).window.document;
+    let promises = [];
     for (const item of document.querySelectorAll(parser.objectSelector)) {
-      try {
-        const parsedItem = await this.parseSingleItem(
-          item,
-          parser,
-          url,
-          existingItem
-        );
-        const relevantService = strapi.services[parser.for];
-        await this.addOrEditItem(relevantService, parsedItem);
-      } catch (e) {
-        strapi.log.error(e);
-      }
+      const parsedItem = await this.parseSingleItem(
+        item,
+        parser,
+        url,
+        existingItem
+      );
+      const relevantService = strapi.services[parser.for];
+      promises.push(this.addOrEditItem(relevantService, parsedItem));
     }
+    await Promise.all(promises);
   }
 
   /**

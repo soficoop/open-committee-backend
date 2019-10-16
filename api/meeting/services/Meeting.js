@@ -3,17 +3,6 @@ const parseTemplate = require('../../../config/functions/template');
 const templatesDir = 'public/templates/';
 
 module.exports = {
-  
-  /**
-   * Creates a meeting
-   * @return {Promise}
-   */
-  async create(data) {
-    const entry = await strapi.query('meeting').create(data);
-    await this.emailSubscribers(entry.id, true);
-    return entry;
-  },
-
   /**
    * Emails meeting to its subscribers
    * @param {string} meetingId Meeting ID
@@ -33,4 +22,12 @@ module.exports = {
     }
     return { meeting, recipients: subscribedUsers };
   },
+
+  async emailNewMeetings(from) {
+    from = from || new Date();
+    const meetings = await strapi.services.meeting.find({createdAt_gt: from});
+    for (const meeting of meetings) {
+      this.emailSubscribers(meeting.id, true);
+    }
+  }
 };

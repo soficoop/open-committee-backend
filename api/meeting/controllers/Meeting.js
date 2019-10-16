@@ -1,6 +1,17 @@
 'use strict';
 
 module.exports = {
+
+  /**
+   * Creates a meeting
+   * @param {import("koa").ParameterizedContext} ctx Koa context
+   */
+  async create(ctx) {
+    const meeting = await strapi.services.meeting.create(ctx.request.body);
+    await strapi.services.meeting.emailSubscribers(meeting.id, true);
+    return meeting;
+  },
+  
   /**
    * Emails meeting to its subscribers
    * @param {import("koa").Context} ctx Koa context

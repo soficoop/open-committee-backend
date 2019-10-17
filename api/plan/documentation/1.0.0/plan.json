@@ -710,6 +710,9 @@
                 },
                 "emailViews": {
                   "type": "integer"
+                },
+                "isHidden": {
+                  "type": "boolean"
                 }
               }
             }

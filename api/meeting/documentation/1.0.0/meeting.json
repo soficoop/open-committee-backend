@@ -984,7 +984,7 @@
                     "type": "string"
                   }
                 },
-                "lockComments": {
+                "commentsAreLocked": {
                   "type": "boolean"
                 },
                 "comments": {

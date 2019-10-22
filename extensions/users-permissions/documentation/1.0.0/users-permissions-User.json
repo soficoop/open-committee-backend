@@ -1418,11 +1418,11 @@
                 "isHidden": {
                   "type": "boolean"
                 },
-                "plan": {
-                  "type": "string"
-                },
                 "isPinned": {
                   "type": "boolean"
+                },
+                "plan": {
+                  "type": "string"
                 }
               }
             }

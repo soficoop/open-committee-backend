@@ -40,12 +40,12 @@
     "isHidden": {
       "type": "boolean"
     },
+    "isPinned": {
+      "type": "boolean"
+    },
     "plan": {
       "model": "plan",
       "via": "comments"
-    },
-    "isPinned": {
-      "type": "boolean"
     }
   }
 }

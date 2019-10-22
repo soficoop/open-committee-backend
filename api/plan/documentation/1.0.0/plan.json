@@ -677,7 +677,7 @@
               }
             }
           },
-          "lockComments": {
+          "commentsAreLocked": {
             "type": "boolean"
           },
           "comments": {
@@ -717,11 +717,11 @@
                 "isHidden": {
                   "type": "boolean"
                 },
-                "plan": {
-                  "type": "string"
-                },
                 "isPinned": {
                   "type": "boolean"
+                },
+                "plan": {
+                  "type": "string"
                 }
               }
             }
@@ -784,7 +784,7 @@
               "type": "string"
             }
           },
-          "lockComments": {
+          "commentsAreLocked": {
             "type": "boolean"
           },
           "comments": {

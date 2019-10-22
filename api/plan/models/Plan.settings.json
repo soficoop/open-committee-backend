@@ -70,7 +70,7 @@
       "via": "plans",
       "dominant": true
     },
-    "lockComments": {
+    "commentsAreLocked": {
       "type": "boolean"
     },
     "comments": {

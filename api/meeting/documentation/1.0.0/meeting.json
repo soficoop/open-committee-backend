@@ -992,6 +992,13 @@
                 }
               }
             }
+          },
+          "emailViews": {
+            "type": "integer",
+            "default": "0"
+          },
+          "isHidden": {
+            "type": "boolean"
           }
         }
       },
@@ -1030,6 +1037,13 @@
             "items": {
               "type": "string"
             }
+          },
+          "emailViews": {
+            "type": "integer",
+            "default": "0"
+          },
+          "isHidden": {
+            "type": "boolean"
           }
         }
       }

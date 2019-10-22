@@ -61,6 +61,8 @@
       "type": "integer",
       "default": "0"
     },
+    "isHidden": {
+      "type": "boolean"
     "plans": {
       "collection": "plan",
       "via": "meetings"

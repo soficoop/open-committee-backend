@@ -717,6 +717,12 @@
                 "plan": {
                   "type": "string"
                 },
+                "emailViews": {
+                  "type": "integer"
+                },
+                "isHidden": {
+                  "type": "boolean"
+                },
                 "isPinned": {
                   "type": "boolean"
                 }

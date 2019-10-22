@@ -117,7 +117,7 @@ class Scraper {
     const relevantService = strapi.services[parser.urlByExistingItem];
     const itemsLength = await relevantService.count();
     for (let i = 0; i < itemsLength; i+=50) {
-      const existingItems = await relevantService.find({_limit: 50, _start: i});
+      const existingItems = await relevantService.find({ _limit: 50, _start: i });
       let promises = [];
       for (const existingItem of existingItems) {
         const staticUrl = parser.url.replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1]);

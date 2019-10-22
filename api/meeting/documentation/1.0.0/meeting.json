@@ -911,6 +911,9 @@
             "type": "integer",
             "default": "0"
           },
+          "isHidden": {
+            "type": "boolean"
+          },
           "plans": {
             "type": "array",
             "items": {
@@ -992,13 +995,6 @@
                 }
               }
             }
-          },
-          "emailViews": {
-            "type": "integer",
-            "default": "0"
-          },
-          "isHidden": {
-            "type": "boolean"
           }
         }
       },
@@ -1032,18 +1028,14 @@
             "type": "integer",
             "default": "0"
           },
+          "isHidden": {
+            "type": "boolean"
+          },
           "plans": {
             "type": "array",
             "items": {
               "type": "string"
             }
-          },
-          "emailViews": {
-            "type": "integer",
-            "default": "0"
-          },
-          "isHidden": {
-            "type": "boolean"
           }
         }
       }

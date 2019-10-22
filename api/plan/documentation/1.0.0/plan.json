@@ -665,6 +665,9 @@
                 "emailViews": {
                   "type": "integer"
                 },
+                "isHidden": {
+                  "type": "boolean"
+                },
                 "plans": {
                   "type": "array",
                   "items": {
@@ -716,12 +719,6 @@
                 },
                 "plan": {
                   "type": "string"
-                },
-                "emailViews": {
-                  "type": "integer"
-                },
-                "isHidden": {
-                  "type": "boolean"
                 },
                 "isPinned": {
                   "type": "boolean"

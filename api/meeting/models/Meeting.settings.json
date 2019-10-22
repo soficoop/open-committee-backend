@@ -63,6 +63,7 @@
     },
     "isHidden": {
       "type": "boolean"
+    },
     "plans": {
       "collection": "plan",
       "via": "meetings"

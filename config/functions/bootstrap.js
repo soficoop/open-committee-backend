@@ -9,8 +9,14 @@ const Scraper = require('../../utils/scraper');
  * run jobs, or perform some special logic.
  */
 
-module.exports = async () => {
-  const parsers = await strapi.services.parser.find({active: true}, false);
-  const scraper = new Scraper(parsers);
-  scraper.scrapeAllRepeatedly();
+module.exports = () => {
+  activateScraper();
 };
+
+async function activateScraper() {
+  const from = new Date();
+  const parsers = await strapi.services.parser.find({ active: true }, false);
+  const scraper = new Scraper(parsers);
+  await scraper.scrapeAllRepeatedly();
+  strapi.services.meeting.emailNewMeetings(from);
+}

@@ -613,46 +613,6 @@
           "houseNumber": {
             "type": "integer"
           },
-          "comments": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "content": {
-                  "type": "string"
-                },
-                "plan": {
-                  "type": "string"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "parent": {
-                  "type": "string"
-                },
-                "children": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "user": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "meetings": {
             "type": "array",
             "items": {
@@ -702,16 +662,68 @@
                 "summary": {
                   "type": "string"
                 },
+                "emailViews": {
+                  "type": "integer"
+                },
                 "plans": {
                   "type": "array",
                   "items": {
                     "type": "string"
                   }
+                }
+              }
+            }
+          },
+          "lockComments": {
+            "type": "boolean"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "parent": {
+                  "type": "string"
+                },
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "user": {
+                  "type": "string"
+                },
+                "isHidden": {
+                  "type": "boolean"
+                },
+                "plan": {
+                  "type": "string"
                 },
                 "emailViews": {
                   "type": "integer"
                 },
                 "isHidden": {
+                  "type": "boolean"
+                },
+                "isPinned": {
                   "type": "boolean"
                 }
               }
@@ -769,13 +781,16 @@
           "houseNumber": {
             "type": "integer"
           },
-          "comments": {
+          "meetings": {
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "meetings": {
+          "lockComments": {
+            "type": "boolean"
+          },
+          "comments": {
             "type": "array",
             "items": {
               "type": "string"

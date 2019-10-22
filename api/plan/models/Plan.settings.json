@@ -65,14 +65,17 @@
     "houseNumber": {
       "type": "integer"
     },
+    "meetings": {
+      "collection": "meeting",
+      "via": "plans",
+      "dominant": true
+    },
+    "lockComments": {
+      "type": "boolean"
+    },
     "comments": {
       "collection": "comment",
       "via": "plan"
-    },
-    "meetings": {
-      "collection": "meeting",
-      "dominant": true,
-      "via": "plans"
     }
   }
 }

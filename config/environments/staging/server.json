@@ -1,12 +1,12 @@
 {
-  "host": "localhost",
+  "host": "soficoop.com",
   "port": "${process.env.PORT || 1338}",
   "production": true,
   "proxy": {
     "enabled": false
   },
   "cron": {
-    "enabled": false
+    "enabled": true
   },
   "admin": {
     "autoOpen": false

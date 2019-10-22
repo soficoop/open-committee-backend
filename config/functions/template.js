@@ -6,6 +6,14 @@ handlebars.registerHelper('formatDate', (date) => {
   return `${dateList[2]}.${dateList[1]}.${dateList[0]}`;
 });
 
+handlebars.registerHelper('shortenText', (text) => {
+  let words = text.split(' ');
+  if (words.length > 50) {
+    return words.slice(0, 50).join(' ') + '...';
+  }
+  return text;
+});
+  
 handlebars.registerHelper('appUrl', () => strapi.config.currentEnvironment.appUrl);
 handlebars.registerHelper('strapiUrl', () => strapi.config.currentEnvironment.strapiUrl);
 

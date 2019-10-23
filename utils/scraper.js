@@ -116,22 +116,21 @@ class Scraper {
   async scrapeDynamicUrl(parser) {
     const relevantService = strapi.services[parser.urlByExistingItem];
     const itemsLength = await relevantService.count();
-    for (let i = 0; i < itemsLength; i+=50) {
-      const existingItems = await relevantService.find({ _limit: 50, _start: i });
-      let promises = [];
-      for (const existingItem of existingItems) {
-        const staticUrl = parser.url.replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1]);
-        const requestParams = yaml.safeLoad(
-          (parser.requestParams || '').replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1])
-        );
-        promises.push(this.scrapeStaticUrl(
-          staticUrl,
-          parser,
-          requestParams,
-          parser.for == parser.urlByExistingItem ? existingItem : null
-        ));
-      }
-      await Promise.all(promises);
+    let existingItems = [];
+    for (let i = 0; i < itemsLength; i += 50) {
+      existingItems.push(...await relevantService.find({ _limit: 50, _start: i }));
+    }
+    for (const existingItem of existingItems) {
+      const staticUrl = parser.url.replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1]);
+      const requestParams = yaml.safeLoad(
+        (parser.requestParams || '').replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1])
+      );
+      await this.scrapeStaticUrl(
+        staticUrl,
+        parser,
+        requestParams,
+        parser.for == parser.urlByExistingItem ? existingItem : null
+      );
     }
   }
 
@@ -152,7 +151,6 @@ class Scraper {
       }
     });
     const document = new JSDOM(html.data).window.document;
-    let promises = [];
     for (const item of document.querySelectorAll(parser.objectSelector)) {
       const parsedItem = await this.parseSingleItem(
         item,
@@ -161,30 +159,27 @@ class Scraper {
         existingItem
       );
       const relevantService = strapi.services[parser.for];
-      promises.push(this.addOrEditItem(relevantService, parsedItem));
+      await this.addOrEditItem(relevantService, parsedItem, existingItem);
     }
-    await Promise.all(promises);
   }
 
   /**
    * Checks if an item exists by its sid. If so, updates the item. Otherwise creates the item.
    * @param {any} service the relevant service for the item type
-   * @param {any} item the item itself
+   * @param {any} newItem the item itself
+   * @param {any} itemInDb the existing item
    */
-  async addOrEditItem(service, item) {
-    let foundItems, itemInDb;
-    try {
-      foundItems = await service.find({
-        sid: item.sid
-      });
-    } catch (e) {
-      strapi.log.warn(e);
+  async addOrEditItem(service, newItem, itemInDb) {
+    if (itemInDb) {
+      return await this.editItem(service, newItem, itemInDb);
     }
-    itemInDb = foundItems.length == 1 ? foundItems[0] : null;
-    if (itemInDb == null) {
-      await this.addItem(service, item);
-    } else {
-      await this.editItem(service, item, itemInDb);
+    const foundItems = await service.find({
+      sid: newItem.sid
+    });
+    if (foundItems.length == 1) {
+      await this.editItem(service, newItem, foundItems[0]);
+    } else if (!foundItems.length) {
+      await this.addItem(service, newItem);
     }
   }
 

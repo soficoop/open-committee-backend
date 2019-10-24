@@ -171,7 +171,8 @@ class Scraper {
    */
   async addOrEditItem(service, newItem, itemInDb) {
     if (itemInDb) {
-      return await this.editItem(service, newItem, itemInDb);
+      await this.editItem(service, newItem, itemInDb);
+      return;
     }
     const foundItems = await service.find({
       sid: newItem.sid

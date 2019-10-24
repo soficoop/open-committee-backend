@@ -1,3 +1,4 @@
 {
-  "myCustomConfiguration": "This configuration is accessible through strapi.config.environments.production.myCustomConfiguration"
+  "appUrl": "https://oc-prod.soficoop.com",
+  "strapiUrl": "https://admin.oc-prod.soficoop.com"
 }

@@ -1,5 +1,5 @@
 {
-  "host": "localhost",
+  "host": "app.sviva.net",
   "port": "${process.env.PORT || 1337}",
   "production": true,
   "proxy": {

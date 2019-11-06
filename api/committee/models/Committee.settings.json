@@ -42,6 +42,9 @@
     "meetings": {
       "collection": "meeting",
       "via": "committee"
+    },
+    "isHidden": {
+      "type": "boolean"
     }
   }
 }

@@ -36,10 +36,6 @@
     "sid": {
       "type": "string"
     },
-    "committee": {
-      "model": "committee",
-      "via": "meetings"
-    },
     "addedManually": {
       "type": "boolean"
     },
@@ -66,6 +62,10 @@
     },
     "plans": {
       "collection": "plan",
+      "via": "meetings"
+    },
+    "committee": {
+      "model": "committee",
       "via": "meetings"
     }
   }

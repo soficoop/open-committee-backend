@@ -641,9 +641,6 @@
                 "sid": {
                   "type": "string"
                 },
-                "committee": {
-                  "type": "string"
-                },
                 "addedManually": {
                   "type": "boolean"
                 },
@@ -673,6 +670,9 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "committee": {
+                  "type": "string"
                 }
               }
             }

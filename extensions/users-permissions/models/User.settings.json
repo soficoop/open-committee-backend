@@ -73,24 +73,24 @@
     "job": {
       "type": "string"
     },
-    "committees": {
-      "collection": "committee",
-      "via": "users",
-      "dominant": true
-    },
     "userImage": {
       "model": "file",
       "via": "related",
       "plugin": "upload"
     },
-    "subscribedCommittees": {
-      "collection": "committee",
-      "via": "subscribedUsers",
-      "dominant": true
-    },
     "comments": {
       "collection": "comment",
       "via": "user"
+    },
+    "committees": {
+      "collection": "committee",
+      "dominant": true,
+      "via": "users"
+    },
+    "subscribedCommittees": {
+      "collection": "committee",
+      "dominant": true,
+      "via": "subscribedUsers"
     }
   }
 }

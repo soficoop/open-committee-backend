@@ -802,50 +802,6 @@
           "sid": {
             "type": "string"
           },
-          "committee": {
-            "required": [
-              "id",
-              "sid"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "sid": {
-                "type": "string"
-              },
-              "parent": {
-                "type": "string"
-              },
-              "area": {
-                "type": "string"
-              },
-              "children": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "users": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "subscribedUsers": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "meetings": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "addedManually": {
             "type": "boolean"
           },
@@ -995,6 +951,53 @@
                 }
               }
             }
+          },
+          "committee": {
+            "required": [
+              "id",
+              "sid"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "sid": {
+                "type": "string"
+              },
+              "parent": {
+                "type": "string"
+              },
+              "area": {
+                "type": "string"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "users": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "subscribedUsers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "meetings": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "isHidden": {
+                "type": "boolean"
+              }
+            }
           }
         }
       },
@@ -1007,9 +1010,6 @@
             "type": "integer"
           },
           "sid": {
-            "type": "string"
-          },
-          "committee": {
             "type": "string"
           },
           "addedManually": {
@@ -1036,6 +1036,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "committee": {
+            "type": "string"
           }
         }
       }

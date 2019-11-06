@@ -668,22 +668,22 @@
               "job": {
                 "type": "string"
               },
+              "userImage": {
+                "type": "string"
+              },
+              "comments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "committees": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
-              "userImage": {
-                "type": "string"
-              },
               "subscribedCommittees": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "comments": {
                 "type": "array",
                 "items": {
                   "type": "string"

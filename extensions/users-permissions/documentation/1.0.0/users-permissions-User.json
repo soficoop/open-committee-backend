@@ -1241,53 +1241,6 @@
           "job": {
             "type": "string"
           },
-          "committees": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "sid"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "sid": {
-                  "type": "string"
-                },
-                "parent": {
-                  "type": "string"
-                },
-                "area": {
-                  "type": "string"
-                },
-                "children": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "users": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "subscribedUsers": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "meetings": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
           "userImage": {
             "required": [
               "id",
@@ -1334,6 +1287,102 @@
               }
             }
           },
+          "comments": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "parent": {
+                  "type": "string"
+                },
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "user": {
+                  "type": "string"
+                },
+                "isHidden": {
+                  "type": "boolean"
+                },
+                "isPinned": {
+                  "type": "boolean"
+                },
+                "plan": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "committees": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "sid"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "sid": {
+                  "type": "string"
+                },
+                "parent": {
+                  "type": "string"
+                },
+                "area": {
+                  "type": "string"
+                },
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedUsers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "meetings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "isHidden": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
           "subscribedCommittees": {
             "type": "array",
             "items": {
@@ -1377,52 +1426,9 @@
                   "items": {
                     "type": "string"
                   }
-                }
-              }
-            }
-          },
-          "comments": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "content": {
-                  "type": "string"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "parent": {
-                  "type": "string"
-                },
-                "children": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "user": {
-                  "type": "string"
                 },
                 "isHidden": {
                   "type": "boolean"
-                },
-                "isPinned": {
-                  "type": "boolean"
-                },
-                "plan": {
-                  "type": "string"
                 }
               }
             }
@@ -1481,6 +1487,12 @@
           "job": {
             "type": "string"
           },
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "committees": {
             "type": "array",
             "items": {
@@ -1488,12 +1500,6 @@
             }
           },
           "subscribedCommittees": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "comments": {
             "type": "array",
             "items": {
               "type": "string"

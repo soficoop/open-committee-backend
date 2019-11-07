@@ -67,6 +67,7 @@ class Scraper {
    * Runs all parsers
    */
   async scrapeAllRepeatedly() {
+    this.scrapingStart = new Date();
     for (const parser of this.parsers) {
       let interval;
       switch (parser.runInterval) {
@@ -83,6 +84,7 @@ class Scraper {
       await this.scrapeByParser(parser);
       if (interval != null) {
         setInterval(async () => {
+          this.scrapingStart = new Date();
           await this.scrapeByParser(parser);
         }, interval);
       }
@@ -90,6 +92,7 @@ class Scraper {
   }
 
   async scrapeAll() {
+    this.scrapingStart = new Date();
     for (const parser of this.parsers) {
       await this.scrapeByParser(parser);
     }
@@ -115,11 +118,11 @@ class Scraper {
    */
   async scrapeDynamicUrl(parser) {
     const relevantService = strapi.services[parser.urlByExistingItem];
-    const itemsLength = await relevantService.count();
-    let existingItems = [];
-    for (let i = 0; i < itemsLength; i += 50) {
-      existingItems.push(...await relevantService.find({ _limit: 50, _start: i }));
-    }
+    let existingItems = await relevantService.find({ 
+      updatedAt_gt: this.scrapingStart,
+      _limit: -1
+    });
+    strapi.log.info(`About to update/create ${parser.for}s by ${existingItems.length} ${parser.urlByExistingItem}s`);
     for (const existingItem of existingItems) {
       const staticUrl = parser.url.replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1]);
       const requestParams = yaml.safeLoad(

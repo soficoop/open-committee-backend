@@ -86,9 +86,11 @@ class Scraper {
         setInterval(async () => {
           this.scrapingStart = new Date();
           await this.scrapeByParser(parser);
+          strapi.services.meeting.emailNewMeetings(this.scrapingStart);
         }, interval);
       }
     }
+    strapi.services.meeting.emailNewMeetings(this.scrapingStart);
   }
 
   async scrapeAll() {
@@ -96,6 +98,7 @@ class Scraper {
     for (const parser of this.parsers) {
       await this.scrapeByParser(parser);
     }
+    strapi.services.meeting.emailNewMeetings(this.scrapingStart);
   }
 
   /**

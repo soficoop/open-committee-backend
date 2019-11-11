@@ -14,9 +14,7 @@ module.exports = () => {
 };
 
 async function activateScraper() {
-  const from = new Date();
   const parsers = await strapi.services.parser.find({ active: true, _sort: 'createdAt:asc' }, false);
   const scraper = new Scraper(parsers);
   await scraper.scrapeAllRepeatedly();
-  strapi.services.meeting.emailNewMeetings(from);
 }

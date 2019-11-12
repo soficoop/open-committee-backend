@@ -31,7 +31,11 @@ module.exports = {
     from = from || new Date();
     const meetings = await strapi.services.meeting.find({ createdAt_gt: from });
     for (const meeting of meetings) {
-      this.emailSubscribers(meeting.id, true);
+      if (meeting.plans.length) {
+        this.emailSubscribers(meeting.id, true);
+      } else {
+        strapi.log.debug(`Skipping email for empty meeting: ${meeting.id}`);
+      }
     }
   },
 

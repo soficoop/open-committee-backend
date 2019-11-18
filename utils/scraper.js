@@ -4,6 +4,8 @@ const JSDOM = require('jsdom').JSDOM;
 const yaml = require('js-yaml');
 const moment = require('moment');
 const querystring = require('querystring');
+const mime = require('mime-types');
+const crypto = require('crypto');
 
 /**
  * @enum FieldType
@@ -24,6 +26,7 @@ const FieldTypes = Object.freeze({
  * @property {string} sidMatch
  * @property {boolean} active
  * @property {Field[]} fields
+ * @property {FileField[]} fileFields
  * @property {'none' | 'meeting' | 'plan' | 'committee' | 'area'} urlByExistingItem
  * @property {'On' | 'Daily' | 'Weekly' | 'Monthly' } runInterval
  *
@@ -31,6 +34,17 @@ const FieldTypes = Object.freeze({
  * @property {FieldType} type
  * @property {string} for
  * @property {string} from
+ * 
+ * @typedef FileField
+ * @property {string} field The field name
+ * @property {string} selector The CSS selector for the element which holds information about the file
+ * @property {string} url URL of the file
+ * @property {string} method HTTP method in order to download the file
+ * @property {FileRequestParam[]} requestParams
+ * 
+ * @typedef FileRequestParam
+ * @property {string} key
+ * @property {string} valueMatcher REGEX to match the value of the param
  */
 
 class Scraper {
@@ -51,15 +65,16 @@ class Scraper {
         if (!Object.values(FieldTypes).includes(key)) {
           continue;
         }
-        const selectors = rawFields[key];
-        for (const selector of selectors) {
+        const fields = rawFields[key];
+        for (const field of fields) {
           parser.fields.push({
             type: key,
-            for: Object.keys(selector)[0],
-            from: Object.values(selector)[0]
+            for: Object.keys(field)[0],
+            from: Object.values(field)[0]
           });
         }
       }
+      parser.fileFields = parser.fileFields && yaml.safeLoad(parser.fileFields);
     }
   }
 
@@ -121,7 +136,7 @@ class Scraper {
    */
   async scrapeDynamicUrl(parser) {
     const relevantService = strapi.services[parser.urlByExistingItem];
-    let existingItems = await relevantService.find({ 
+    let existingItems = await relevantService.find({
       updatedAt_gt: this.scrapingStart,
       _limit: -1
     });
@@ -226,8 +241,9 @@ class Scraper {
    */
   async parseSingleItem(element, parser, url, existingItem) {
     const sid = this.getItemSid(element, parser, existingItem);
-    const parsedItem = await this.parseItemFields(element, parser, url);
-    const result = { ...parsedItem, sid: sid };
+    const parsedFields = await this.parseItemFields(element, parser, url);
+    const parsedFileFileds = await this.parseItemFileFields(element, parser);
+    const result = { ...parsedFields, ...parsedFileFileds, sid: sid };
     return result;
   }
 
@@ -276,6 +292,100 @@ class Scraper {
       result[key] = await this.convertField(value, modelAttributes[key]);
     }
     return result;
+  }
+
+  /**
+   * 
+   * @param {Element} item The item element
+   * @param {Parser} parser The relevant parser
+   */
+  async parseItemFileFields(item, parser) {
+    if (!parser.fileFields) {
+      return null;
+    }
+    let files = {};
+    for (const fileField of parser.fileFields) {
+      const fileId = await this.parseSingleFileField(item, fileField);
+      if (fileId) {
+        files[fileField.field] = fileId;
+      }
+    }
+    return files;
+  }
+
+  /**
+   * 
+   * @param {Element} item The item element
+   * @param {FileField} fileField The specific field which is parsed
+   */
+  async parseSingleFileField(item, fileField) {
+    const fileSelectedElement = item.querySelector(fileField.selector);
+    let params = {};
+    for (const param of fileField.requestParams) {
+      let matches = fileSelectedElement.innerHTML.match(param.valueMatcher);
+      if (matches && matches.length > 1) {
+        params[param.key] = matches[1];
+      }
+    }
+    const file = await this.requestFile(fileField.method, fileField.url, params);
+    if (file) {
+      return await this.uploadFileOrFetchId(file);
+    }
+    return null;
+  }
+
+  /**
+   * Makes an HTTP request for a file and returns the file object
+   * @param {"get" | "post"} method 
+   * @param {string} url 
+   * @param {any} params 
+   */
+  async requestFile(method, url, params) {
+    const response = await Axios.request({
+      method,
+      url,
+      params,
+      responseType: 'arraybuffer'
+    });
+    const buffer = response.data;
+    if (buffer.byteLength == 0) {
+      return null;
+    }
+    const disposition = response.headers['content-disposition'];
+    const name = disposition.split('filename=')[1];
+    const ext = '.' + name.split('.')[1];
+    const hash = crypto.createHash('md5').update(buffer).digest('hex');
+    return {
+      buffer,
+      size: buffer.byteLength / 1000,
+      hash,
+      ext,
+      name,
+      mime: mime.lookup(ext)
+    };
+  }
+
+  /**
+   * Upload a file to strapi
+   * @param {any} file
+   * @returns {string} ID of uploaded file
+   */
+  async uploadFileOrFetchId(file) {
+    const uploadService = strapi.plugins.upload.services.upload;
+    const config = await strapi
+      .store({
+        environment: strapi.config.environment,
+        type: 'plugin',
+        name: 'upload',
+      })
+      .get({ key: 'provider' });
+    const existingFile = (await uploadService.fetchAll({ hash: file.hash }))[0];
+    if (existingFile) {
+      strapi.log.debug('Skiping existing file. hash: ' + existingFile.hash);
+      return existingFile.id;
+    }
+    const result = await uploadService.upload([file], config);
+    return result && result[0] && result[0].id;
   }
 
   /**

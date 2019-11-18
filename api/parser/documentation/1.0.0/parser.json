@@ -571,6 +571,9 @@
               "Weekly",
               "Monthly"
             ]
+          },
+          "fileFields": {
+            "type": "string"
           }
         }
       },
@@ -631,6 +634,9 @@
               "Weekly",
               "Monthly"
             ]
+          },
+          "fileFields": {
+            "type": "string"
           }
         }
       }

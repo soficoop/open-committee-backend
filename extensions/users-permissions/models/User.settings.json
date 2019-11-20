@@ -78,10 +78,6 @@
       "via": "related",
       "plugin": "upload"
     },
-    "comments": {
-      "collection": "comment",
-      "via": "user"
-    },
     "committees": {
       "collection": "committee",
       "dominant": true,
@@ -91,6 +87,10 @@
       "collection": "committee",
       "dominant": true,
       "via": "subscribedUsers"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "user"
     }
   }
 }

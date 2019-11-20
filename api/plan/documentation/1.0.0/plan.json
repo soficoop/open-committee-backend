@@ -722,6 +722,12 @@
                 },
                 "plan": {
                   "type": "string"
+                },
+                "files": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }

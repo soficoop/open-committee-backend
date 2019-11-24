@@ -12,7 +12,8 @@ module.exports = {
     const meeting = await strapi.services.meeting.findOne({ id: meetingId });
     const { subscribedUsers } = await strapi.services.committee.findOne({ id: meeting.committee.id });
     const templateFile = isNew ? 'NewMeeting.html' : 'UpdatedMeeting.html';
-    const subject = isNew ? 'ישיבה חדשה במערכת ועדה פתוחה' : 'עדכון ישיבה במערכת ועדה פתוחה';
+    const meetingTitle = meeting.number ? `ישיבה מספר ${meeting.number}` : meeting.title;
+    const subject = isNew ? `סדר יום עבור ${meetingTitle}` : `עדכון ${meetingTitle} במערכת ועדה פתוחה`;
     for (const user of subscribedUsers) {
       strapi.plugins.email.services.email.send({
         to: user.email,
@@ -29,7 +30,7 @@ module.exports = {
    */
   async emailNewMeetings(from) {
     from = from || new Date();
-    const meetings = await strapi.services.meeting.find({ createdAt_gt: from, date_gt: from });
+    const meetings = await strapi.services.meeting.find({ updatedAt_gt: from, date_gt: from });
     for (const meeting of meetings) {
       if (meeting.plans.length) {
         this.emailSubscribers(meeting.id, true);

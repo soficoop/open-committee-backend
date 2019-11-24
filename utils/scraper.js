@@ -226,10 +226,36 @@ class Scraper {
    */
   async editItem(service, item, itemInDb) {
     try {
-      await service.update({ _id: itemInDb.id }, item);
+      if (this.isUpdateNecessary(item, itemInDb)) {
+        await service.update({ _id: itemInDb.id }, item);
+      }
     } catch (e) {
       strapi.log.warn(e);
     }
+  }
+
+  /**
+   * checks weather an update for an existing item is necessary
+   * @param {any} fieldsToUpdate 
+   * @param {any} itemInDb 
+   */
+  isUpdateNecessary(fieldsToUpdate, itemInDb) {
+    for (const key in fieldsToUpdate) {
+      const rawDbValue = itemInDb[key];
+      let comparableValue = rawDbValue;
+      let newValue = fieldsToUpdate[key];
+      if (rawDbValue && rawDbValue.toDateString) {
+        newValue = fieldsToUpdate[key].valueOf();
+        comparableValue = new Date(rawDbValue).getTime();
+      } else if (rawDbValue && rawDbValue.id) {
+        comparableValue = rawDbValue.id;
+      }
+      if (newValue != comparableValue) {
+        strapi.log.debug(`update for item ${itemInDb.id} is necessary`);
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -381,7 +407,6 @@ class Scraper {
       .get({ key: 'provider' });
     const existingFile = (await uploadService.fetchAll({ hash: file.hash }))[0];
     if (existingFile) {
-      strapi.log.debug('Skiping existing file. hash: ' + existingFile.hash);
       return existingFile.id;
     }
     const result = await uploadService.upload([file], config);

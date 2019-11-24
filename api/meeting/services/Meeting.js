@@ -64,11 +64,12 @@ module.exports = {
       if (!hasVisibleComments(meeting)) {
         continue;
       }
+      const subject = meeting.number ? `סיכום התייחסויות לישיבה מספר ${meeting.number}` : 'סיכום התייחסויות ל' + meeting.title;
       for (const user of meeting.committee.users) {
         try {
           strapi.plugins.email.services.email.send({
             to: user.email,
-            subject: 'סיכום התייחסויות לישיבה במערכת ועדה פתוחה',
+            subject,
             html: await parseTemplate(templatesDir + 'MeetingSummary.html', { meeting, user })
           });
         } catch (e) {

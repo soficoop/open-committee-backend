@@ -61,7 +61,7 @@ module.exports = {
       }
     ]);
     for (const meeting of meetings) {
-      if (!meeting.plans.length || !meeting.plans.some(plan => plan.comments.length)) {
+      if (!hasVisibleComments(meeting)) {
         continue;
       }
       for (const user of meeting.committee.users) {
@@ -79,3 +79,15 @@ module.exports = {
     }
   }
 };
+
+/**
+ * Checks whether a meeting has at least one visible comment on one of its plans
+ */
+function hasVisibleComments(meeting) {
+  for (const plan of meeting.plans) {
+    if (plan.comments.some(comment => !comment.isHidden)) {
+      return true;
+    }
+  }
+  return false;
+}

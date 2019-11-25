@@ -1,5 +1,6 @@
 'use strict';
 const parseTemplate = require('../../../config/functions/template');
+const formatDate = require('../../../utils/helpers').formatDate;
 const templatesDir = 'public/templates/';
 
 module.exports = {
@@ -12,8 +13,7 @@ module.exports = {
     const meeting = await strapi.services.meeting.findOne({ id: meetingId });
     const { subscribedUsers } = await strapi.services.committee.findOne({ id: meeting.committee.id });
     const templateFile = isNew ? 'NewMeeting.html' : 'UpdatedMeeting.html';
-    const meetingTitle = meeting.number ? `ישיבה מספר ${meeting.number}` : meeting.title;
-    const subject = isNew ? `סדר יום עבור ${meetingTitle}` : `עדכון ${meetingTitle} במערכת ועדה פתוחה`;
+    const subject = isNew ? `סדר יום עבור ${meeting.committee.sid} | ${formatDate(meeting.date)}` : `עדכון עבור עבור ${meeting.committee.sid} | ${meeting.date}`;
     for (const user of subscribedUsers) {
       strapi.plugins.email.services.email.send({
         to: user.email,

@@ -13,7 +13,7 @@ module.exports = {
     const meeting = await strapi.services.meeting.findOne({ id: meetingId });
     const { subscribedUsers } = await strapi.services.committee.findOne({ id: meeting.committee.id });
     const templateFile = isNew ? 'NewMeeting.html' : 'UpdatedMeeting.html';
-    const subject = isNew ? `סדר יום עבור ${meeting.committee.sid} | ${formatDate(meeting.date)}` : `עדכון עבור עבור ${meeting.committee.sid} | ${meeting.date}`;
+    const subject = isNew ? `סדר יום עבור ${meeting.committee.sid} | ${formatDate(meeting.date)}` : `עדכון עבור ${meeting.committee.sid} | ${formatDate(meeting.date)}`;
     for (const user of subscribedUsers) {
       strapi.plugins.email.services.email.send({
         to: user.email,

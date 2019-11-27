@@ -562,16 +562,6 @@
           "requestParams": {
             "type": "string"
           },
-          "runInterval": {
-            "type": "string",
-            "default": "On server startup",
-            "enum": [
-              "On server startup",
-              "Daily",
-              "Weekly",
-              "Monthly"
-            ]
-          },
           "fileFields": {
             "type": "string"
           }
@@ -624,16 +614,6 @@
           },
           "requestParams": {
             "type": "string"
-          },
-          "runInterval": {
-            "type": "string",
-            "default": "On server startup",
-            "enum": [
-              "On server startup",
-              "Daily",
-              "Weekly",
-              "Monthly"
-            ]
           },
           "fileFields": {
             "type": "string"

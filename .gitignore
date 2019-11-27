@@ -84,6 +84,7 @@ public/uploads/*
 !public/uploads/.gitkeep
 config/environments/*/database.json
 ecosystem.config.js
+ecosystem.json
 
 ############################
 # Node.js

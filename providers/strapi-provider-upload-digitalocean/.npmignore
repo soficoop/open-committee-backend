@@ -69,7 +69,6 @@ $RECYCLE.BIN/
 *.log
 *.sql
 *.sqlite
-*.sqlite3
 
 
 ############################
@@ -78,12 +77,11 @@ $RECYCLE.BIN/
 
 *#
 ssl
+.editorconfig
+.gitattributes
 .idea
 nbproject
-public/uploads/*
-!public/uploads/.gitkeep
-config/environments/*/database.json
-ecosystem.config.js
+
 
 ############################
 # Node.js
@@ -94,6 +92,7 @@ lcov.info
 pids
 logs
 results
+build
 node_modules
 .node_history
 
@@ -102,15 +101,4 @@ node_modules
 # Tests
 ############################
 
-testApp
-coverage
-
-
-############################
-# Strapi
-############################
-
-exports
-.cache
-build
-extensions/documentation/documentation/1.0.0/full_documentation.json
+test

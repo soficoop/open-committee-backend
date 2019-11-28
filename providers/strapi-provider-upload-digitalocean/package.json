@@ -1,0 +1,57 @@
+{
+  "name": "@nerd-coder/strapi-provider-upload-digitalocean",
+  "version": "3.0.0-beta.2",
+  "description": "Digital ocean spaces provider for Strapi upload plugin",
+  "homepage": "http://strapi.io",
+  "keywords": [
+    "upload",
+    "digitalocean",
+    "spaces",
+    "strapi"
+  ],
+  "directories": {
+    "lib": "./lib"
+  },
+  "main": "./lib",
+  "dependencies": {
+    "aws-sdk": "2.388.0"
+  },
+  "strapi": {
+    "isProvider": true
+  },
+  "author": {
+    "email": "me@toan.io",
+    "name": "Toan",
+    "url": "https://toan.io"
+  },
+  "maintainers": [
+    {
+      "name": "me@toan.io",
+      "email": "me@toan.io",
+      "url": "https://toan.io"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nerd-coder/strapi-provider-upload-digitalocean.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nerd-coder/strapi-provider-upload-digitalocean/issues"
+  },
+  "engines": {
+    "node": ">= 10.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "release-it": "*"
+  },
+  "scripts": {
+    "release": "release-it"
+  },
+  "release-it": {
+    "publishConfig": {
+      "access": "public"
+    }
+  }
+}

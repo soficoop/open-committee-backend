@@ -46,6 +46,11 @@
     "plan": {
       "model": "plan",
       "via": "comments"
+    },
+    "files": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload"
     }
   }
 }

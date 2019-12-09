@@ -226,9 +226,7 @@ class Scraper {
    */
   async editItem(service, item, itemInDb) {
     try {
-      if (this.isUpdateNecessary(item, itemInDb)) {
-        await service.update({ _id: itemInDb.id }, item);
-      }
+      await service.update({ _id: itemInDb.id }, item);
     } catch (e) {
       strapi.log.warn(e);
     }

@@ -23,8 +23,8 @@ module.exports = {
     to.setHours(23, 59, 59, 999);
     strapi.services.meeting.emailToAdmins(from, to);
   },
-  // every day at 11AM
-  '0 0 11 * * *': async () => {
+  // every day at 8AM
+  '0 0 8 * * *': async () => {
     const parsers = await strapi.services.parser.find({ active: true, _sort: 'createdAt:asc' }, false);
     const scraper = new Scraper(parsers);
     await scraper.scrapeAll();

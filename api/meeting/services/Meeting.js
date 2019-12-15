@@ -30,7 +30,7 @@ module.exports = {
    */
   async emailNewMeetings(from) {
     from = from || new Date();
-    const meetings = await strapi.services.meeting.find({ updatedAt_gt: from, date_gt: from });
+    const meetings = await strapi.services.meeting.find({ createdAt_gt: from, date_gt: from });
     for (const meeting of meetings) {
       if (meeting.plans.length) {
         this.emailSubscribers(meeting.id, true);

@@ -55,7 +55,7 @@ module.exports = {
 function isUserMeetingAdmin(meeting, user) {
   const userCommittees = !!user && user.committees;
   const resultCommiteeId = !!meeting.committee && meeting.committee.id;
-  if (!userCommittees || !userCommittees.find(committee => committee.id == resultCommiteeId)) {
+  if (!userCommittees || !userCommittees.find(committee => committee == resultCommiteeId)) {
     return false;
   }
   return true;

@@ -8,8 +8,8 @@ module.exports = {
   async updateMyPlan(ctx) {
     const planService = strapi.services.plan;
     const plan = await planService.findOne({ id: ctx.params.id });
-    const userCommittees = !!ctx.state && !!ctx.state.user && ctx.state.user.committees.map(committee => committee.id);
-    const planCommittees = plan.meetings.length && plan.meetings.map(meeting => meeting.committee);
+    const userCommittees = !!ctx.state && !!ctx.state.user && ctx.state.user.committees;
+    const planCommittees = plan.meetings.length && plan.meetings.map(meeting => meeting.committee.toString());
     if (!userCommittees || !userCommittees.some(userCommittee => planCommittees.some(planCommittee => planCommittee == userCommittee))) {
       throw new Error('You\'re not allowed to perform this action!');
     }

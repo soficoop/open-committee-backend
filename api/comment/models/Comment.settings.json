@@ -22,7 +22,7 @@
       "type": "text"
     },
     "createdAt": {
-      "type": "date"
+      "type": "datetime"
     },
     "parent": {
       "model": "comment",

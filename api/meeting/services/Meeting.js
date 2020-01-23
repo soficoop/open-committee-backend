@@ -1,7 +1,6 @@
 'use strict';
 const parseTemplate = require('../../../config/functions/template');
 const formatDate = require('../../../utils/helpers').formatDate;
-const templatesDir = 'public/templates/';
 
 module.exports = {
   /**
@@ -18,7 +17,7 @@ module.exports = {
       strapi.plugins.email.services.email.send({
         to: user.email,
         subject,
-        html: await parseTemplate(templatesDir + templateFile, { meeting, user })
+        html: await parseTemplate(templateFile, { meeting, user })
       });
     }
     return { meeting, recipients: subscribedUsers };
@@ -70,7 +69,7 @@ module.exports = {
           strapi.plugins.email.services.email.send({
             to: user.email,
             subject,
-            html: await parseTemplate(templatesDir + 'MeetingSummary.html', { meeting, user })
+            html: await parseTemplate('MeetingSummary.html', { meeting, user })
           });
         } catch (e) {
           strapi.log.error(e.message);

@@ -15,9 +15,6 @@
       <mj-section direction="rtl" background-color="#f5f5f5" padding="16px">
         <mj-column background-color="white">
           <mj-image width="100px" src="http://app.sviva.net/img/logo.png" padding="20px"></mj-image>
-          <mj-text align="center" font-size="20px" color="#004359" font-family="Assistant,Arial">
-            תגובה חדשה להתייחסות שלך
-          </mj-text>
         </mj-column>
       </mj-section>
       <mj-section direction="rtl" background-color="#f5f5f5" padding-bottom="0">
@@ -36,19 +33,16 @@
           </mj-text>
         </mj-column>
       </mj-section>
-      <mj-section direction="rtl" background-color="#f5f5f5" padding="0">
-        <mj-column>
+      <mj-section direction="rtl" background-color="#f5f5f5" padding="0 16px">
+        <mj-column border-radius="8px">
           <mj-text align="right" color="#004359" font-family="Assistant,Arial">
             <h4 style="color: #47AA7C">
               {{parentComment.title}}
             </h4>
             {{shortenText parentComment.content}}
-          </mj-text>
-        </mj-column>
-      </mj-section>
-      <mj-section direction="rtl" background-color="#f5f5f5" padding="0 16px">
-        <mj-column background-color="white" border-radius="8px">
-          <mj-text align="right" color="#004359" font-family="Assistant,Arial">
+            </mj-text>
+          <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
+            <mj-text align="right" color="#004359" font-family="Assistant,Arial">
             <h4>{{childComment.title}}</h4>
             <h4 style="font-weight:normal;color:#80A1AC">{{childComment.name}} • {{formatDate childComment.createdAt}}</h4>
             <p>{{shortenText childComment.content}}</p>

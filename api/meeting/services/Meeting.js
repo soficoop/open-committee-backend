@@ -1,6 +1,7 @@
 'use strict';
 const parseTemplate = require('../../../config/functions/template');
 const formatDate = require('../../../utils/helpers').formatDate;
+const { sendMail } = require('../../../utils/helpers');
 
 module.exports = {
   /**
@@ -10,15 +11,14 @@ module.exports = {
    */
   async emailSubscribers(meetingId, isNew) {
     const meeting = await strapi.services.meeting.findOne({ id: meetingId });
+    if (!meeting.committee) {
+      return;
+    }
     const { subscribedUsers } = await strapi.services.committee.findOne({ id: meeting.committee.id });
     const templateFile = isNew ? 'NewMeeting.html' : 'UpdatedMeeting.html';
     const subject = isNew ? `סדר יום עבור ${meeting.committee.sid} | ${formatDate(meeting.date)}` : `עדכון עבור ${meeting.committee.sid} | ${formatDate(meeting.date)}`;
     for (const user of subscribedUsers) {
-      strapi.plugins.email.services.email.send({
-        to: user.email,
-        subject,
-        html: await parseTemplate(templateFile, { meeting, user })
-      });
+      sendMail(user.email, subject, await parseTemplate(templateFile, { meeting, user }));
     }
     return { meeting, recipients: subscribedUsers };
   },
@@ -65,16 +65,7 @@ module.exports = {
       }
       const subject = meeting.number ? `סיכום התייחסויות לישיבה מספר ${meeting.number}` : 'סיכום התייחסויות ל' + meeting.title;
       for (const user of meeting.committee.users) {
-        try {
-          strapi.plugins.email.services.email.send({
-            to: user.email,
-            subject,
-            html: await parseTemplate('MeetingSummary.html', { meeting, user })
-          });
-        } catch (e) {
-          strapi.log.error(e.message);
-          strapi.log.error(e.stack);
-        }
+        sendMail(user.email, subject, await parseTemplate('MeetingSummary.html', { meeting, user }));
       }
     }
   }

@@ -1,10 +1,28 @@
 'use strict';
+const parseTemplate = require('../../../config/functions/template');
+const { sendMail } = require('../../../utils/helpers');
 
 /**
  * Read the documentation () to implement custom controller functions
  */
 
 module.exports = {
+  async create(ctx) {
+    const comment = await strapi.services.comment.create(ctx.request.body);
+    if (comment.parent && comment.parent.user) {
+      const parentCommentUser = await strapi.plugins['users-permissions'].services.user.fetch({ id: comment.parent.user });
+      const childCommentUserId = comment.user && comment.user.id;
+      if (childCommentUserId != parentCommentUser.id) {
+        sendMail(
+          parentCommentUser.email,
+          `תגובה חדשה להתייחסותך לתכנית: ${comment.plan.name}`,
+          await parseTemplate('NewComment.html', { parentComment: comment.parent, user: parentCommentUser, childComment: comment, plan: comment.plan })
+        );
+      }
+    }
+    return comment;
+  },
+
   /**
    * Updates a comment that the current user is an owner of
    * @param {import("koa").ParameterizedContext} ctx Koa context

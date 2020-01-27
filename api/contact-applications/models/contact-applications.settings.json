@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "contact_applications",
+  "info": {
+    "name": "Contact Applications"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "message": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

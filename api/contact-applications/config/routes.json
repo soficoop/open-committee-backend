@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/contact-applications",
+      "handler": "contact-applications.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/contact-applications/count",
+      "handler": "contact-applications.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/contact-applications/:id",
+      "handler": "contact-applications.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/contact-applications",
+      "handler": "contact-applications.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/contact-applications/:id",
+      "handler": "contact-applications.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/contact-applications/:id",
+      "handler": "contact-applications.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

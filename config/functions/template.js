@@ -18,7 +18,7 @@ handlebars.registerHelper('strapiUrl', () => strapi.config.currentEnvironment.st
 handlebars.registerHelper('formatMeetingTitle', meeting => meeting.title || `ישיבה מספר ${meeting.number}`);
 
 module.exports = async (templateFile, doc) => {
-  const data = await fs.readFile(templateFile, 'utf8');
+  const data = await fs.readFile(strapi.config.templatesDir + templateFile, 'utf8');
   const template = handlebars.compile(data);
   return template(doc);
 };

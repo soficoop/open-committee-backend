@@ -1,0 +1,39 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Assistant" href="https://fonts.googleapis.com/css?family=Assistant"></mj-font>
+    <mj-title>פניה חדשה במערכת</mj-title>
+    <mj-style>
+      * {
+        direction: rtl;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#d2c4b6">
+    <mj-wrapper padding="20px">
+      <mj-section direction="rtl" background-color="#f5f5f5" padding="16px">
+        <mj-column background-color="white">
+          <mj-image width="100px" src="http://app.sviva.net/img/logo.png" padding="20px"></mj-image>
+          <mj-text align="center" font-size="20px" color="#004359" font-family="Assistant,Arial">
+            פנייה חדשה דרך טופס צור קשר
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#f5f5f5">
+        <mj-column>
+          <mj-text align="right" font-size="16px" color="#004359" font-family="Assistant,Arial" line-height="25px">
+            שלום,
+            <br />
+            התקבל טופס "צור קשר" חדש במערכת. הפרטים שהוזנו להלן:
+          </mj-text>
+          <mj-text align="right" font-size="16px"  font-family="Assistant,Arial" line-height="25px">
+            שם: {{application.name}}
+            <br />
+            אימייל: {{application.email}}
+            <br />
+            תוכן הפנייה: {{application.message}}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

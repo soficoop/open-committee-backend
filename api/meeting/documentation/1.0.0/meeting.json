@@ -170,7 +170,10 @@
             "required": false,
             "description": "Get records that matches any value in the array of values",
             "schema": {
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "deprecated": false
           },
@@ -180,7 +183,10 @@
             "required": false,
             "description": "Get records that doesn't match any value in the array of values",
             "schema": {
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "deprecated": false
           }
@@ -656,7 +662,7 @@
             "type": "string"
           },
           "date": {
-            "type": "string"
+            "type": "datetime"
           },
           "number": {
             "type": "integer"
@@ -691,7 +697,7 @@
                 "type": "string"
               },
               "size": {
-                "type": "string"
+                "type": "number"
               },
               "url": {
                 "type": "string"
@@ -737,7 +743,7 @@
                 "type": "string"
               },
               "size": {
-                "type": "string"
+                "type": "number"
               },
               "url": {
                 "type": "string"
@@ -783,7 +789,7 @@
                 "type": "string"
               },
               "size": {
-                "type": "string"
+                "type": "number"
               },
               "url": {
                 "type": "string"
@@ -840,7 +846,7 @@
                   "type": "string"
                 },
                 "size": {
-                  "type": "string"
+                  "type": "number"
                 },
                 "url": {
                   "type": "string"
@@ -887,7 +893,7 @@
                   "type": "string"
                 },
                 "lastUpdate": {
-                  "type": "string"
+                  "type": "datetime"
                 },
                 "location": {
                   "type": "string"
@@ -914,7 +920,7 @@
                   "type": "string"
                 },
                 "submission": {
-                  "type": "string"
+                  "type": "datetime"
                 },
                 "stype": {
                   "type": "integer"
@@ -1004,7 +1010,7 @@
       "NewMeeting": {
         "properties": {
           "date": {
-            "type": "string"
+            "type": "datetime"
           },
           "number": {
             "type": "integer"

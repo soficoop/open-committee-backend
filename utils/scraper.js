@@ -430,7 +430,7 @@ class Scraper {
       value = parseInt(value) || 0;
     } else if (modelAttribute.type == 'string' && typeof value == 'string') {
       value = value.trim();
-    } else if (modelAttribute.type == 'date') {
+    } else if (modelAttribute.type == 'datetime') {
       value = moment(value || '01/01/1970', 'DD/MM/YYYY').add(12, 'hours');
     } else if (relationTargetModel) {
       value = await this.convertRelationshipField(

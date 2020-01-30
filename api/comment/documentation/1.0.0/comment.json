@@ -170,7 +170,10 @@
             "required": false,
             "description": "Get records that matches any value in the array of values",
             "schema": {
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "deprecated": false
           },
@@ -180,7 +183,10 @@
             "required": false,
             "description": "Get records that doesn't match any value in the array of values",
             "schema": {
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "deprecated": false
           }
@@ -526,7 +532,7 @@
             "type": "string"
           },
           "createdAt": {
-            "type": "string"
+            "type": "datetime"
           },
           "parent": {
             "required": [
@@ -546,7 +552,7 @@
                 "type": "string"
               },
               "createdAt": {
-                "type": "string"
+                "type": "datetime"
               },
               "parent": {
                 "type": "string"
@@ -597,7 +603,7 @@
                   "type": "string"
                 },
                 "createdAt": {
-                  "type": "string"
+                  "type": "datetime"
                 },
                 "parent": {
                   "type": "string"
@@ -724,7 +730,7 @@
                 "type": "string"
               },
               "lastUpdate": {
-                "type": "string"
+                "type": "datetime"
               },
               "location": {
                 "type": "string"
@@ -751,7 +757,7 @@
                 "type": "string"
               },
               "submission": {
-                "type": "string"
+                "type": "datetime"
               },
               "stype": {
                 "type": "integer"
@@ -820,7 +826,7 @@
                   "type": "string"
                 },
                 "size": {
-                  "type": "string"
+                  "type": "number"
                 },
                 "url": {
                   "type": "string"
@@ -851,7 +857,7 @@
             "type": "string"
           },
           "createdAt": {
-            "type": "string"
+            "type": "datetime"
           },
           "parent": {
             "type": "string"

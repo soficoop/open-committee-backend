@@ -19,7 +19,7 @@
       "type": "string"
     },
     "lastUpdate": {
-      "type": "date"
+      "type": "datetime"
     },
     "location": {
       "type": "string"
@@ -46,7 +46,7 @@
       "type": "string"
     },
     "submission": {
-      "type": "date"
+      "type": "datetime"
     },
     "stype": {
       "type": "integer"

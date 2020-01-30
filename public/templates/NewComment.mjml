@@ -1,0 +1,62 @@
+<!-- Download MJML (https://mjml.io) in order to edit this file -->
+<!-- Edited code should be exported to NewMeeting.html -->
+<mjml>
+  <mj-head>
+    <mj-font name="Assistant" href="https://fonts.googleapis.com/css?family=Assistant"></mj-font>
+    <mj-title>תגובה חדשה להתייחסותך</mj-title>
+    <mj-style>
+      * {
+        direction: rtl;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#d2c4b6">
+    <mj-wrapper padding="20px">
+      <mj-section direction="rtl" background-color="#f5f5f5" padding="16px">
+        <mj-column background-color="white">
+          <mj-image width="100px" src="http://app.sviva.net/img/logo.png" padding="20px"></mj-image>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#f5f5f5" padding-bottom="0">
+        <mj-column>
+          <mj-text align="right" font-size="16px" color="#004359" font-family="Assistant,Arial" line-height="25px">
+            שלום {{user.firstName}},
+            <br />
+            התקבלה במערכת תגובה חדשה להתייחסותך לתכנית:
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#f5f5f5" padding="0">
+        <mj-column>
+          <mj-text align="center" color="#004359" font-family="Assistant,Arial">
+            <h2>{{plan.name}}</h2>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#f5f5f5" padding="0 16px">
+        <mj-column border-radius="8px">
+          <mj-text align="right" color="#004359" font-family="Assistant,Arial">
+            <h4 style="color: #47AA7C">
+              {{parentComment.title}}
+            </h4>
+            {{shortenText parentComment.content}}
+            </mj-text>
+          <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
+            <mj-text align="right" color="#004359" font-family="Assistant,Arial">
+            <h4>{{childComment.title}}</h4>
+            <h4 style="font-weight:normal;color:#80A1AC">{{childComment.name}} • {{formatDate childComment.createdAt}}</h4>
+            <p>{{shortenText childComment.content}}</p>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#f5f5f5" padding="0">
+        <mj-column>
+          <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
+          <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/plan/{{plan.id}}" border="#004359 2px solid">
+            לצפייה בדיון המלא בתכנית
+          </mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

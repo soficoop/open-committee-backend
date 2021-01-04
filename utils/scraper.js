@@ -163,14 +163,20 @@ class Scraper {
    * @param {any} existingItem Existing item, for parsers which only aquire more information about a content type (and not creating new items)
    */
   async scrapeStaticUrl(url, parser, params, existingItem = null) {
-    const html = await Axios.request({
-      url: url,
-      method: parser.method,
-      data: querystring.stringify(params),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    });
+    let html;
+    try {
+      html = await Axios.request({
+        url: url,
+        method: parser.method,
+        data: querystring.stringify(params),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+    } catch (e) {
+      strapi.log.error(e.message);
+      return;
+    }
     const document = new JSDOM(html.data).window.document;
     for (const item of document.querySelectorAll(parser.objectSelector)) {
       const parsedItem = await this.parseSingleItem(
@@ -365,12 +371,18 @@ class Scraper {
    * @param {any} params 
    */
   async requestFile(method, url, params) {
-    const response = await Axios.request({
-      method,
-      url,
-      params,
-      responseType: 'arraybuffer'
-    });
+    let response;
+    try {
+      response = await Axios.request({
+        method,
+        url,
+        params,
+        responseType: 'arraybuffer'
+      });
+    } catch (e) {
+      strapi.log.error(e.message);
+      return null;
+    }
     const buffer = response.data;
     if (buffer.byteLength == 0) {
       return null;

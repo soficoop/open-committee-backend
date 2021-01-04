@@ -18,7 +18,7 @@
     },
     {
       "method": "GET",
-      "path": "/plans/:_id",
+      "path": "/plans/:id",
       "handler": "Plan.findOne",
       "config": {
         "policies": []
@@ -34,7 +34,7 @@
     },
     {
       "method": "PUT",
-      "path": "/plans/:_id",
+      "path": "/plans/:id",
       "handler": "Plan.update",
       "config": {
         "policies": []
@@ -42,7 +42,7 @@
     },
     {
       "method": "DELETE",
-      "path": "/plans/:_id",
+      "path": "/plans/:id",
       "handler": "Plan.delete",
       "config": {
         "policies": []

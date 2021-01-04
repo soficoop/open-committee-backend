@@ -311,7 +311,7 @@
         "parameters": []
       }
     },
-    "/plans/{_id}": {
+    "/plans/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -363,7 +363,7 @@
         ],
         "parameters": [
           {
-            "name": "_id",
+            "name": "id",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -436,7 +436,7 @@
         },
         "parameters": [
           {
-            "name": "_id",
+            "name": "id",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -499,7 +499,7 @@
         ],
         "parameters": [
           {
-            "name": "_id",
+            "name": "id",
             "in": "path",
             "description": "",
             "deprecated": false,

@@ -18,7 +18,7 @@
     },
     {
       "method": "GET",
-      "path": "/areas/:_id",
+      "path": "/areas/:id",
       "handler": "Area.findOne",
       "config": {
         "policies": []
@@ -34,7 +34,7 @@
     },
     {
       "method": "PUT",
-      "path": "/areas/:_id",
+      "path": "/areas/:id",
       "handler": "Area.update",
       "config": {
         "policies": []
@@ -42,7 +42,7 @@
     },
     {
       "method": "DELETE",
-      "path": "/areas/:_id",
+      "path": "/areas/:id",
       "handler": "Area.delete",
       "config": {
         "policies": []

@@ -18,7 +18,7 @@
     },
     {
       "method": "GET",
-      "path": "/meetings/:_id",
+      "path": "/meetings/:id",
       "handler": "Meeting.findOne",
       "config": {
         "policies": []
@@ -34,7 +34,7 @@
     },
     {
       "method": "PUT",
-      "path": "/meetings/:_id",
+      "path": "/meetings/:id",
       "handler": "Meeting.update",
       "config": {
         "policies": []
@@ -42,7 +42,7 @@
     },
     {
       "method": "DELETE",
-      "path": "/meetings/:_id",
+      "path": "/meetings/:id",
       "handler": "Meeting.delete",
       "config": {
         "policies": []

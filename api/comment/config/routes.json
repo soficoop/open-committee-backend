@@ -18,7 +18,7 @@
     },
     {
       "method": "GET",
-      "path": "/comments/:_id",
+      "path": "/comments/:id",
       "handler": "Comment.findOne",
       "config": {
         "policies": []
@@ -34,7 +34,7 @@
     },
     {
       "method": "PUT",
-      "path": "/comments/:_id",
+      "path": "/comments/:id",
       "handler": "Comment.update",
       "config": {
         "policies": []
@@ -42,7 +42,7 @@
     },
     {
       "method": "DELETE",
-      "path": "/comments/:_id",
+      "path": "/comments/:id",
       "handler": "Comment.delete",
       "config": {
         "policies": []

@@ -18,7 +18,7 @@
     },
     {
       "method": "GET",
-      "path": "/parsers/:_id",
+      "path": "/parsers/:id",
       "handler": "Parser.findOne",
       "config": {
         "policies": []
@@ -34,7 +34,7 @@
     },
     {
       "method": "PUT",
-      "path": "/parsers/:_id",
+      "path": "/parsers/:id",
       "handler": "Parser.update",
       "config": {
         "policies": []
@@ -42,7 +42,7 @@
     },
     {
       "method": "DELETE",
-      "path": "/parsers/:_id",
+      "path": "/parsers/:id",
       "handler": "Parser.delete",
       "config": {
         "policies": []

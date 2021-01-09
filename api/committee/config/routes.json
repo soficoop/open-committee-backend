@@ -18,7 +18,7 @@
     },
     {
       "method": "GET",
-      "path": "/committees/:_id",
+      "path": "/committees/:id",
       "handler": "Committee.findOne",
       "config": {
         "policies": []
@@ -34,7 +34,7 @@
     },
     {
       "method": "PUT",
-      "path": "/committees/:_id",
+      "path": "/committees/:id",
       "handler": "Committee.update",
       "config": {
         "policies": []
@@ -42,7 +42,7 @@
     },
     {
       "method": "DELETE",
-      "path": "/committees/:_id",
+      "path": "/committees/:id",
       "handler": "Committee.delete",
       "config": {
         "policies": []

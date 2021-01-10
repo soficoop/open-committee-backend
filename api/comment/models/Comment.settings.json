@@ -21,9 +21,6 @@
     "content": {
       "type": "text"
     },
-    "createdAt": {
-      "type": "datetime"
-    },
     "parent": {
       "model": "comment",
       "via": "children"

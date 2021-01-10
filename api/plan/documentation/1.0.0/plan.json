@@ -720,9 +720,6 @@
                 "content": {
                   "type": "string"
                 },
-                "createdAt": {
-                  "type": "datetime"
-                },
                 "parent": {
                   "type": "string"
                 },

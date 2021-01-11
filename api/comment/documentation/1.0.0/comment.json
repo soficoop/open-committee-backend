@@ -531,9 +531,6 @@
           "content": {
             "type": "string"
           },
-          "createdAt": {
-            "type": "datetime"
-          },
           "parent": {
             "required": [
               "id"
@@ -550,9 +547,6 @@
               },
               "content": {
                 "type": "string"
-              },
-              "createdAt": {
-                "type": "datetime"
               },
               "parent": {
                 "type": "string"
@@ -601,9 +595,6 @@
                 },
                 "content": {
                   "type": "string"
-                },
-                "createdAt": {
-                  "type": "datetime"
                 },
                 "parent": {
                   "type": "string"
@@ -870,9 +861,6 @@
           },
           "content": {
             "type": "string"
-          },
-          "createdAt": {
-            "type": "datetime"
           },
           "parent": {
             "type": "string"

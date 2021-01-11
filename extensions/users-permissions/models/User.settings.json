@@ -50,6 +50,11 @@
       "default": false,
       "configurable": false
     },
+    "confirmationToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true
+    },
     "role": {
       "model": "role",
       "via": "users",

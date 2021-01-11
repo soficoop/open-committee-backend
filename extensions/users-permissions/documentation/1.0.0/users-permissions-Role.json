@@ -557,6 +557,9 @@
                 "blocked": {
                   "type": "boolean"
                 },
+                "confirmationToken": {
+                  "type": "string"
+                },
                 "role": {
                   "type": "string"
                 },

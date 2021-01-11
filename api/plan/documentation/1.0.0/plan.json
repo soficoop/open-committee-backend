@@ -529,7 +529,8 @@
             "type": "string"
           },
           "lastUpdate": {
-            "type": "datetime"
+            "type": "string",
+            "format": "date-time"
           },
           "location": {
             "type": "string"
@@ -556,7 +557,8 @@
             "type": "string"
           },
           "submission": {
-            "type": "datetime"
+            "type": "string",
+            "format": "date-time"
           },
           "stype": {
             "type": "integer"
@@ -651,7 +653,7 @@
                   "type": "string"
                 },
                 "date": {
-                  "type": "datetime"
+                  "type": "string"
                 },
                 "number": {
                   "type": "integer"
@@ -779,7 +781,8 @@
             "type": "string"
           },
           "lastUpdate": {
-            "type": "datetime"
+            "type": "string",
+            "format": "date-time"
           },
           "location": {
             "type": "string"
@@ -806,7 +809,8 @@
             "type": "string"
           },
           "submission": {
-            "type": "datetime"
+            "type": "string",
+            "format": "date-time"
           },
           "stype": {
             "type": "integer"

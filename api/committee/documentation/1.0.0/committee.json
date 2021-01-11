@@ -696,6 +696,9 @@
                 "blocked": {
                   "type": "boolean"
                 },
+                "confirmationToken": {
+                  "type": "string"
+                },
                 "role": {
                   "type": "string"
                 },
@@ -779,6 +782,9 @@
                 "blocked": {
                   "type": "boolean"
                 },
+                "confirmationToken": {
+                  "type": "string"
+                },
                 "role": {
                   "type": "string"
                 },
@@ -838,7 +844,7 @@
                   "type": "string"
                 },
                 "date": {
-                  "type": "datetime"
+                  "type": "string"
                 },
                 "number": {
                   "type": "integer"

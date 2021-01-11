@@ -1587,6 +1587,7 @@
           },
           "password": {
             "type": "string",
+            "format": "password",
             "minLength": 6
           },
           "resetPasswordToken": {
@@ -1599,6 +1600,9 @@
           "blocked": {
             "type": "boolean",
             "default": false
+          },
+          "confirmationToken": {
+            "type": "string"
           },
           "role": {
             "type": "string"

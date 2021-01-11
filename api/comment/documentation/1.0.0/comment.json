@@ -671,6 +671,9 @@
               "blocked": {
                 "type": "boolean"
               },
+              "confirmationToken": {
+                "type": "string"
+              },
               "role": {
                 "type": "string"
               },
@@ -739,7 +742,7 @@
                 "type": "string"
               },
               "lastUpdate": {
-                "type": "datetime"
+                "type": "string"
               },
               "location": {
                 "type": "string"
@@ -766,7 +769,7 @@
                 "type": "string"
               },
               "submission": {
-                "type": "datetime"
+                "type": "string"
               },
               "stype": {
                 "type": "integer"

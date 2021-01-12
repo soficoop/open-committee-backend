@@ -408,18 +408,11 @@ class Scraper {
    */
   async uploadFileOrFetchId(file) {
     const uploadService = strapi.plugins.upload.services.upload;
-    const config = await strapi
-      .store({
-        environment: strapi.config.environment,
-        type: 'plugin',
-        name: 'upload',
-      })
-      .get({ key: 'provider' });
     const existingFile = (await uploadService.fetchAll({ hash: file.hash }))[0];
     if (existingFile) {
       return existingFile.id;
     }
-    const result = await uploadService.upload([file], config);
+    const result = await uploadService.upload([file], 'digitalocean');
     return result && result[0] && result[0].id;
   }
 

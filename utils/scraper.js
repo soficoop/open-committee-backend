@@ -412,7 +412,7 @@ class Scraper {
     if (existingFile) {
       return existingFile.id;
     }
-    const result = await uploadService.upload([file], 'digitalocean');
+    const result = await uploadService.upload(file, 'digitalocean');
     return result && result[0] && result[0].id;
   }
 

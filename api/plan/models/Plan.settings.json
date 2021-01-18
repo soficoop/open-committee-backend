@@ -1,4 +1,5 @@
 {
+  "kind": "collectionType",
   "connection": "default",
   "collectionName": "plan",
   "info": {
@@ -66,8 +67,8 @@
       "type": "integer"
     },
     "meetings": {
-      "collection": "meeting",
       "via": "plans",
+      "collection": "meeting",
       "dominant": true
     },
     "commentsAreLocked": {

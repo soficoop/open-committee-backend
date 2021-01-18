@@ -1,4 +1,5 @@
 {
+  "kind": "collectionType",
   "connection": "default",
   "collectionName": "meeting",
   "info": {
@@ -9,7 +10,8 @@
     "timestamps": [
       "createdAt",
       "updatedAt"
-    ]
+    ],
+    "draftAndPublish": false
   },
   "attributes": {
     "date": {
@@ -21,17 +23,35 @@
     "decisions": {
       "model": "file",
       "via": "related",
-      "plugin": "upload"
+      "allowedTypes": [
+        "files",
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     },
     "protocol": {
       "model": "file",
       "via": "related",
-      "plugin": "upload"
+      "allowedTypes": [
+        "files",
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     },
     "transcript": {
       "model": "file",
       "via": "related",
-      "plugin": "upload"
+      "allowedTypes": [
+        "files",
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     },
     "sid": {
       "type": "string"
@@ -45,7 +65,13 @@
     "additionalFiles": {
       "collection": "file",
       "via": "related",
-      "plugin": "upload"
+      "allowedTypes": [
+        "files",
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     },
     "background": {
       "type": "text"
@@ -55,7 +81,7 @@
     },
     "emailViews": {
       "type": "integer",
-      "default": "0"
+      "default": 0
     },
     "isHidden": {
       "type": "boolean"

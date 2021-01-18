@@ -6,6 +6,9 @@ const moment = require('moment');
 const querystring = require('querystring');
 const mime = require('mime-types');
 const crypto = require('crypto');
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
 
 /**
  * @enum FieldType
@@ -391,13 +394,16 @@ class Scraper {
     const name = disposition.split('filename=')[1];
     const ext = '.' + name.split('.')[1];
     const hash = crypto.createHash('md5').update(buffer).digest('hex');
+    const filePath = path.join(os.tmpdir(), name);
+    fs.writeFileSync(filePath, buffer);
     return {
       buffer,
-      size: buffer.byteLength / 1000,
+      size: buffer.byteLength,
       hash,
       ext,
       name,
-      mime: mime.lookup(ext)
+      path: filePath,
+      type: mime.lookup(ext),
     };
   }
 
@@ -412,7 +418,10 @@ class Scraper {
     if (existingFile) {
       return existingFile.id;
     }
-    const result = await uploadService.upload([file], 'digitalocean');
+    const result = await uploadService.upload({
+      data: {},
+      files: file
+    });
     return result && result[0] && result[0].id;
   }
 

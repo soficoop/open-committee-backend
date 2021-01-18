@@ -956,7 +956,7 @@
           },
           "emailViews": {
             "type": "integer",
-            "default": "0"
+            "default": 0
           },
           "isHidden": {
             "type": "boolean"
@@ -1130,7 +1130,7 @@
           },
           "emailViews": {
             "type": "integer",
-            "default": "0"
+            "default": 0
           },
           "isHidden": {
             "type": "boolean"

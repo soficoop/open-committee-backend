@@ -1,4 +1,5 @@
 {
+  "kind": "collectionType",
   "connection": "default",
   "collectionName": "committee",
   "info": {
@@ -40,8 +41,8 @@
       "plugin": "users-permissions"
     },
     "meetings": {
-      "collection": "meeting",
-      "via": "committee"
+      "via": "committee",
+      "collection": "meeting"
     },
     "isHidden": {
       "type": "boolean"

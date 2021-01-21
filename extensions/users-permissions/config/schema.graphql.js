@@ -9,7 +9,7 @@ module.exports = {
       updateMe: {
         description: 'Update my user',
         plugin: 'users-permissions',
-        resolverOf: 'User.updateMe',
+        resolverOf: 'plugins::users-permissions.user.updateMe',
         resolver: async (obj, options, { context }) => {
           context.params = _.toPlainObject(options.input.where);
           if (!context.state.user || context.state.user.id != context.params.id) {

@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/users",
+      "handler": "reports.users",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/committees",
+      "handler": "reports.committees",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

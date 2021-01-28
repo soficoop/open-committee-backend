@@ -1,0 +1,37 @@
+{
+  "name": "strapi-plugin-reports",
+  "version": "0.0.0",
+  "description": "Download customized reports",
+  "strapi": {
+    "name": "reports",
+    "icon": "file-download",
+    "description": "Download customized reports."
+  },
+  "dependencies": {
+    "@buffetjs/core": "^3.3.3",
+    "@buffetjs/hooks": "^3.3.3",
+    "@buffetjs/styles": "^3.3.3",
+    "lodash": "^4.17.20",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
+  },
+  "author": {
+    "name": "Sofi cooperative",
+    "email": "aviran@soficoop.com",
+    "url": "https://soficoop.com"
+  },
+  "maintainers": [
+    {
+      "name": "Sofi cooperative",
+      "email": "aviran@soficoop.com",
+      "url": "https://soficoop.com"
+    }
+  ],
+  "engines": {
+    "node": ">=10.16.0 <=14.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

@@ -11,7 +11,7 @@ module.exports = {
     let result = 'שם, אימייל\n';
     const users = await strapi.plugins['users-permissions'].services.user.fetchAll({ _limit:-1 });
     for (const user of users.filter(u => u.subscribedCommittees.length === 0)) {
-      result += `${user.firstName} ${user.lastName},${user.email}\n`;
+      result += `"${user.firstName} ${user.lastName}",${user.email}\n`;
     }
     ctx.send({ data: result });
   },
@@ -28,7 +28,7 @@ module.exports = {
     const comments = await strapi.services.comment.find({ _limit:-1 });;
     for (const comment of comments) {
       const planUrl = comment.plan && `${strapi.config.server.appUrl}/plan/${comment.plan.id}`;
-      result += `${comment.name},${comment.user && comment.user.email},"${comment.title}","${comment.content}",${planUrl}\n`;
+      result += `"${comment.name}",${comment.user && comment.user.email},"${comment.title}","${comment.content}",${planUrl}\n`;
     }
     ctx.send({ data: result });
   }

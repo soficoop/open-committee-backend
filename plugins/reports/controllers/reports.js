@@ -29,7 +29,7 @@ module.exports = {
     const comments = await strapi.services.comment.find();;
     for (const comment of comments) {
       const planUrl = comment.plan && `${strapi.config.server.appUrl}/plan/${comment.plan.id}`;
-      result += `${comment.name},${comment.user && comment.user.email},${comment.title},${comment.content},${planUrl}\n`;
+      result += `${comment.name},${comment.user && comment.user.email},${comment.title},${comment.content.replace('\n',';')},${planUrl}\n`;
     }
     ctx.send({ data: result });
   }

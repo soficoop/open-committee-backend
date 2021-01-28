@@ -8,12 +8,12 @@ import doodle from './MessyDoodle.png';
 import styled from 'styled-components';
 import { request } from 'strapi-helper-plugin';
 
-const downloadJson = (data, name) => {
+const downloadCsv = (data, name) => {
   let filename = name;
-  let contentType = 'application/json;charset=utf-8;';
+  let contentType = 'text/csv;charset=utf-8;';
   let a = document.createElement('a');
   a.download = filename;
-  a.href = 'data:' + contentType + ',' + encodeURIComponent(JSON.stringify(data, undefined, '  '));
+  a.href = 'data:' + contentType + ',' + encodeURIComponent(data);
   a.target = '_blank';
   document.body.appendChild(a);
   a.click();
@@ -22,7 +22,8 @@ const downloadJson = (data, name) => {
 
 const HomePage = () => {
   const downloadReport = async (name) => {
-    downloadJson(await request(`/reports/${name}`), `${name}.json`);
+    const { data } = await request(`/reports/${name}`);
+    downloadCsv(data, `${name}.csv`);
   };
 
   return (
@@ -32,10 +33,10 @@ const HomePage = () => {
       </Padded>
       <Container>
         <Padded bottom top left right>
-          <Button classList="m-5" label="Download User Report" color="primary" onClick={() => downloadReport('users')}/>
+          <Button classList="m-5" label="Users Without Subscriptions CSV" color="primary" onClick={() => downloadReport('users-without-subscriptions')}/>
         </Padded>
         <Padded bottom top left right>
-          <Button classList="m-5" label="Download Committee Report" color="primary" onClick={() => downloadReport('committees')}/>
+          <Button classList="m-5" label="Comments CSV" color="primary" onClick={() => downloadReport('comments-summary')}/>
         </Padded>
       </Container>
     </Wrapper>

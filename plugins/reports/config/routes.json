@@ -2,16 +2,24 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/users",
-      "handler": "reports.users",
+      "path": "/users-without-subscriptions",
+      "handler": "reports.usersWithoutSubscriptions",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/committees",
-      "handler": "reports.committees",
+      "path": "/committee-subscriptions",
+      "handler": "reports.committeeSubscriptions",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/comments-summary",
+      "handler": "reports.commentsSummary",
       "config": {
         "policies": []
       }

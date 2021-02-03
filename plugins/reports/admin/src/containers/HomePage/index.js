@@ -33,7 +33,7 @@ const HomePage = () => {
       </Padded>
       <Container>
         <Padded bottom top left right>
-          <Button classList="m-5" label="Committee Subscriptions CSV" color="primary" onClick={() => downloadReport('user-subscriptions')}/>
+          <Button classList="m-5" label="User Subscriptions CSV" color="primary" onClick={() => downloadReport('user-subscriptions')}/>
         </Padded>
         <Padded bottom top left right>
           <Button classList="m-5" label="Comments CSV" color="primary" onClick={() => downloadReport('comments-summary')}/>

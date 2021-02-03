@@ -2,8 +2,8 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/users-without-subscriptions",
-      "handler": "reports.usersWithoutSubscriptions",
+      "path": "/user-subscriptions",
+      "handler": "reports.userSubscriptions",
       "config": {
         "policies": []
       }

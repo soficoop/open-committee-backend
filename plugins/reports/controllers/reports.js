@@ -8,11 +8,12 @@
 
 module.exports = {
   userSubscriptions: async (ctx) => {
-    let result = 'שם, אימייל, התראות\n';
+    let result = 'שם, אימייל, התראות, הרשמה\n';
     const users = await strapi.plugins['users-permissions'].services.user.fetchAll({ _limit:-1 });
     for (const user of users) {
       const subscribedCommittees = user.subscribedCommittees.map(c => c.sid).join('\n');
-      result += `"${user.firstName} ${user.lastName}",${user.email}, "${subscribedCommittees}"\n`;
+      const createdAt = `${user.createdAt.getDate()}.${user.createdAt.getMonth()+1}.${user.createdAt.getFullYear()}`;
+      result += `"${user.firstName} ${user.lastName}",${user.email}, "${subscribedCommittees}", "${createdAt}"\n`;
     }
     ctx.send({ data: result });
   },

@@ -17,10 +17,11 @@ module.exports = {
     ctx.send({ data: result });
   },
   committeeSubscriptions: async (ctx) => {
-    let result = 'ועדה\n';
-    const users = await strapi.plugins['users-permissions'].services.user.fetchAll();
-    for (const user of users.filter(u => u.subscribedCommittees.length === 0)) {
-      result += `${user.firstName},${user.lastName},${user.email}\n`;
+    let result = 'ועדה, משתמשים\n';
+    const committees = await strapi.services.committee.find({ _limit:-1 });
+    for (const committee of committees) {
+      const subscribedUsers = committee.subscribedUsers.map(u => u.email).join('\n');
+      result += `"${committee.sid}","${subscribedUsers}"\n`;
     }
     ctx.send({ data: result });
   },

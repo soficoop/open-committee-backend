@@ -38,6 +38,9 @@ const HomePage = () => {
         <Padded bottom top left right>
           <Button classList="m-5" label="Comments CSV" color="primary" onClick={() => downloadReport('comments-summary')}/>
         </Padded>
+        <Padded bottom top left right>
+          <Button classList="m-5" label="Committee Subscriptions CSV" color="primary" onClick={() => downloadReport('committee-subscriptions')}/>
+        </Padded>
       </Container>
     </Wrapper>
   );

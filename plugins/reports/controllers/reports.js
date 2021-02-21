@@ -11,7 +11,7 @@ module.exports = {
     let result = 'שם, אימייל, התראות, הרשמה\n';
     const users = await strapi.plugins['users-permissions'].services.user.fetchAll({ _limit:-1 });
     for (const user of users) {
-      const subscribedCommittees = user.subscribedCommittees.map(c => c.sid).join('\n');
+      const subscribedCommittees = user.subscribedCommittees.map(c => c.sid).join('\n').replace(/"/g, '“');
       const createdAt = `${user.createdAt.getDate()}.${user.createdAt.getMonth()+1}.${user.createdAt.getFullYear()}`;
       result += `"${user.firstName} ${user.lastName}",${user.email}, "${subscribedCommittees}", "${createdAt}"\n`;
     }
@@ -22,7 +22,7 @@ module.exports = {
     const committees = await strapi.services.committee.find({ _limit:-1 });
     for (const committee of committees) {
       const subscribedUsers = committee.subscribedUsers.map(u => u.email).join('\n');
-      result += `"${committee.sid}","${subscribedUsers}"\n`;
+      result += `"${committee.sid.replace(/"/g, '“')}","${subscribedUsers}"\n`;
     }
     ctx.send({ data: result });
   },
@@ -31,7 +31,7 @@ module.exports = {
     const comments = await strapi.services.comment.find({ _limit:-1 });;
     for (const comment of comments) {
       const planUrl = comment.plan && `${strapi.config.server.appUrl}/plan/${comment.plan.id}`;
-      result += `"${comment.name}",${comment.user && comment.user.email},"${comment.title}","${comment.content}",${planUrl}\n`;
+      result += `"${comment.name.replace(/"/g, '“')}",${comment.user && comment.user.email},"${comment.title.replace(/"/g, '“')}","${comment.content.replace(/"/g, '“')}",${planUrl}\n`;
     }
     ctx.send({ data: result });
   }

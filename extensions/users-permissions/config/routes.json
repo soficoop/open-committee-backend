@@ -14,6 +14,21 @@
                     "actionType": "update"
                 }
             }
+        },
+        {
+            "method": "POST",
+            "path": "/users/refreshToken",
+            "handler": "User.refreshToken",
+            "config": {
+                "policies": [],
+                "prefix": "",
+                "description": "Refresh JWT by single-time token",
+                "tag": {
+                    "plugin": "users-permissions",
+                    "name": "User",
+                    "actionType": "update"
+                }
+            }
         }
     ]
 }

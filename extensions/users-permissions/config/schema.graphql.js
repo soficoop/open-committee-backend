@@ -3,6 +3,7 @@ const _ = require('lodash');
 module.exports = {
   mutation: `
     updateMe(input: updateUserInput): updateUserPayload
+    refreshToken(token: String!): UsersPermissionsLoginPayload!
   `,
   resolver: {
     Mutation: {
@@ -25,6 +26,17 @@ module.exports = {
           };
         },
       },
+      refreshToken: {
+        description: 'Update my user',
+        plugin: 'users-permissions',
+        resolverOf: 'plugins::users-permissions.user.updateMe',
+        resolver: async (obj, options, { context }) => {
+          const token  = options.token;
+          return {
+            message: 'just a stub for now'
+          };
+        },
+      }
     },
   },
 };

@@ -52,7 +52,7 @@
       <mj-section direction="rtl" background-color="#f5f5f5" padding="0">
         <mj-column>
           <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
-          <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/plan/{{plan.id}}" border="#004359 2px solid">
+          <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/plan/{{plan.id}}?token={{token}}" border="#004359 2px solid">
             לצפייה בדיון המלא בתכנית
           </mj-button>
         </mj-column>

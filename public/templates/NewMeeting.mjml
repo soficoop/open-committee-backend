@@ -59,14 +59,14 @@
               {{{targets}}}
             {{/if}}
           </mj-text>
-          <mj-button font-family="Assistant, Arial" background-color="#004359" color="white" align="right" href="{{appUrl}}/plan/{{id}}">
+          <mj-button font-family="Assistant, Arial" background-color="#004359" color="white" align="right" href="{{appUrl}}/plan/{{id}}?token={{token}}">
             הצטרפו לדיון
           </mj-button>
           <mj-text>
             {{/each}}
           </mj-text>
           <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
-          <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/meeting/{{meeting.id}}" border="#004359 2px solid">
+          <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/meeting/{{meeting.id}}?token={{token}}" border="#004359 2px solid">
             לצפייה בסדר היום המלא
           </mj-button>
         </mj-column>

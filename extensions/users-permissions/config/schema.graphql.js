@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const { sanitizeEntity } = require('strapi-utils/lib');
 
 module.exports = {
   mutation: `
@@ -34,7 +35,9 @@ module.exports = {
           const payload = await strapi.plugins['users-permissions'].services.jwt.verify(options.token);
           const user = await strapi.query('user', 'users-permissions').findOne({ id: payload.id });
           return {
-            user,
+            user: sanitizeEntity(user.toJSON ? user.toJSON() : user, {
+              model: strapi.query('user', 'users-permissions').model,
+            }),
             jwt: options.token
           };
         },

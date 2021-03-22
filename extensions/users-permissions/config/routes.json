@@ -17,12 +17,12 @@
         },
         {
             "method": "POST",
-            "path": "/users/refreshToken",
-            "handler": "User.refreshToken",
+            "path": "/users/tokenSignIn",
+            "handler": "User.tokenSignIn",
             "config": {
                 "policies": [],
                 "prefix": "",
-                "description": "Refresh JWT by single-time token",
+                "description": "Sign in using a one-time token",
                 "tag": {
                     "plugin": "users-permissions",
                     "name": "User",

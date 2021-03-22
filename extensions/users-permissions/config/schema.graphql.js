@@ -3,7 +3,7 @@ const _ = require('lodash');
 module.exports = {
   mutation: `
     updateMe(input: updateUserInput): updateUserPayload
-    refreshToken(token: String!): UsersPermissionsLoginPayload!
+    tokenSignIn(token: String!): UsersPermissionsLoginPayload!
   `,
   resolver: {
     Mutation: {
@@ -26,14 +26,16 @@ module.exports = {
           };
         },
       },
-      refreshToken: {
-        description: 'Update my user',
+      tokenSignIn: {
+        description: 'Sign in using a one-time token',
         plugin: 'users-permissions',
-        resolverOf: 'plugins::users-permissions.user.updateMe',
+        resolverOf: 'plugins::users-permissions.user.tokenSignIn',
         resolver: async (obj, options, { context }) => {
-          const token  = options.token;
+          const payload = await strapi.plugins['users-permissions'].services.jwt.verify(options.token);
+          const user = await strapi.query('user', 'users-permissions').findOne({ id: payload.id });
           return {
-            message: 'just a stub for now'
+            user,
+            jwt: options.token
           };
         },
       }

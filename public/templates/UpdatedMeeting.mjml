@@ -54,7 +54,7 @@
               {{{targets}}}
             {{/if}}
           </mj-text>
-          <mj-button font-family="Assistant, Arial" background-color="#004359" color="white" align="right" href="{{appUrl}}/plan/{{id}}?token={{token}}">
+          <mj-button font-family="Assistant, Arial" background-color="#004359" color="white" align="right" href="{{appUrl}}/plan/{{id}}?token={{../token}}">
             הצטרפו לדיון
           </mj-button>
           <mj-text>

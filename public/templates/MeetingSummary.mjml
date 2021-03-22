@@ -71,7 +71,7 @@
       </mj-section>
       <mj-section direction="rtl" background-color="#f5f5f5" padding="0">
         <mj-column>
-          <mj-button font-family="Assistant, Arial" background-color="#004359" color="white" align="right" href="{{appUrl}}/plan/{{id}}?token={{token}}">
+          <mj-button font-family="Assistant, Arial" background-color="#004359" color="white" align="right" href="{{appUrl}}/plan/{{id}}?token={{../token}}">
             הצטרפו לדיון
           </mj-button>
           <mj-text>

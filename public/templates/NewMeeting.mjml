@@ -11,7 +11,19 @@
     </mj-style>
   </mj-head>
   <mj-body background-color="#d2c4b6">
-    <mj-wrapper padding="20px">
+    <mj-wrapper padding="10px 20px">
+      <mj-section direction="rtl" background-color="#004359" padding="4px">
+        <mj-column>
+        <mj-text align="center" font-weight="bold">
+          <img style="width: 20px; vertical-align: middle" src="https://img.icons8.com/color/box-important" />
+          <span style="margin: 12px; color:white; vertical-align: middle">
+          אין להעביר הודעה זו! העברת דוא"ל זה לאחרים תאפשר להם להגיב בשמך
+          </span>
+        </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-wrapper padding="10px 20px">
       <mj-section direction="rtl" background-color="#f5f5f5" padding="16px">
         <mj-column background-color="white">
           <mj-image width="100px" src="http://app.sviva.net/img/logo.png" padding="20px"></mj-image>
@@ -46,9 +58,9 @@
             <h4 style="color: #47AA7C; font-size:18px">
               {{name}}
               {{#if name}} {{#if number}}
-                • 
-              {{/if}} {{/if}}
-             {{number}}
+                  •
+                {{/if}} {{/if}}
+              {{number}}
             </h4>
             {{#if location}}
               <h4 style="color: #846154">מיקום התכנית:</h4>
@@ -59,14 +71,14 @@
               {{{targets}}}
             {{/if}}
           </mj-text>
-          <mj-button font-family="Assistant, Arial" background-color="#004359" color="white" align="right" href="{{appUrl}}/plan/{{id}}">
+          <mj-button font-family="Assistant, Arial" background-color="#004359" color="white" align="right" href="{{appUrl}}/plan/{{id}}?token={{../token}}">
             הצטרפו לדיון
           </mj-button>
           <mj-text>
             {{/each}}
           </mj-text>
           <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
-          <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/meeting/{{meeting.id}}" border="#004359 2px solid">
+          <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/meeting/{{meeting.id}}?token={{token}}" border="#004359 2px solid">
             לצפייה בסדר היום המלא
           </mj-button>
         </mj-column>

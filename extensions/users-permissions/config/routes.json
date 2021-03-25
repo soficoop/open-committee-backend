@@ -14,6 +14,21 @@
                     "actionType": "update"
                 }
             }
+        },
+        {
+            "method": "POST",
+            "path": "/users/tokenSignIn",
+            "handler": "User.tokenSignIn",
+            "config": {
+                "policies": [],
+                "prefix": "",
+                "description": "Sign in using a one-time token",
+                "tag": {
+                    "plugin": "users-permissions",
+                    "name": "User",
+                    "actionType": "update"
+                }
+            }
         }
     ]
 }

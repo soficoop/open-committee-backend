@@ -322,7 +322,9 @@ class Scraper {
         value = new URL(url).searchParams.get(field.from);
         break;
       }
-      result[key] = await this.convertField(value, modelAttributes[key]);
+      if (value) { 
+        result[key] = await this.convertField(value, modelAttributes[key]);
+      }
     }
     return result;
   }

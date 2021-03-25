@@ -99,4 +99,5 @@ module.exports = {
 
     ctx.send(data);
   },
+  tokenSignIn: (ctx) => ctx.response.notImplemented('method not implemented')
 };

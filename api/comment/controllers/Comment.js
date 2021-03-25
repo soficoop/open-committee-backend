@@ -13,10 +13,11 @@ module.exports = {
       const parentCommentUser = await strapi.plugins['users-permissions'].services.user.fetch({ id: comment.parent.user });
       const childCommentUserId = comment.user && comment.user.id;
       if (childCommentUserId != parentCommentUser.id) {
+        const token =  strapi.plugins['users-permissions'].services.jwt.issue({ id: parentCommentUser.id }, { expiresIn: '7d' });
         sendMail(
           parentCommentUser.email,
           `תגובה חדשה להתייחסותך לתכנית: ${comment.plan.name}`,
-          await parseTemplate('NewComment.html', { parentComment: comment.parent, user: parentCommentUser, childComment: comment, plan: comment.plan })
+          await parseTemplate('NewComment.html', { parentComment: comment.parent, user: parentCommentUser, childComment: comment, plan: comment.plan, token })
         );
       }
     }

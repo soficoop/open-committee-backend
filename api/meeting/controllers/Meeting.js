@@ -22,7 +22,7 @@ module.exports = {
     if (!isUserMeetingAdmin(meeting, ctx.state.user)) {
       throw new Error('You\'re not allowed to perform this action!');
     }
-    return await strapi.services.meeting.emailSubscribers(ctx.params.id, ctx.params.isNew);
+    return strapi.services.meeting.emailSubscribers(ctx.params.id, ctx.params.isNew);
   },
 
   async addEmailView(ctx) {

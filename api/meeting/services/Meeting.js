@@ -18,7 +18,8 @@ module.exports = {
     const templateFile = isNew ? 'NewMeeting.html' : 'UpdatedMeeting.html';
     const subject = isNew ? `סדר יום עבור ${meeting.committee.sid} | ${formatDate(meeting.date)}` : `עדכון עבור ${meeting.committee.sid} | ${formatDate(meeting.date)}`;
     for (const user of subscribedUsers) {
-      sendMail(user.email, subject, await parseTemplate(templateFile, { meeting, user }));
+      const token =  strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id }, { expiresIn: '7d' });
+      sendMail(user.email, subject, await parseTemplate(templateFile, { meeting, user, token }));
     }
     return { meeting, recipients: subscribedUsers };
   },
@@ -65,7 +66,8 @@ module.exports = {
       }
       const subject = meeting.number ? `סיכום התייחסויות לישיבה מספר ${meeting.number}` : 'סיכום התייחסויות ל' + meeting.title;
       for (const user of meeting.committee.users) {
-        sendMail(user.email, subject, await parseTemplate('MeetingSummary.html', { meeting, user }));
+        const token =  strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id }, { expiresIn: '7d' });
+        sendMail(user.email, subject, await parseTemplate('MeetingSummary.html', { meeting, user, token }));
       }
     }
   }

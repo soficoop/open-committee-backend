@@ -16,7 +16,7 @@
         <mj-column>
         <mj-text align="center" font-weight="bold">
           <img style="width: 20px; vertical-align: middle" src="https://img.icons8.com/color/box-important" />
-          <span style="margin: 12px; color:white; vertical-align: middle">
+          <span style="margin: 12px; color:white; vertical-align: middle; font-family:Assistant,Arial;font-size:16px">
           אין להעביר הודעה זו! העברת דוא"ל זה לאחרים תאפשר להם להגיב בשמך
           </span>
         </mj-text>

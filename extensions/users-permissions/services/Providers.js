@@ -57,7 +57,7 @@ const connect = (provider, query) => {
           })
           .get();
 
-        const user = _.find(users, { provider });
+        const user = advanced.unique_email ? _.find(users, { provider }) : _.find(users);
 
         if (_.isEmpty(user) && !advanced.allow_register) {
           return resolve([

@@ -192,8 +192,10 @@ const getProfile = async (provider, query, callback) => {
           callback(err);
         } else {
           callback(null, {
-            username: body.name,
+            username: body.email,
             email: body.email,
+            firstName: body.name.split(' ')[0],
+            lastName: body.name.split(' ')[1]
           });
         }
       });

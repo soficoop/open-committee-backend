@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/comments": {
+    "/tags": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Comment"
+                    "$ref": "#/components/schemas/Tag"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Tag"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Comment"
+                  "$ref": "#/components/schemas/Tag"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Tag"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewComment"
+                "$ref": "#/components/schemas/NewTag"
               }
             }
           }
         }
       }
     },
-    "/comments/count": {
+    "/tags/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Tag"
         ],
         "parameters": []
       }
     },
-    "/comments/{id}": {
+    "/tags/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Comment"
+                  "$ref": "#/components/schemas/Tag"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Tag"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Comment"
+                  "$ref": "#/components/schemas/Tag"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Tag"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewComment"
+                "$ref": "#/components/schemas/NewTag"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Tag"
         ],
         "parameters": [
           {
@@ -514,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Comment": {
+      "Tag": {
         "required": [
           "id"
         ],
@@ -522,68 +522,10 @@
           "id": {
             "type": "string"
           },
-          "title": {
-            "type": "string"
-          },
           "name": {
             "type": "string"
           },
-          "content": {
-            "type": "string"
-          },
-          "parent": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "title": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "content": {
-                "type": "string"
-              },
-              "parent": {
-                "type": "string"
-              },
-              "children": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "user": {
-                "type": "string"
-              },
-              "isHidden": {
-                "type": "boolean"
-              },
-              "isPinned": {
-                "type": "boolean"
-              },
-              "plan": {
-                "type": "string"
-              },
-              "files": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "children": {
+          "plans": {
             "type": "array",
             "items": {
               "required": [
@@ -593,291 +535,80 @@
                 "id": {
                   "type": "string"
                 },
-                "title": {
-                  "type": "string"
-                },
                 "name": {
                   "type": "string"
                 },
-                "content": {
+                "status": {
                   "type": "string"
                 },
-                "parent": {
+                "lastUpdate": {
                   "type": "string"
                 },
-                "children": {
+                "location": {
+                  "type": "string"
+                },
+                "municipality": {
+                  "type": "string"
+                },
+                "settlement": {
+                  "type": "string"
+                },
+                "sections": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "sid": {
+                  "type": "string"
+                },
+                "targets": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "string"
+                },
+                "submission": {
+                  "type": "string"
+                },
+                "stype": {
+                  "type": "integer"
+                },
+                "addedManually": {
+                  "type": "boolean"
+                },
+                "attachedFiles": {
                   "type": "array",
                   "items": {
                     "type": "string"
                   }
                 },
-                "user": {
+                "street": {
                   "type": "string"
                 },
-                "isHidden": {
-                  "type": "boolean"
+                "houseNumber": {
+                  "type": "integer"
                 },
-                "isPinned": {
-                  "type": "boolean"
-                },
-                "plan": {
-                  "type": "string"
-                },
-                "files": {
+                "meetings": {
                   "type": "array",
                   "items": {
                     "type": "string"
                   }
                 },
-                "created_by": {
-                  "type": "string"
+                "commentsAreLocked": {
+                  "type": "boolean"
                 },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "user": {
-            "required": [
-              "id",
-              "username",
-              "email",
-              "firstName",
-              "lastName"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "role": {
-                "type": "string"
-              },
-              "firstName": {
-                "type": "string"
-              },
-              "lastName": {
-                "type": "string"
-              },
-              "city": {
-                "type": "string"
-              },
-              "organization": {
-                "type": "string"
-              },
-              "job": {
-                "type": "string"
-              },
-              "userImage": {
-                "type": "string"
-              },
-              "committees": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "subscribedCommittees": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "comments": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "isHidden": {
-            "type": "boolean"
-          },
-          "isPinned": {
-            "type": "boolean"
-          },
-          "plan": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "status": {
-                "type": "string"
-              },
-              "lastUpdate": {
-                "type": "string"
-              },
-              "location": {
-                "type": "string"
-              },
-              "municipality": {
-                "type": "string"
-              },
-              "settlement": {
-                "type": "string"
-              },
-              "sections": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string"
-              },
-              "sid": {
-                "type": "string"
-              },
-              "targets": {
-                "type": "string"
-              },
-              "number": {
-                "type": "string"
-              },
-              "submission": {
-                "type": "string"
-              },
-              "stype": {
-                "type": "integer"
-              },
-              "addedManually": {
-                "type": "boolean"
-              },
-              "attachedFiles": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "street": {
-                "type": "string"
-              },
-              "houseNumber": {
-                "type": "integer"
-              },
-              "meetings": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "commentsAreLocked": {
-                "type": "boolean"
-              },
-              "comments": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "tags": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "files": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
+                "comments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "created_by": {
                   "type": "string"
@@ -890,37 +621,16 @@
           }
         }
       },
-      "NewComment": {
+      "NewTag": {
         "properties": {
-          "title": {
-            "type": "string"
-          },
           "name": {
             "type": "string"
           },
-          "content": {
-            "type": "string"
-          },
-          "parent": {
-            "type": "string"
-          },
-          "children": {
+          "plans": {
             "type": "array",
             "items": {
               "type": "string"
             }
-          },
-          "user": {
-            "type": "string"
-          },
-          "isHidden": {
-            "type": "boolean"
-          },
-          "isPinned": {
-            "type": "boolean"
-          },
-          "plan": {
-            "type": "string"
           },
           "created_by": {
             "type": "string"
@@ -934,7 +644,7 @@
   },
   "tags": [
     {
-      "name": "Comment"
+      "name": "Tag"
     }
   ]
 }

@@ -14,5 +14,27 @@ module.exports = {
       throw new Error('You\'re not allowed to perform this action!');
     }
     return { plan: await planService.update({ id: plan.id }, ctx.request.body) };
+  },
+  /**
+   * Tags a plan
+   * @param {import("koa").ParameterizedContext} ctx Koa context
+   */
+  async tagPlan(ctx) {
+    const params = ctx.request.body;
+    const planService = strapi.services.plan;
+    const plan = await planService.findOne({ id: params.planId });
+    console.info(plan);
+    let tag = await strapi.services.tag.findOne({ name: params.tag });
+    if (!tag) {
+      tag = await strapi.services.tag.create({ name: params.tag });
+    }
+    return {
+      plan: await planService.update(
+        { id: params.planId },
+        {
+          tags: [...plan.tags, tag]
+        }
+      )
+    };
   }
 };

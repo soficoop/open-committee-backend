@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "tags",
   "info": {
-    "name": "Tag"
+    "name": "Tag",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -11,7 +12,11 @@
   },
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true,
+      "minLength": 2,
+      "maxLength": 25
     },
     "plans": {
       "collection": "plan",

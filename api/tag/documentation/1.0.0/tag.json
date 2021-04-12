@@ -516,14 +516,17 @@
     "schemas": {
       "Tag": {
         "required": [
-          "id"
+          "id",
+          "name"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 25,
+            "minLength": 2
           },
           "plans": {
             "type": "array",
@@ -622,9 +625,14 @@
         }
       },
       "NewTag": {
+        "required": [
+          "name"
+        ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 25,
+            "minLength": 2
           },
           "plans": {
             "type": "array",

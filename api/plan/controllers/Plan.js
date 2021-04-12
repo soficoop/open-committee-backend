@@ -23,7 +23,6 @@ module.exports = {
     const params = ctx.request.body;
     const planService = strapi.services.plan;
     const plan = await planService.findOne({ id: params.planId });
-    console.info(plan);
     let tag = await strapi.services.tag.findOne({ name: params.tag });
     if (!tag) {
       tag = await strapi.services.tag.create({ name: params.tag });

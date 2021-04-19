@@ -23,15 +23,19 @@ module.exports = {
     const params = ctx.request.body;
     const planService = strapi.services.plan;
     const plan = await planService.findOne({ id: params.planId });
-    let tag = await strapi.services.tag.findOne({ name: params.tag });
-    if (!tag) {
-      tag = await strapi.services.tag.create({ name: params.tag });
+    let tagsToAdd = [];
+    for (const tag of params.tags) {
+      let existingTag = await strapi.services.tag.findOne({ name: tag });
+      if (!existingTag) {
+        existingTag = await strapi.services.tag.create({ name: tag });
+      }
+      tagsToAdd.push(existingTag);
     }
     return {
       plan: await planService.update(
         { id: params.planId },
         {
-          tags: [...plan.tags, tag]
+          tags: [...plan.tags, ...tagsToAdd]
         }
       )
     };

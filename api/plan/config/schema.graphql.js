@@ -1,7 +1,7 @@
 module.exports = {
   mutation: `
         updateMyPlan(input: updatePlanInput): updatePlanPayload
-        tagPlan(tag: String! planId: ID!): updatePlanPayload
+        tagPlan(tags: [String!]! planId: ID!): updatePlanPayload
     `,
   resolver: {
     Mutation: {

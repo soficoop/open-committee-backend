@@ -22,6 +22,12 @@
       "collection": "plan",
       "via": "tags",
       "dominant": true
+    },
+    "subscribedUsers": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "subscribedTags",
+      "dominant": true
     }
   }
 }

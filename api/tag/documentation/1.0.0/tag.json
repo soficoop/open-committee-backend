@@ -621,6 +621,98 @@
                 }
               }
             }
+          },
+          "subscribedUsers": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "username",
+                "email",
+                "firstName",
+                "lastName"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "resetPasswordToken": {
+                  "type": "string"
+                },
+                "confirmed": {
+                  "type": "boolean"
+                },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "confirmationToken": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "job": {
+                  "type": "string"
+                },
+                "userImage": {
+                  "type": "string"
+                },
+                "committees": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedCommittees": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "comments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedTags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -635,6 +727,12 @@
             "minLength": 2
           },
           "plans": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subscribedUsers": {
             "type": "array",
             "items": {
               "type": "string"

@@ -28,6 +28,8 @@ module.exports = {
       let existingTag = await strapi.services.tag.findOne({ name: tag });
       if (!existingTag) {
         existingTag = await strapi.services.tag.create({ name: tag });
+      } else {
+        console.info(existingTag);
       }
       tagsToAdd.push(existingTag);
     }

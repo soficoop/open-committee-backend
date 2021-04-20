@@ -1,4 +1,6 @@
 'use strict';
+const { sendMail } = require('../../../utils/helpers');
+const parseTemplate = require('../../../config/functions/template');
 
 module.exports = {
   /**
@@ -23,23 +25,18 @@ module.exports = {
     const params = ctx.request.body;
     const planService = strapi.services.plan;
     const plan = await planService.findOne({ id: params.planId });
-    let tagsToAdd = [];
-    for (const tag of params.tags) {
-      let existingTag = await strapi.services.tag.findOne({ name: tag });
-      if (!existingTag) {
-        existingTag = await strapi.services.tag.create({ name: tag });
-      } else {
-        console.info(existingTag);
+    const relvantTags = params.tags.filter(tag => plan.tags.every(planTag => planTag.name !== tag));
+    let tagsToAdd = await strapi.services.tag.getOrCreateMany(relvantTags);
+    const updatedPlan = await planService.update(
+      { id: params.planId },
+      { tags: [...plan.tags, ...tagsToAdd] }
+    );
+    for (const tag of tagsToAdd) {
+      for (const user of tag.subscribedUsers) {
+        const token =  strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id }, { expiresIn: '7d' });
+        await sendMail(user.email, `בקרוב תועלה לדיון תכנית חדשה עם התגית ${tag.name}`, await parseTemplate('NewTaggedPlan.html',{ tag: tag.name, user, plan: updatedPlan, token }));
       }
-      tagsToAdd.push(existingTag);
     }
-    return {
-      plan: await planService.update(
-        { id: params.planId },
-        {
-          tags: [...plan.tags, ...tagsToAdd]
-        }
-      )
-    };
+    return { plan: updatedPlan };
   }
 };

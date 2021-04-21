@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tags",
+  "info": {
+    "name": "Tag",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true,
+      "minLength": 2,
+      "maxLength": 25
+    },
+    "plans": {
+      "collection": "plan",
+      "via": "tags",
+      "dominant": true
+    },
+    "subscribedUsers": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "subscribedTags",
+      "dominant": true
+    }
+  }
+}

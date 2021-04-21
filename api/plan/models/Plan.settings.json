@@ -77,6 +77,10 @@
     "comments": {
       "collection": "comment",
       "via": "plan"
+    },
+    "tags": {
+      "via": "plans",
+      "collection": "tag"
     }
   }
 }

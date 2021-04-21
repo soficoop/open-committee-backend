@@ -1,4 +1,5 @@
 {
+  "kind": "collectionType",
   "connection": "default",
   "collectionName": "users-permissions_user",
   "info": {
@@ -96,6 +97,10 @@
     "comments": {
       "collection": "comment",
       "via": "user"
+    },
+    "subscribedTags": {
+      "via": "subscribedUsers",
+      "collection": "tag"
     }
   }
 }

@@ -1,5 +1,5 @@
 'use strict';
-const Scraper = require('../..//utils/scraper');
+const Scraper = require('../../utils/scraper');
 
 /**
  * Cron config that gives you an opportunity

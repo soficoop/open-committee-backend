@@ -713,6 +713,12 @@
                   "type": "string"
                 }
               },
+              "subscribedTags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -799,6 +805,12 @@
                 "type": "boolean"
               },
               "comments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "tags": {
                 "type": "array",
                 "items": {
                   "type": "string"

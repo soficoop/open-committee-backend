@@ -1626,6 +1626,41 @@
                 }
               }
             }
+          },
+          "subscribedTags": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "plans": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedUsers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -1698,6 +1733,12 @@
             }
           },
           "comments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subscribedTags": {
             "type": "array",
             "items": {
               "type": "string"

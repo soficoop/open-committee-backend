@@ -769,6 +769,41 @@
                 }
               }
             }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "plans": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedUsers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -834,6 +869,12 @@
             "type": "boolean"
           },
           "comments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tags": {
             "type": "array",
             "items": {
               "type": "string"

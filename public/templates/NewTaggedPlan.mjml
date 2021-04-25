@@ -67,7 +67,7 @@
               {{{plan.sections}}}
             {{/if}}
           </mj-text>
-          </mj-column>
+        </mj-column>
       </mj-section>
       <mj-section direction="rtl" background-color="#f5f5f5" padding="0">
         <mj-column>
@@ -75,6 +75,18 @@
           <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/plan/{{plan.id}}?token={{token}}" border="#004359 2px solid">
             לצפייה בדיון המלא בתכנית
           </mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-wrapper padding="10px 20px">
+      <mj-section direction="rtl" padding="4px">
+        <mj-column>
+          <mj-text align="center" color="#777777">
+            ודעה זו נשלחה אליך בעקבות בקשתך לקבל התראות על תכניות חדשות בנושא זה.
+            <br/>
+            לשינוי הגדרות ההתראות יש ללחוץ
+            <a href="{{appUrl}}/subscriptions?token={{token}}">כאן</a>
+          </mj-text>
         </mj-column>
       </mj-section>
     </mj-wrapper>

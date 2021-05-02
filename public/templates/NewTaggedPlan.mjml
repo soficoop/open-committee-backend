@@ -34,7 +34,7 @@
           <mj-text align="right" font-size="16px" color="#004359" font-family="Assistant,Arial" line-height="25px">
             שלום {{user.firstName}},
             <br />
-            תכנית חדשה תויגה בתור {{tag}}.
+            תכנית חדשה תויגה תחת הנושא {{tag}}:
           </mj-text>
         </mj-column>
       </mj-section>
@@ -82,7 +82,7 @@
       <mj-section direction="rtl" padding="4px">
         <mj-column>
           <mj-text align="center" color="#777777">
-            ודעה זו נשלחה אליך בעקבות בקשתך לקבל התראות על תכניות חדשות בנושא זה.
+            הודעה זו נשלחה אליך בעקבות בקשתך לקבל התראות על תכניות חדשות בנושא זה.
             <br/>
             לשינוי הגדרות ההתראות יש ללחוץ
             <a href="{{appUrl}}/subscriptions?token={{token}}">כאן</a>

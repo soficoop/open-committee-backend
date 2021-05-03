@@ -73,7 +73,7 @@
         <mj-column>
           <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
           <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/plan/{{plan.id}}?token={{token}}" border="#004359 2px solid">
-            לצפייה בדיון המלא בתכנית
+            לצפייה בפרטי התכנית ולהוספת תגובה
           </mj-button>
         </mj-column>
       </mj-section>

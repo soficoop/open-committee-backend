@@ -14,12 +14,12 @@
     <mj-wrapper padding="10px 20px">
       <mj-section direction="rtl" background-color="#004359" padding="4px">
         <mj-column>
-        <mj-text align="center" font-weight="bold">
-          <img style="width: 20px; vertical-align: middle" src="https://img.icons8.com/color/box-important" />
-          <span style="margin: 12px; color:white; vertical-align: middle">
-          אין להעביר הודעה זו! העברת דוא"ל זה לאחרים תאפשר להם להגיב בשמך
-          </span>
-        </mj-text>
+          <mj-text align="center" font-weight="bold">
+            <img style="width: 20px; vertical-align: middle" src="https://img.icons8.com/color/box-important" />
+            <span style="margin: 12px; color:white; vertical-align: middle">
+              אין להעביר הודעה זו! העברת דוא"ל זה לאחרים תאפשר להם להגיב בשמך
+            </span>
+          </mj-text>
         </mj-column>
       </mj-section>
     </mj-wrapper>
@@ -52,9 +52,9 @@
               {{parentComment.title}}
             </h4>
             {{shortenText parentComment.content}}
-            </mj-text>
+          </mj-text>
           <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
-            <mj-text align="right" color="#004359" font-family="Assistant,Arial">
+          <mj-text align="right" color="#004359" font-family="Assistant,Arial">
             <h4>{{childComment.title}}</h4>
             <h4 style="font-weight:normal;color:#80A1AC">{{childComment.name}} • {{formatDate childComment.createdAt}}</h4>
             <p>{{shortenText childComment.content}}</p>

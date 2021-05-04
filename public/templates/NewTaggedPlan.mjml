@@ -34,7 +34,7 @@
           <mj-text align="right" font-size="16px" color="#004359" font-family="Assistant,Arial" line-height="25px">
             שלום {{user.firstName}},
             <br />
-            תכנית חדשה תויגה בתור {{tag}}.
+            תכנית חדשה תויגה תחת הנושא {{tag}}:
           </mj-text>
         </mj-column>
       </mj-section>
@@ -67,14 +67,26 @@
               {{{plan.sections}}}
             {{/if}}
           </mj-text>
-          </mj-column>
+        </mj-column>
       </mj-section>
       <mj-section direction="rtl" background-color="#f5f5f5" padding="0">
         <mj-column>
           <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
           <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/plan/{{plan.id}}?token={{token}}" border="#004359 2px solid">
-            לצפייה בדיון המלא בתכנית
+            לצפייה בפרטי התכנית ולהוספת תגובה
           </mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-wrapper padding="10px 20px">
+      <mj-section direction="rtl" padding="4px">
+        <mj-column>
+          <mj-text align="center" color="#777777">
+            הודעה זו נשלחה אליך בעקבות בקשתך לקבל התראות על תכניות חדשות בנושא זה.
+            <br/>
+            לשינוי הגדרות ההתראות יש ללחוץ
+            <a href="{{appUrl}}/subscriptions?token={{token}}">כאן</a>
+          </mj-text>
         </mj-column>
       </mj-section>
     </mj-wrapper>

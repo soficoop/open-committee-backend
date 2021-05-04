@@ -34,7 +34,7 @@ module.exports = {
     for (const tag of tagsToAdd) {
       for (const user of tag.subscribedUsers) {
         const token =  strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id }, { expiresIn: '7d' });
-        await sendMail(user.email, `בקרוב תועלה לדיון תכנית חדשה עם התגית ${tag.name}`, await parseTemplate('NewTaggedPlan.html',{ tag: tag.name, user, plan: updatedPlan, token }));
+        await sendMail(user.email, `תכנית חדשה בועדה פתוחה - ${plan.name}`, await parseTemplate('NewTaggedPlan.html',{ tag: tag.name, user, plan: updatedPlan, token }));
       }
     }
     return { plan: updatedPlan };

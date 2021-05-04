@@ -14,12 +14,12 @@
     <mj-wrapper padding="10px 20px">
       <mj-section direction="rtl" background-color="#004359" padding="4px">
         <mj-column>
-        <mj-text align="center" font-weight="bold">
-          <img style="width: 20px; vertical-align: middle" src="https://img.icons8.com/color/box-important" />
-          <span style="margin: 12px; color:white; vertical-align: middle">
-          אין להעביר הודעה זו! העברת דוא"ל זה לאחרים תאפשר להם להגיב בשמך
-          </span>
-        </mj-text>
+          <mj-text align="center" font-weight="bold">
+            <img style="width: 20px; vertical-align: middle" src="https://img.icons8.com/color/box-important" />
+            <span style="margin: 12px; color:white; vertical-align: middle">
+              אין להעביר הודעה זו! העברת דוא"ל זה לאחרים תאפשר להם להגיב בשמך
+            </span>
+          </mj-text>
         </mj-column>
       </mj-section>
     </mj-wrapper>
@@ -81,6 +81,18 @@
           <mj-button font-family="Assistant, Arial" background-color="white" color="#004359" href="{{appUrl}}/meeting/{{meeting.id}}?token={{token}}" border="#004359 2px solid">
             לצפייה בסדר היום המלא
           </mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-wrapper padding="10px 20px">
+      <mj-section direction="rtl" padding="4px">
+        <mj-column>
+          <mj-text align="center" color="#777777">
+            הודעה זו נשלחה אליך בעקבות בקשתך לקבל התראות על ועדה זו.
+            <br />
+            לשינוי הגדרות ההתראות יש ללחוץ
+            <a href="{{appUrl}}/subscriptions?token={{token}}">כאן</a>
+          </mj-text>
         </mj-column>
       </mj-section>
     </mj-wrapper>

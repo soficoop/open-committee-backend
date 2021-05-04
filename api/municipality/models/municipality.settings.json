@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "municipalities",
+  "info": {
+    "name": "Municipality",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "sid": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "plans": {
+      "collection": "plan",
+      "via": "municipalities",
+      "dominant": true
+    },
+    "subscribedUsers": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "subscribedMunicipalities",
+      "dominant": true
+    }
+  }
+}

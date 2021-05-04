@@ -1661,6 +1661,44 @@
                 }
               }
             }
+          },
+          "subscribedMunicipalities": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "sid"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "sid": {
+                  "type": "string"
+                },
+                "plans": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedUsers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -1739,6 +1777,12 @@
             }
           },
           "subscribedTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subscribedMunicipalities": {
             "type": "array",
             "items": {
               "type": "string"

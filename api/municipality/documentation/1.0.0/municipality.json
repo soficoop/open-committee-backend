@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/comments": {
+    "/municipalities": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Comment"
+                    "$ref": "#/components/schemas/Municipality"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Municipality"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Comment"
+                  "$ref": "#/components/schemas/Municipality"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Municipality"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewComment"
+                "$ref": "#/components/schemas/NewMunicipality"
               }
             }
           }
         }
       }
     },
-    "/comments/count": {
+    "/municipalities/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Municipality"
         ],
         "parameters": []
       }
     },
-    "/comments/{id}": {
+    "/municipalities/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Comment"
+                  "$ref": "#/components/schemas/Municipality"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Municipality"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Comment"
+                  "$ref": "#/components/schemas/Municipality"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Municipality"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewComment"
+                "$ref": "#/components/schemas/NewMunicipality"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Municipality"
         ],
         "parameters": [
           {
@@ -514,76 +514,19 @@
   },
   "components": {
     "schemas": {
-      "Comment": {
+      "Municipality": {
         "required": [
-          "id"
+          "id",
+          "sid"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "title": {
+          "sid": {
             "type": "string"
           },
-          "name": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "parent": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "title": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "content": {
-                "type": "string"
-              },
-              "parent": {
-                "type": "string"
-              },
-              "children": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "user": {
-                "type": "string"
-              },
-              "isHidden": {
-                "type": "boolean"
-              },
-              "isPinned": {
-                "type": "boolean"
-              },
-              "plan": {
-                "type": "string"
-              },
-              "files": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "children": {
+          "plans": {
             "type": "array",
             "items": {
               "required": [
@@ -593,37 +536,82 @@
                 "id": {
                   "type": "string"
                 },
-                "title": {
-                  "type": "string"
-                },
                 "name": {
                   "type": "string"
                 },
-                "content": {
+                "status": {
                   "type": "string"
                 },
-                "parent": {
+                "lastUpdate": {
                   "type": "string"
                 },
-                "children": {
+                "location": {
+                  "type": "string"
+                },
+                "municipality": {
+                  "type": "string"
+                },
+                "settlement": {
+                  "type": "string"
+                },
+                "sections": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "sid": {
+                  "type": "string"
+                },
+                "targets": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "string"
+                },
+                "submission": {
+                  "type": "string"
+                },
+                "stype": {
+                  "type": "integer"
+                },
+                "addedManually": {
+                  "type": "boolean"
+                },
+                "attachedFiles": {
                   "type": "array",
                   "items": {
                     "type": "string"
                   }
                 },
-                "user": {
+                "street": {
                   "type": "string"
                 },
-                "isHidden": {
+                "houseNumber": {
+                  "type": "integer"
+                },
+                "meetings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "commentsAreLocked": {
                   "type": "boolean"
                 },
-                "isPinned": {
-                  "type": "boolean"
+                "comments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
-                "plan": {
-                  "type": "string"
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
-                "files": {
+                "municipalities": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -638,264 +626,94 @@
               }
             }
           },
-          "user": {
-            "required": [
-              "id",
-              "username",
-              "email",
-              "firstName",
-              "lastName"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "role": {
-                "type": "string"
-              },
-              "firstName": {
-                "type": "string"
-              },
-              "lastName": {
-                "type": "string"
-              },
-              "city": {
-                "type": "string"
-              },
-              "organization": {
-                "type": "string"
-              },
-              "job": {
-                "type": "string"
-              },
-              "userImage": {
-                "type": "string"
-              },
-              "committees": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "subscribedCommittees": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "comments": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "subscribedTags": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "subscribedMunicipalities": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "isHidden": {
-            "type": "boolean"
-          },
-          "isPinned": {
-            "type": "boolean"
-          },
-          "plan": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "status": {
-                "type": "string"
-              },
-              "lastUpdate": {
-                "type": "string"
-              },
-              "location": {
-                "type": "string"
-              },
-              "municipality": {
-                "type": "string"
-              },
-              "settlement": {
-                "type": "string"
-              },
-              "sections": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string"
-              },
-              "sid": {
-                "type": "string"
-              },
-              "targets": {
-                "type": "string"
-              },
-              "number": {
-                "type": "string"
-              },
-              "submission": {
-                "type": "string"
-              },
-              "stype": {
-                "type": "integer"
-              },
-              "addedManually": {
-                "type": "boolean"
-              },
-              "attachedFiles": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "street": {
-                "type": "string"
-              },
-              "houseNumber": {
-                "type": "integer"
-              },
-              "meetings": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "commentsAreLocked": {
-                "type": "boolean"
-              },
-              "comments": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "tags": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "municipalities": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "files": {
+          "subscribedUsers": {
             "type": "array",
             "items": {
               "required": [
                 "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
+                "username",
+                "email",
+                "firstName",
+                "lastName"
               ],
               "properties": {
                 "id": {
                   "type": "string"
                 },
-                "name": {
+                "username": {
                   "type": "string"
                 },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
+                "email": {
                   "type": "string"
                 },
                 "provider": {
                   "type": "string"
                 },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
+                "password": {
                   "type": "string"
+                },
+                "resetPasswordToken": {
+                  "type": "string"
+                },
+                "confirmed": {
+                  "type": "boolean"
+                },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "confirmationToken": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "job": {
+                  "type": "string"
+                },
+                "userImage": {
+                  "type": "string"
+                },
+                "committees": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedCommittees": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "comments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedTags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedMunicipalities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "created_by": {
                   "type": "string"
@@ -905,40 +723,36 @@
                 }
               }
             }
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
-      "NewComment": {
+      "NewMunicipality": {
+        "required": [
+          "sid"
+        ],
         "properties": {
-          "title": {
+          "sid": {
             "type": "string"
           },
-          "name": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "parent": {
-            "type": "string"
-          },
-          "children": {
+          "plans": {
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "user": {
-            "type": "string"
+          "subscribedUsers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
-          "isHidden": {
-            "type": "boolean"
-          },
-          "isPinned": {
-            "type": "boolean"
-          },
-          "plan": {
-            "type": "string"
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -952,7 +766,7 @@
   },
   "tags": [
     {
-      "name": "Comment"
+      "name": "Municipality"
     }
   ]
 }

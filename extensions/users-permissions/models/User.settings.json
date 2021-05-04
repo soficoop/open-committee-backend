@@ -101,6 +101,10 @@
     "subscribedTags": {
       "via": "subscribedUsers",
       "collection": "tag"
+    },
+    "subscribedMunicipalities": {
+      "via": "subscribedUsers",
+      "collection": "municipality"
     }
   }
 }

@@ -1,4 +1,5 @@
 {
+  "kind": "collectionType",
   "connection": "default",
   "collectionName": "parser",
   "info": {
@@ -9,7 +10,8 @@
     "timestamps": [
       "createdAt",
       "updatedAt"
-    ]
+    ],
+    "draftAndPublish": false
   },
   "attributes": {
     "for": {
@@ -17,7 +19,8 @@
         "area",
         "committee",
         "meeting",
-        "plan"
+        "plan",
+        "municipality"
       ],
       "type": "enumeration"
     },

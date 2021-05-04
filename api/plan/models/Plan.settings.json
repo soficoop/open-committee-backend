@@ -81,6 +81,10 @@
     "tags": {
       "via": "plans",
       "collection": "tag"
+    },
+    "municipalities": {
+      "via": "plans",
+      "collection": "municipality"
     }
   }
 }

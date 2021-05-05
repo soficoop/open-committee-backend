@@ -15,7 +15,7 @@ var pluralize = require('pluralize');
 /**
  * @enum FieldType
  */
-const FieldTypes = Object.freeze({
+const FieldType = Object.freeze({
   SELECTOR: 'selectors',
   REGEX: 'matches',
   URL_PARAM: 'urlParams'
@@ -66,7 +66,7 @@ class Scraper {
       const rawFields = yaml.safeLoad(parser.fields);
       parser.fields = [];
       for (const key in rawFields) {
-        if (!Object.values(FieldTypes).includes(key)) {
+        if (!Object.values(FieldType).includes(key)) {
           continue;
         }
         const fields = rawFields[key];
@@ -281,19 +281,19 @@ class Scraper {
       const key = field.for;
       let value;
       switch (field.type) {
-      case FieldTypes.SELECTOR:
+      case FieldType.SELECTOR:
         value = [...item.querySelectorAll(field.from)].map(
           i => i.innerHTML
         );
         break;
-      case FieldTypes.REGEX:
+      case FieldType.REGEX:
         value = [...item.innerHTML.matchAll(field.from)].map(i => i[1]);
         break;
-      case FieldTypes.URL_PARAM:
+      case FieldType.URL_PARAM:
         value = new URL(url).searchParams.get(field.from);
         break;
       }
-      if (value) { 
+      if (value) {
         result[key] = await this.convertField(value, modelAttributes[key]);
       }
     }
@@ -409,7 +409,7 @@ class Scraper {
     if (!isCollection && Array.isArray(rawValue)) {
       value = rawValue[0];
     } else {
-      value = rawValue;
+      value = rawValue.map(i => typeof i === 'string' ? i.trim() : i);
     }
     const relationTargetModel =
       modelAttribute.collection || modelAttribute.model;

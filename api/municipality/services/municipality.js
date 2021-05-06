@@ -11,20 +11,22 @@ const { sendMail } = require('../../../utils/helpers');
 
 module.exports = {
   
-  async emailSubscribers(municipality) {
+  async emailSubscribers(municipality, plans) {
+    if (!plans.length) {
+      return;
+    }
     for (const user of municipality.subscribedUsers) {
       const token =  strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id }, { expiresIn: '7d' });
       const subject = `תכניות חדשות ב${municipality.sid} | ${formatDate(new Date())}`;
-      await sendMail(user.email, subject, await parseTemplate('NewPlansInMunicipality.html', { municipality, user, token }));
+      await sendMail(user.email, subject, await parseTemplate('NewPlansInMunicipality.html', { municipality, user, token, plans }));
     }
   },
 
   async emailUpdatedMunicipalities(from = new Date()) {
-    const municipalities = await strapi.services.municipality.find({ updatedAt_gt: from, isHidden: false });
+    const municipalities = await strapi.services.municipality.find({ updatedAt_gt: from, isHidden_ne: true });
     for (const municipality of municipalities) {
-      const plans = await strapi.services.plans.find({ createdAt_gt: from, municipalities_contains: municipality.id });
-      console.info(plans);
-      await this.emailSubscribers(municipality, plans.filter(p => p.municipalities.some(m => m.id === municipality.id)));
+      const plans = municipality.plans.filter(p => p.createdAt.getTime() >= from.getTime());
+      await this.emailSubscribers(municipality, plans);
     }
   }
 };

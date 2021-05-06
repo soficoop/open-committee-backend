@@ -10,4 +10,7 @@ module.exports = ({ env }) => ({
       defaultReplyTo: 'ועדה פתוחה <noreply@sviva.net>',
     },
   },
+  graphql: {
+    amountLimit: 1000
+  }
 });

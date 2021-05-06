@@ -8,7 +8,7 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "sid": {
@@ -26,6 +26,10 @@
       "collection": "user",
       "via": "subscribedMunicipalities",
       "dominant": true
+    },
+    "isHidden": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

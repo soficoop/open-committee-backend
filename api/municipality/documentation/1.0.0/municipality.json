@@ -724,9 +724,9 @@
               }
             }
           },
-          "published_at": {
-            "type": "string",
-            "format": "date-time"
+          "isHidden": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -750,9 +750,9 @@
               "type": "string"
             }
           },
-          "published_at": {
-            "type": "string",
-            "format": "date-time"
+          "isHidden": {
+            "type": "boolean",
+            "default": false
           },
           "created_by": {
             "type": "string"

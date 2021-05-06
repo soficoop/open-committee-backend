@@ -1,0 +1,94 @@
+<!-- Download MJML (https://mjml.io) in order to edit this file -->
+<!-- Edited code should be exported to NewMeeting.html -->
+<mjml>
+  <mj-head>
+    <mj-font name="Assistant" href="https://fonts.googleapis.com/css?family=Assistant"></mj-font>
+    <mj-title>תכנית חדשה במערכת ועדה פתוחה</mj-title>
+    <mj-style>
+      * {
+        direction: rtl;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#d2c4b6">
+    <mj-wrapper padding="10px 20px">
+      <mj-section direction="rtl" background-color="#004359" padding="4px">
+        <mj-column>
+          <mj-text align="center" font-weight="bold">
+            <img style="width: 20px; vertical-align: middle" src="https://img.icons8.com/color/box-important" />
+            <span style="margin: 12px; color:white; vertical-align: middle">
+              אין להעביר הודעה זו! העברת דוא"ל זה לאחרים תאפשר להם להגיב בשמך
+            </span>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-wrapper padding="10px 20px">
+      <mj-section direction="rtl" background-color="#f5f5f5" padding="16px">
+        <mj-column background-color="white">
+          <mj-image width="100px" src="http://app.sviva.net/img/logo.png" padding="20px"></mj-image>
+          <mj-text align="center" font-size="20px" color="#004359" font-family="Assistant,Arial">
+            תכניות חדשות ב{{municipality.sid}}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#f5f5f5" padding-bottom="0">
+        <mj-column>
+          <mj-text align="right" font-size="16px" color="#004359" font-family="Assistant,Arial" line-height="25px">
+            שלום {{user.firstName}},
+            <br /> ישנן תכניות חדשות בישוב בתחום העניין שלך.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#f5f5f5" padding="0">
+        <mj-column>
+          <mj-text align="right" align="right" color="#004359" font-family="Assistant,Arial" line-height="25px">
+            <h2>{{municipality.sid}}</h2>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section direction="rtl" background-color="#f5f5f5" padding="0">
+        <mj-column>
+          <mj-text>
+            {{#each municipality.plans}}
+          </mj-text>
+          <mj-text align="right" align="right" color="#004359" font-family="Assistant,Arial">
+            <h4 style="color: #47AA7C; font-size:18px">
+              {{name}}
+              {{#if name}} {{#if number}}
+                  •
+                {{/if}} {{/if}}
+              {{number}}
+            </h4>
+            {{#if location}}
+              <h4 style="color: #846154">מיקום התכנית:</h4>
+              {{{location}}}
+            {{/if}}
+            {{#if targets}}
+              <h4 style="color: #846154">מטרות:</h4>
+              {{{targets}}}
+            {{/if}}
+          </mj-text>
+          <mj-button font-family="Assistant, Arial" background-color="#004359" color="white" align="right" href="{{appUrl}}/plan/{{id}}?token={{../token}}">
+            הצטרפו לדיון
+          </mj-button>
+          <mj-text>
+            {{/each}}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-wrapper padding="10px 20px">
+      <mj-section direction="rtl" padding="4px">
+        <mj-column>
+          <mj-text align="center" color="#777777">
+            הודעה זו נשלחה אליך בעקבות בקשתך לקבל התראות על ועדה זו.
+            <br />
+            לשינוי הגדרות ההתראות יש ללחוץ
+            <a href="{{appUrl}}/subscriptions?token={{token}}">כאן</a>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

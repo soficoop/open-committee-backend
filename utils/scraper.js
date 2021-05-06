@@ -88,6 +88,7 @@ class Scraper {
       await this.scrapeByParser(parser);
     }
     strapi.services.meeting.emailNewMeetings(this.scrapingStart);
+    strapi.services.municipality.emailUpdatedMunicipalities(this.scrapingStart);
   }
 
   /**

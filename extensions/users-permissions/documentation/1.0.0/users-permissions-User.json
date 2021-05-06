@@ -1688,8 +1688,8 @@
                     "type": "string"
                   }
                 },
-                "published_at": {
-                  "type": "string"
+                "isHidden": {
+                  "type": "boolean"
                 },
                 "created_by": {
                   "type": "string"

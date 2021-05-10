@@ -22,9 +22,9 @@
       "dominant": true
     },
     "subscribedUsers": {
+      "via": "subscribedMunicipalities",
       "plugin": "users-permissions",
       "collection": "user",
-      "via": "subscribedMunicipalities",
       "dominant": true
     },
     "isHidden": {

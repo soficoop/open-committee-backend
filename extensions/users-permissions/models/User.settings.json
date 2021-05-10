@@ -10,7 +10,8 @@
     "timestamps": [
       "createdAt",
       "updatedAt"
-    ]
+    ],
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -82,29 +83,35 @@
     "userImage": {
       "model": "file",
       "via": "related",
-      "plugin": "upload"
+      "plugin": "upload",
+      "required": false
     },
     "committees": {
       "collection": "committee",
-      "dominant": true,
-      "via": "users"
+      "via": "users",
+      "dominant": true
     },
     "subscribedCommittees": {
       "collection": "committee",
-      "dominant": true,
-      "via": "subscribedUsers"
+      "via": "subscribedUsers",
+      "dominant": true
     },
     "comments": {
       "collection": "comment",
       "via": "user"
     },
     "subscribedTags": {
-      "via": "subscribedUsers",
-      "collection": "tag"
+      "collection": "tag",
+      "via": "subscribedUsers"
     },
     "subscribedMunicipalities": {
-      "via": "subscribedUsers",
-      "collection": "municipality"
+      "collection": "municipality",
+      "via": "subscribedUsers"
+    },
+    "subscribedLocations": {
+      "type": "component",
+      "repeatable": true,
+      "component": "misc.location"
     }
   }
 }

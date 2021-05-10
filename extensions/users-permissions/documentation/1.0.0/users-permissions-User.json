@@ -1699,6 +1699,31 @@
                 }
               }
             }
+          },
+          "subscribedLocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "lat",
+                "lng"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "lat": {
+                  "type": "number"
+                },
+                "lng": {
+                  "type": "number"
+                },
+                "radius": {
+                  "type": "number"
+                }
+              }
+            }
           }
         }
       },
@@ -1786,6 +1811,31 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          },
+          "subscribedLocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "lat",
+                "lng"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "lat": {
+                  "type": "number"
+                },
+                "lng": {
+                  "type": "number"
+                },
+                "radius": {
+                  "type": "number"
+                }
+              }
             }
           },
           "created_by": {

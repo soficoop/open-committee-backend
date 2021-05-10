@@ -24,9 +24,9 @@
       "dominant": true
     },
     "subscribedUsers": {
+      "via": "subscribedTags",
       "plugin": "users-permissions",
       "collection": "user",
-      "via": "subscribedTags",
       "dominant": true
     }
   }

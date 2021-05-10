@@ -31,9 +31,9 @@
       "via": "parent"
     },
     "user": {
-      "model": "user",
       "via": "comments",
-      "plugin": "users-permissions"
+      "plugin": "users-permissions",
+      "model": "user"
     },
     "isHidden": {
       "type": "boolean"

@@ -17,8 +17,8 @@
       "required": true
     },
     "plans": {
-      "collection": "plan",
       "via": "municipalities",
+      "collection": "plan",
       "dominant": true
     },
     "subscribedUsers": {

@@ -842,6 +842,9 @@
                 }
               }
             }
+          },
+          "geometry": {
+            "type": "object"
           }
         }
       },
@@ -923,6 +926,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "geometry": {
+            "type": "object"
           },
           "created_by": {
             "type": "string"

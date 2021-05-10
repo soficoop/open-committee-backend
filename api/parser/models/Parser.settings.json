@@ -63,6 +63,11 @@
     },
     "fileFields": {
       "type": "text"
+    },
+    "isJson": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

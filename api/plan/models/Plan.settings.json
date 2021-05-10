@@ -10,7 +10,8 @@
     "timestamps": [
       "createdAt",
       "updatedAt"
-    ]
+    ],
+    "draftAndPublish": false
   },
   "attributes": {
     "name": {
@@ -58,7 +59,8 @@
     "attachedFiles": {
       "collection": "file",
       "via": "related",
-      "plugin": "upload"
+      "plugin": "upload",
+      "required": false
     },
     "street": {
       "type": "string"
@@ -67,8 +69,8 @@
       "type": "integer"
     },
     "meetings": {
-      "via": "plans",
       "collection": "meeting",
+      "via": "plans",
       "dominant": true
     },
     "commentsAreLocked": {
@@ -79,12 +81,15 @@
       "via": "plan"
     },
     "tags": {
-      "via": "plans",
-      "collection": "tag"
+      "collection": "tag",
+      "via": "plans"
     },
     "municipalities": {
-      "via": "plans",
-      "collection": "municipality"
+      "collection": "municipality",
+      "via": "plans"
+    },
+    "geometry": {
+      "type": "json"
     }
   }
 }

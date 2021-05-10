@@ -828,6 +828,9 @@
                   "type": "string"
                 }
               },
+              "geometry": {
+                "type": "object"
+              },
               "created_by": {
                 "type": "string"
               },

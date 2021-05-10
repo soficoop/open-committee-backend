@@ -516,7 +516,8 @@
     "schemas": {
       "Parser": {
         "required": [
-          "id"
+          "id",
+          "isJson"
         ],
         "properties": {
           "id": {
@@ -571,10 +572,17 @@
           },
           "fileFields": {
             "type": "string"
+          },
+          "isJson": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
       "NewParser": {
+        "required": [
+          "isJson"
+        ],
         "properties": {
           "for": {
             "type": "string",
@@ -625,6 +633,10 @@
           },
           "fileFields": {
             "type": "string"
+          },
+          "isJson": {
+            "type": "boolean",
+            "default": false
           },
           "created_by": {
             "type": "string"

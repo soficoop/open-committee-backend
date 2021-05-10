@@ -19,8 +19,8 @@
       "maxLength": 25
     },
     "plans": {
-      "collection": "plan",
       "via": "tags",
+      "collection": "plan",
       "dominant": true
     },
     "subscribedUsers": {

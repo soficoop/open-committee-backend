@@ -1,4 +1,5 @@
 'use strict';
+const _ = require('lodash');
 const Axios = require('axios').default;
 const JSDOM = require('jsdom').JSDOM;
 const yaml = require('js-yaml');
@@ -32,6 +33,7 @@ const FieldType = Object.freeze({
  * @property {boolean} active
  * @property {Field[]} fields
  * @property {FileField[]} fileFields
+ * @property {boolean} isJson
  * @property {'none' | 'meeting' | 'plan' | 'committee' | 'area'} urlByExistingItem
  *
  * @typedef Field
@@ -138,9 +140,9 @@ class Scraper {
    * @param {any} existingItem Existing item, for parsers which only aquire more information about a content type (and not creating new items)
    */
   async scrapeStaticUrl(url, parser, params, existingItem = null) {
-    let html;
+    let response;
     try {
-      html = await Axios.request({
+      response = await Axios.request({
         url: url,
         method: parser.method,
         data: querystring.stringify(params),
@@ -152,8 +154,15 @@ class Scraper {
       strapi.log.error(e.message);
       return;
     }
-    const document = new JSDOM(html.data).window.document;
-    for (const item of document.querySelectorAll(parser.objectSelector)) {
+    let document, items;
+    if (parser.isJson) {
+      document = response.data;
+      items = _.get(document, parser.objectSelector);
+    } else {
+      document = new JSDOM(response.data).window.document;
+      items = document.querySelectorAll(parser.objectSelector);
+    }
+    for (const item of items) {
       const parsedItem = await this.parseSingleItem(
         item,
         parser,
@@ -283,9 +292,11 @@ class Scraper {
       let value;
       switch (field.type) {
       case FieldType.SELECTOR:
-        value = [...item.querySelectorAll(field.from)].map(
-          i => i.innerHTML
-        );
+        value = parser.isJson 
+          ? _.get(item, field.from) 
+          : [...item.querySelectorAll(field.from)].map(
+            i => i.innerHTML
+          );
         break;
       case FieldType.REGEX:
         value = [...item.innerHTML.matchAll(field.from)].map(i => i[1]);
@@ -420,6 +431,8 @@ class Scraper {
       value = value.trim();
     } else if (modelAttribute.type == 'datetime') {
       value = moment(value || '01/01/1970', 'DD/MM/YYYY').add(12, 'hours');
+    } else if (modelAttribute.type == 'json') {
+      value = JSON.stringify(rawValue);
     } else if (relationTargetModel) {
       value = await this.convertRelationshipField(
         isCollection,

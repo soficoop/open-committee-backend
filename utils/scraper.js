@@ -10,7 +10,8 @@ const crypto = require('crypto');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-var pluralize = require('pluralize');
+const pluralize = require('pluralize');
+const { sendLocationSubscriptionEmails } = require('../config/functions/email');
 
 
 /**
@@ -91,6 +92,7 @@ class Scraper {
     }
     strapi.services.meeting.emailNewMeetings(this.scrapingStart);
     strapi.services.municipality.emailUpdatedMunicipalities(this.scrapingStart);
+    sendLocationSubscriptionEmails(this.scrapingStart);
   }
 
   /**

@@ -1,3 +1,7 @@
+const { default: booleanIntersects } = require('@turf/boolean-intersects');
+const { default: circle } = require('@turf/circle');
+const { polygon } = require('@turf/helpers');
+
 module.exports = {
   /**
    * returns the IL format of a given date
@@ -7,23 +11,17 @@ module.exports = {
     const dateList = date.toISOString().split('T')[0].split('-');
     return `${dateList[2]}.${dateList[1]}.${dateList[0]}`;
   },
-
-  /**
-   * Sends an email using email plugin
-   * @param {string} to recipient
-   * @param {string} subject email subject
-   * @param {string} html content of the mail
-   */
-  async sendMail(to, subject, html) {
-    try {
-      await strapi.plugins.email.services.email.send({
-        to,
-        subject,
-        html
-      });
-    } catch (e) {
-      strapi.log.error(e.message);
-      strapi.log.error(e.stack);
+  
+  async getPlansAroundLocation(location, plans) {
+    const subscriptionCircle = circle([location.lng, location.lat], location.radius, { units: 'kilometers' });
+    const result = [];
+    for (const plan of plans) {
+      const geometry = JSON.parse(plan.geometry);
+      const planPolygon = polygon(geometry);
+      if (booleanIntersects(subscriptionCircle, planPolygon)) {
+        result.push(plan);
+      }
     }
+    return result;
   }
 };

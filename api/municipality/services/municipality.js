@@ -1,8 +1,6 @@
 'use strict';
-const parseTemplate = require('../../../config/functions/template');
+const { parseTemplate, sendMail } = require('../../../config/functions/email');
 const formatDate = require('../../../utils/helpers').formatDate;
-const { sendMail } = require('../../../utils/helpers');
-
 
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-services)
@@ -23,7 +21,7 @@ module.exports = {
   },
 
   async emailUpdatedMunicipalities(from = new Date()) {
-    const municipalities = await strapi.services.municipality.find({ updatedAt_gt: from, isHidden_ne: true });
+    const municipalities = await strapi.services.municipality.find({ createdAt_gt: from, isHidden_ne: true });
     for (const municipality of municipalities) {
       const plans = municipality.plans.filter(p => p.createdAt.getTime() >= from.getTime());
       await this.emailSubscribers(municipality, plans);

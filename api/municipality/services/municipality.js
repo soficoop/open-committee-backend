@@ -1,6 +1,6 @@
 'use strict';
-const { parseTemplate, sendMail } = require('../../../config/functions/email');
-const formatDate = require('../../../utils/helpers').formatDate;
+const { parseTemplate, sendMail } = require('../../../utils/email');
+const { formatDate } = require('../../../utils/helpers');
 
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-services)

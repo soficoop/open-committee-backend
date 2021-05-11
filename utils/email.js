@@ -1,6 +1,6 @@
 const fs = require('fs').promises;
 const handlebars = require('handlebars');
-const { formatDate, getPlansAroundLocation } = require('../../utils/helpers');
+const { formatDate, getPlansAroundLocation } = require('./helpers');
 
 handlebars.registerHelper('formatDate', formatDate);
 

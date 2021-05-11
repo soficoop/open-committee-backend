@@ -1,5 +1,5 @@
 'use strict';
-const { parseTemplate, sendMail } = require('../../../config/functions/email');
+const { parseTemplate, sendMail } = require('../../../utils/email');
 
 /**
  * Read the documentation (https://strapi.io/documentation/3.0.0-beta.x/concepts/controllers.html#core-controllers)

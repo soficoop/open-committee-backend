@@ -11,7 +11,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const pluralize = require('pluralize');
-const { sendLocationSubscriptionEmails } = require('../config/functions/email');
+const { sendLocationSubscriptionEmails } = require('./email');
 
 
 /**

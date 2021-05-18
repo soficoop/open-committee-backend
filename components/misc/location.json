@@ -17,6 +17,10 @@
     },
     "radius": {
       "type": "decimal"
+    },
+    "name": {
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -1,4 +1,5 @@
 'use strict';
+const _ = require('lodash');
 const Axios = require('axios').default;
 const JSDOM = require('jsdom').JSDOM;
 const yaml = require('js-yaml');
@@ -9,11 +10,14 @@ const crypto = require('crypto');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const pluralize = require('pluralize');
+const { sendLocationSubscriptionEmails } = require('./email');
+
 
 /**
  * @enum FieldType
  */
-const FieldTypes = Object.freeze({
+const FieldType = Object.freeze({
   SELECTOR: 'selectors',
   REGEX: 'matches',
   URL_PARAM: 'urlParams'
@@ -21,7 +25,7 @@ const FieldTypes = Object.freeze({
 
 /**
  * @typedef Parser
- * @property {'meeting' | 'plan' | 'committee' | 'area'} for
+ * @property {'meeting' | 'plan' | 'committee' | 'area' | 'municipality'} for
  * @property {string} url
  * @property {string} objectSelector
  * @property {'get' | 'post'} method
@@ -30,8 +34,8 @@ const FieldTypes = Object.freeze({
  * @property {boolean} active
  * @property {Field[]} fields
  * @property {FileField[]} fileFields
+ * @property {boolean} isJson
  * @property {'none' | 'meeting' | 'plan' | 'committee' | 'area'} urlByExistingItem
- * @property {'On' | 'Daily' | 'Weekly' | 'Monthly' } runInterval
  *
  * @typedef Field
  * @property {FieldType} type
@@ -65,7 +69,7 @@ class Scraper {
       const rawFields = yaml.safeLoad(parser.fields);
       parser.fields = [];
       for (const key in rawFields) {
-        if (!Object.values(FieldTypes).includes(key)) {
+        if (!Object.values(FieldType).includes(key)) {
           continue;
         }
         const fields = rawFields[key];
@@ -81,42 +85,14 @@ class Scraper {
     }
   }
 
-  /**
-   * Runs all parsers
-   */
-  async scrapeAllRepeatedly() {
-    this.scrapingStart = new Date();
-    for (const parser of this.parsers) {
-      let interval;
-      switch (parser.runInterval) {
-      case 'Daily':
-        interval = 1000 * 3600 * 24;
-        break;
-      case 'Weekly':
-        interval = 1000 * 3600 * 24 * 7;
-        break;
-      case 'Monthly':
-        interval = 1000 * 3600 * 24 * 30;
-        break;
-      }
-      await this.scrapeByParser(parser);
-      if (interval != null) {
-        setInterval(async () => {
-          this.scrapingStart = new Date();
-          await this.scrapeByParser(parser);
-          strapi.services.meeting.emailNewMeetings(this.scrapingStart);
-        }, interval);
-      }
-    }
-    strapi.services.meeting.emailNewMeetings(this.scrapingStart);
-  }
-
   async scrapeAll() {
     this.scrapingStart = new Date();
     for (const parser of this.parsers) {
       await this.scrapeByParser(parser);
     }
     strapi.services.meeting.emailNewMeetings(this.scrapingStart);
+    strapi.services.municipality.emailUpdatedMunicipalities(this.scrapingStart);
+    sendLocationSubscriptionEmails(this.scrapingStart);
   }
 
   /**
@@ -124,13 +100,13 @@ class Scraper {
    * @param {Parser} parser The parser settings to scrape by
    */
   async scrapeByParser(parser) {
-    strapi.log.info(`🧐  Scraping ${parser.for}s...`);
+    strapi.log.info(`🧐  Scraping ${pluralize.plural(parser.for)}...`);
     if (parser.urlByExistingItem == 'none') {
       await this.scrapeStaticUrl(parser.url, parser, parser.requestParams);
     } else {
       await this.scrapeDynamicUrl(parser);
     }
-    strapi.log.info(`🧐  Scraping ${parser.for}s ended.`);
+    strapi.log.info(`🧐  Scraping ${pluralize.plural(parser.for)} ended.`);
   }
 
   /**
@@ -143,7 +119,7 @@ class Scraper {
       updatedAt_gt: this.scrapingStart,
       _limit: -1
     });
-    strapi.log.info(`About to update/create ${parser.for}s by ${existingItems.length} ${parser.urlByExistingItem}s`);
+    strapi.log.info(`About to update/create ${pluralize.plural(parser.for)} by ${existingItems.length} ${parser.urlByExistingItem}s`);
     for (const existingItem of existingItems) {
       const staticUrl = parser.url.replace(/{{([a-z0-9]+)}}/g, (matches, group1) => existingItem[group1]);
       const requestParams = yaml.safeLoad(
@@ -166,9 +142,9 @@ class Scraper {
    * @param {any} existingItem Existing item, for parsers which only aquire more information about a content type (and not creating new items)
    */
   async scrapeStaticUrl(url, parser, params, existingItem = null) {
-    let html;
+    let response;
     try {
-      html = await Axios.request({
+      response = await Axios.request({
         url: url,
         method: parser.method,
         data: querystring.stringify(params),
@@ -180,8 +156,15 @@ class Scraper {
       strapi.log.error(e.message);
       return;
     }
-    const document = new JSDOM(html.data).window.document;
-    for (const item of document.querySelectorAll(parser.objectSelector)) {
+    let document, items;
+    if (parser.isJson) {
+      document = response.data;
+      items = _.get(document, parser.objectSelector);
+    } else {
+      document = new JSDOM(response.data).window.document;
+      items = document.querySelectorAll(parser.objectSelector);
+    }
+    for (const item of items) {
       const parsedItem = await this.parseSingleItem(
         item,
         parser,
@@ -310,19 +293,21 @@ class Scraper {
       const key = field.for;
       let value;
       switch (field.type) {
-      case FieldTypes.SELECTOR:
-        value = [...item.querySelectorAll(field.from)].map(
-          i => i.innerHTML
-        );
+      case FieldType.SELECTOR:
+        value = parser.isJson 
+          ? _.get(item, field.from) 
+          : [...item.querySelectorAll(field.from)].map(
+            i => i.innerHTML
+          );
         break;
-      case FieldTypes.REGEX:
+      case FieldType.REGEX:
         value = [...item.innerHTML.matchAll(field.from)].map(i => i[1]);
         break;
-      case FieldTypes.URL_PARAM:
+      case FieldType.URL_PARAM:
         value = new URL(url).searchParams.get(field.from);
         break;
       }
-      if (value) { 
+      if (value) {
         result[key] = await this.convertField(value, modelAttributes[key]);
       }
     }
@@ -438,7 +423,7 @@ class Scraper {
     if (!isCollection && Array.isArray(rawValue)) {
       value = rawValue[0];
     } else {
-      value = rawValue;
+      value = rawValue.map(i => typeof i === 'string' ? i.trim() : i);
     }
     const relationTargetModel =
       modelAttribute.collection || modelAttribute.model;
@@ -448,6 +433,8 @@ class Scraper {
       value = value.trim();
     } else if (modelAttribute.type == 'datetime') {
       value = moment(value || '01/01/1970', 'DD/MM/YYYY').add(12, 'hours');
+    } else if (modelAttribute.type == 'json') {
+      value = JSON.stringify(rawValue);
     } else if (relationTargetModel) {
       value = await this.convertRelationshipField(
         isCollection,

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_misc_locations",
+  "info": {
+    "name": "location",
+    "icon": "map-marked",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "lat": {
+      "type": "float",
+      "required": true
+    },
+    "lng": {
+      "type": "float",
+      "required": true
+    },
+    "radius": {
+      "type": "decimal"
+    }
+  }
+}

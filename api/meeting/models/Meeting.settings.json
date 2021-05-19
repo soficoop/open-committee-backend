@@ -87,8 +87,8 @@
       "type": "boolean"
     },
     "plans": {
-      "collection": "plan",
-      "via": "meetings"
+      "via": "meetings",
+      "collection": "plan"
     },
     "committee": {
       "model": "committee",

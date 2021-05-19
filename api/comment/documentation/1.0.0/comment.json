@@ -719,6 +719,15 @@
                   "type": "string"
                 }
               },
+              "subscribedMunicipalities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "subscribedLocations": {
+                "type": "component"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -815,6 +824,15 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "municipalities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "geometry": {
+                "type": "object"
               },
               "created_by": {
                 "type": "string"

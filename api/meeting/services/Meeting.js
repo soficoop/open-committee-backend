@@ -1,7 +1,6 @@
 'use strict';
-const parseTemplate = require('../../../config/functions/template');
-const formatDate = require('../../../utils/helpers').formatDate;
-const { sendMail } = require('../../../utils/helpers');
+const { parseTemplate, sendMail } = require('../../../utils/email');
+const { formatDate } = require('../../../utils/helpers');
 
 module.exports = {
   /**

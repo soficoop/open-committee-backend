@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/parsers": {
+    "/municipalities": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Parser"
+                    "$ref": "#/components/schemas/Municipality"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Parser"
+          "Municipality"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Parser"
+                  "$ref": "#/components/schemas/Municipality"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Parser"
+          "Municipality"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewParser"
+                "$ref": "#/components/schemas/NewMunicipality"
               }
             }
           }
         }
       }
     },
-    "/parsers/count": {
+    "/municipalities/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Parser"
+          "Municipality"
         ],
         "parameters": []
       }
     },
-    "/parsers/{id}": {
+    "/municipalities/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Parser"
+                  "$ref": "#/components/schemas/Municipality"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Parser"
+          "Municipality"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Parser"
+                  "$ref": "#/components/schemas/Municipality"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Parser"
+          "Municipality"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewParser"
+                "$ref": "#/components/schemas/NewMunicipality"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Parser"
+          "Municipality"
         ],
         "parameters": [
           {
@@ -514,127 +514,249 @@
   },
   "components": {
     "schemas": {
-      "Parser": {
+      "Municipality": {
         "required": [
           "id",
-          "isJson"
+          "sid"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "for": {
-            "type": "string",
-            "enum": [
-              "area",
-              "committee",
-              "meeting",
-              "plan",
-              "municipality"
-            ]
-          },
-          "url": {
+          "sid": {
             "type": "string"
           },
-          "active": {
-            "type": "boolean"
+          "plans": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "municipality": {
+                  "type": "string"
+                },
+                "settlement": {
+                  "type": "string"
+                },
+                "sections": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "sid": {
+                  "type": "string"
+                },
+                "targets": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "string"
+                },
+                "submission": {
+                  "type": "string"
+                },
+                "stype": {
+                  "type": "integer"
+                },
+                "addedManually": {
+                  "type": "boolean"
+                },
+                "attachedFiles": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "street": {
+                  "type": "string"
+                },
+                "houseNumber": {
+                  "type": "integer"
+                },
+                "meetings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "commentsAreLocked": {
+                  "type": "boolean"
+                },
+                "comments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "municipalities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "geometry": {
+                  "type": "object"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           },
-          "objectSelector": {
-            "type": "string"
+          "subscribedUsers": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "username",
+                "email",
+                "firstName",
+                "lastName"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "resetPasswordToken": {
+                  "type": "string"
+                },
+                "confirmed": {
+                  "type": "boolean"
+                },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "confirmationToken": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "job": {
+                  "type": "string"
+                },
+                "userImage": {
+                  "type": "string"
+                },
+                "committees": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedCommittees": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "comments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedTags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedMunicipalities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedLocations": {
+                  "type": "component"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           },
-          "sidMatch": {
-            "type": "string"
-          },
-          "fields": {
-            "type": "string"
-          },
-          "urlByExistingItem": {
-            "type": "string",
-            "default": "none",
-            "enum": [
-              "none",
-              "area",
-              "committee",
-              "meeting",
-              "plan"
-            ]
-          },
-          "method": {
-            "type": "string",
-            "default": "get",
-            "enum": [
-              "get",
-              "post"
-            ]
-          },
-          "requestParams": {
-            "type": "string"
-          },
-          "fileFields": {
-            "type": "string"
-          },
-          "isJson": {
+          "isHidden": {
             "type": "boolean",
             "default": false
           }
         }
       },
-      "NewParser": {
+      "NewMunicipality": {
         "required": [
-          "isJson"
+          "sid"
         ],
         "properties": {
-          "for": {
-            "type": "string",
-            "enum": [
-              "area",
-              "committee",
-              "meeting",
-              "plan",
-              "municipality"
-            ]
-          },
-          "url": {
+          "sid": {
             "type": "string"
           },
-          "active": {
-            "type": "boolean"
+          "plans": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
-          "objectSelector": {
-            "type": "string"
+          "subscribedUsers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
-          "sidMatch": {
-            "type": "string"
-          },
-          "fields": {
-            "type": "string"
-          },
-          "urlByExistingItem": {
-            "type": "string",
-            "default": "none",
-            "enum": [
-              "none",
-              "area",
-              "committee",
-              "meeting",
-              "plan"
-            ]
-          },
-          "method": {
-            "type": "string",
-            "default": "get",
-            "enum": [
-              "get",
-              "post"
-            ]
-          },
-          "requestParams": {
-            "type": "string"
-          },
-          "fileFields": {
-            "type": "string"
-          },
-          "isJson": {
+          "isHidden": {
             "type": "boolean",
             "default": false
           },
@@ -650,7 +772,7 @@
   },
   "tags": [
     {
-      "name": "Parser"
+      "name": "Municipality"
     }
   ]
 }

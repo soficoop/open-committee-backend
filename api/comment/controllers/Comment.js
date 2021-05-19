@@ -1,6 +1,5 @@
 'use strict';
-const parseTemplate = require('../../../config/functions/template');
-const { sendMail } = require('../../../utils/helpers');
+const { parseTemplate, sendMail } = require('../../../utils/email');
 
 /**
  * Read the documentation () to implement custom controller functions

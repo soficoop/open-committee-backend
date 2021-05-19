@@ -1661,6 +1661,69 @@
                 }
               }
             }
+          },
+          "subscribedMunicipalities": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "sid"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "sid": {
+                  "type": "string"
+                },
+                "plans": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedUsers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "isHidden": {
+                  "type": "boolean"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "subscribedLocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "lat",
+                "lng"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "lat": {
+                  "type": "number"
+                },
+                "lng": {
+                  "type": "number"
+                },
+                "radius": {
+                  "type": "number"
+                }
+              }
+            }
           }
         }
       },
@@ -1742,6 +1805,37 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          },
+          "subscribedMunicipalities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subscribedLocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "lat",
+                "lng"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "lat": {
+                  "type": "number"
+                },
+                "lng": {
+                  "type": "number"
+                },
+                "radius": {
+                  "type": "number"
+                }
+              }
             }
           },
           "created_by": {

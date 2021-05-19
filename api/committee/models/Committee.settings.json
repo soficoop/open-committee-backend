@@ -31,14 +31,14 @@
       "via": "parent"
     },
     "users": {
-      "collection": "user",
       "via": "committees",
-      "plugin": "users-permissions"
+      "plugin": "users-permissions",
+      "collection": "user"
     },
     "subscribedUsers": {
-      "collection": "user",
       "via": "subscribedCommittees",
-      "plugin": "users-permissions"
+      "plugin": "users-permissions",
+      "collection": "user"
     },
     "meetings": {
       "via": "committee",

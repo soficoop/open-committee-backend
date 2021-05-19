@@ -605,6 +605,15 @@
                     "type": "string"
                   }
                 },
+                "subscribedMunicipalities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subscribedLocations": {
+                  "type": "component"
+                },
                 "created_by": {
                   "type": "string"
                 },

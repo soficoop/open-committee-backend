@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "tags",
+  "collectionName": "municipalities",
   "info": {
-    "name": "Tag",
+    "name": "Municipality",
     "description": ""
   },
   "options": {
@@ -11,23 +11,25 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "name": {
+    "sid": {
       "type": "string",
       "unique": true,
-      "required": true,
-      "minLength": 2,
-      "maxLength": 25
+      "required": true
     },
     "plans": {
-      "via": "tags",
+      "via": "municipalities",
       "collection": "plan",
       "dominant": true
     },
     "subscribedUsers": {
-      "via": "subscribedTags",
+      "via": "subscribedMunicipalities",
       "plugin": "users-permissions",
       "collection": "user",
       "dominant": true
+    },
+    "isHidden": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

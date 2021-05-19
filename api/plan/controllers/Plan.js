@@ -1,6 +1,5 @@
 'use strict';
-const { sendMail } = require('../../../utils/helpers');
-const parseTemplate = require('../../../config/functions/template');
+const { parseTemplate, sendMail } = require('../../../utils/email');
 
 module.exports = {
   /**

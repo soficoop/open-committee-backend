@@ -1707,7 +1707,8 @@
               "required": [
                 "id",
                 "lat",
-                "lng"
+                "lng",
+                "name"
               ],
               "properties": {
                 "id": {
@@ -1721,6 +1722,9 @@
                 },
                 "radius": {
                   "type": "number"
+                },
+                "name": {
+                  "type": "string"
                 }
               }
             }
@@ -1820,7 +1824,8 @@
               "required": [
                 "id",
                 "lat",
-                "lng"
+                "lng",
+                "name"
               ],
               "properties": {
                 "id": {
@@ -1834,6 +1839,9 @@
                 },
                 "radius": {
                   "type": "number"
+                },
+                "name": {
+                  "type": "string"
                 }
               }
             }

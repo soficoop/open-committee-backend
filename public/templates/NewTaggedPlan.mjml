@@ -87,6 +87,9 @@
             לשינוי הגדרות ההתראות יש ללחוץ
             <a href="{{appUrl}}/subscriptions?token={{token}}">כאן</a>
           </mj-text>
+          <mj-text align="center">
+            <a href="{{appUrl}}/unsubscribe?token={{token}}">הסרת כל ההתראות</a>
+          </mj-text>
         </mj-column>
       </mj-section>
     </mj-wrapper>

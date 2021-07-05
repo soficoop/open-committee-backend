@@ -1,4 +1,5 @@
 'use strict';
+const moment  = require('moment');
 const Scraper = require('../../utils/scraper');
 
 /**
@@ -15,13 +16,7 @@ module.exports = {
     if (process.env.SKIP_ADMIN_EMAILS == 'true') {
       return;
     }
-    let from = new Date();
-    from.setDate(from.getDate() + 1);
-    from.setHours(0, 0, 0, 0);
-    let to = new Date();
-    to.setDate(to.getDate() + 1);
-    to.setHours(23, 59, 59, 999);
-    strapi.services.meeting.emailToAdmins(from, to);
+    strapi.plugins['users-permissions'].services.user.emailNewCommentsToAdmins(moment().subtract(1, 'day').toDate());
   },
   // every day at 8AM
   '0 0 8 * * *': async () => {

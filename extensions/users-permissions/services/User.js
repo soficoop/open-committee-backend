@@ -13,17 +13,50 @@ module.exports = {
     },
     []);
     for (const user of users) {
-      const upcomingMeetings = await strapi.services.meeting.find({ committee_in: user.committees, date_gte: moment().startOf('day').toDate() }, ['plans']);
+      const upcomingMeetings = await strapi.services.meeting.find(
+        { 
+          committee_in: user.committees, 
+          date_gte: moment().startOf('day').toDate() 
+        }, 
+        ['plans']
+      );
       const plans = upcomingMeetings.map(m => m.plans).flat();
-      const newComments = await strapi.services.comment.find({ createdAt_gte: from, plan_in: plans });
+      const newComments = await strapi.services.comment.find(
+        {
+          createdAt_gte: from, 
+          plan_in: plans
+        }
+      );
       if (!newComments.length) {
         continue;
       }
-      const token =  strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id }, { expiresIn: '7d' });
+      const plansByComments = new Map();
+      for (const comment of newComments) {
+        const comments = plansByComments.has(comment.plan.id) ? 
+          [...plansByComments.get(comment.plan.id).comments, comment]
+          : [comment];
+        plansByComments.set(comment.plan.id, {
+          id: comment.plan.id,
+          name: comment.plan.name,
+          number: comment.plan.number,
+          comments
+        });
+      }
+      const token =  strapi.plugins['users-permissions'].services.jwt.issue(
+        { 
+          id: user.id
+        }, 
+        { 
+          expiresIn: '7d'
+        }
+      );
       sendMail(
         user.email, 
-        'התייחסויות חדשות - לאחר ' + formatDate(from), 
-        await parseTemplate('NewCommentsSummary.html', { comments: newComments, user, token })
+        'התייחסויות חדשות - לאחר ' + formatDate(from),
+        await parseTemplate(
+          'NewCommentsSummary.html',
+          { plans: plansByComments.values(), user, token }
+        )
       );
     }
   }

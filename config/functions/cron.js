@@ -12,7 +12,7 @@ const Scraper = require('../../utils/scraper');
 
 module.exports = {
   // every day at 10AM
-  '0 0 10 * * *': () => {
+  '0 30 4 * * *': () => {
     if (process.env.SKIP_ADMIN_EMAILS == 'true') {
       return;
     }

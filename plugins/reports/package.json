@@ -11,7 +11,7 @@
     "@buffetjs/core": "^3.3.3",
     "@buffetjs/hooks": "^3.3.3",
     "@buffetjs/styles": "^3.3.3",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

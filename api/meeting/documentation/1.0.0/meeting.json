@@ -1109,6 +1109,9 @@
               "isHidden": {
                 "type": "boolean"
               },
+              "pageUrl": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },

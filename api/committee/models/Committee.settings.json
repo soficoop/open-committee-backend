@@ -50,6 +50,9 @@
     },
     "pageUrl": {
       "type": "string"
+    },
+    "representative": {
+      "type": "string"
     }
   }
 }

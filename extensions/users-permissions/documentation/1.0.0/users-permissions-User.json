@@ -1510,6 +1510,9 @@
                 "pageUrl": {
                   "type": "string"
                 },
+                "representative": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -1567,6 +1570,9 @@
                   "type": "boolean"
                 },
                 "pageUrl": {
+                  "type": "string"
+                },
+                "representative": {
                   "type": "string"
                 },
                 "created_by": {

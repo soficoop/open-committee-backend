@@ -10,7 +10,8 @@
     "timestamps": [
       "createdAt",
       "updatedAt"
-    ]
+    ],
+    "draftAndPublish": false
   },
   "attributes": {
     "sid": {
@@ -46,6 +47,12 @@
     },
     "isHidden": {
       "type": "boolean"
+    },
+    "pageUrl": {
+      "type": "string"
+    },
+    "representative": {
+      "type": "string"
     }
   }
 }

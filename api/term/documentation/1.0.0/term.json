@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/areas": {
+    "/terms": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Area"
+                    "$ref": "#/components/schemas/Term"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Area"
+          "Term"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Area"
+                  "$ref": "#/components/schemas/Term"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Area"
+          "Term"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewArea"
+                "$ref": "#/components/schemas/NewTerm"
               }
             }
           }
         }
       }
     },
-    "/areas/count": {
+    "/terms/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Area"
+          "Term"
         ],
         "parameters": []
       }
     },
-    "/areas/{id}": {
+    "/terms/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Area"
+                  "$ref": "#/components/schemas/Term"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Area"
+          "Term"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Area"
+                  "$ref": "#/components/schemas/Term"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Area"
+          "Term"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewArea"
+                "$ref": "#/components/schemas/NewTerm"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Area"
+          "Term"
         ],
         "parameters": [
           {
@@ -514,95 +514,37 @@
   },
   "components": {
     "schemas": {
-      "Area": {
+      "Term": {
         "required": [
-          "id",
-          "sid"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "sid": {
+          "phrase": {
             "type": "string"
           },
-          "committees": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "sid"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "sid": {
-                  "type": "string"
-                },
-                "parent": {
-                  "type": "string"
-                },
-                "area": {
-                  "type": "string"
-                },
-                "children": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "users": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "subscribedUsers": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "meetings": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "isHidden": {
-                  "type": "boolean"
-                },
-                "pageUrl": {
-                  "type": "string"
-                },
-                "representative": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
+          "description": {
+            "type": "string"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
-      "NewArea": {
-        "required": [
-          "sid"
-        ],
+      "NewTerm": {
         "properties": {
-          "sid": {
+          "phrase": {
             "type": "string"
           },
-          "committees": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "description": {
+            "type": "string"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -616,7 +558,7 @@
   },
   "tags": [
     {
-      "name": "Area"
+      "name": "Term"
     }
   ]
 }

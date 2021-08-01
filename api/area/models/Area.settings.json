@@ -1,4 +1,5 @@
 {
+  "kind": "collectionType",
   "connection": "default",
   "collectionName": "area",
   "info": {
@@ -15,8 +16,8 @@
       "required": true
     },
     "committees": {
-      "collection": "committee",
-      "via": "area"
+      "via": "area",
+      "collection": "committee"
     }
   }
 }

@@ -1507,6 +1507,12 @@
                 "isHidden": {
                   "type": "boolean"
                 },
+                "pageUrl": {
+                  "type": "string"
+                },
+                "representative": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -1562,6 +1568,12 @@
                 },
                 "isHidden": {
                   "type": "boolean"
+                },
+                "pageUrl": {
+                  "type": "string"
+                },
+                "representative": {
+                  "type": "string"
                 },
                 "created_by": {
                   "type": "string"

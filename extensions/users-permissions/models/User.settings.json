@@ -87,13 +87,13 @@
       "required": false
     },
     "committees": {
-      "collection": "committee",
       "via": "users",
+      "collection": "committee",
       "dominant": true
     },
     "subscribedCommittees": {
-      "collection": "committee",
       "via": "subscribedUsers",
+      "collection": "committee",
       "dominant": true
     },
     "comments": {

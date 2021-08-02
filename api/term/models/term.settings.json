@@ -2,18 +2,19 @@
   "kind": "collectionType",
   "collectionName": "terms",
   "info": {
-    "name": "term"
+    "name": "term",
+    "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
-    "phrase": {
-      "type": "string"
-    },
     "description": {
+      "type": "text"
+    },
+    "phrases": {
       "type": "text"
     }
   }

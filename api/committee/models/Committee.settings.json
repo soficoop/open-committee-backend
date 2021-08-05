@@ -51,7 +51,7 @@
     "pageUrl": {
       "type": "string"
     },
-    "representative": {
+    "planScreenText": {
       "type": "string"
     }
   }

@@ -574,7 +574,7 @@
               "pageUrl": {
                 "type": "string"
               },
-              "representative": {
+              "planScreenText": {
                 "type": "string"
               },
               "created_by": {
@@ -661,7 +661,7 @@
                 "pageUrl": {
                   "type": "string"
                 },
-                "representative": {
+                "planScreenText": {
                   "type": "string"
                 },
                 "created_by": {
@@ -951,7 +951,7 @@
           "pageUrl": {
             "type": "string"
           },
-          "representative": {
+          "planScreenText": {
             "type": "string"
           }
         }
@@ -1000,7 +1000,7 @@
           "pageUrl": {
             "type": "string"
           },
-          "representative": {
+          "planScreenText": {
             "type": "string"
           },
           "created_by": {

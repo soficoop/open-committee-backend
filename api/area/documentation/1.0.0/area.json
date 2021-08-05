@@ -576,7 +576,7 @@
                 "pageUrl": {
                   "type": "string"
                 },
-                "representative": {
+                "planScreenText": {
                   "type": "string"
                 },
                 "created_by": {

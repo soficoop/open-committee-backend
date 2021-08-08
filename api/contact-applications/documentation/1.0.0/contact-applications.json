@@ -262,7 +262,7 @@
     "/contact-applications/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the numver of contact-applications documents",
+        "description": "Retrieve the number of contact-applications documents",
         "responses": {
           "200": {
             "description": "Retrieve contact-applications document(s)",

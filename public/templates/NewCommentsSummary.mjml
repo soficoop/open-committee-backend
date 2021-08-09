@@ -2,6 +2,7 @@
 <!-- Edited code should be exported to NewMeeting.html -->
 <mjml>
   <mj-head>
+    <mj-preview>שלום {{user.firstName}}, ישנן התייחסויות חדשות הנוגעות לישיבות קרובות באחריותך.</mj-preview>
     <mj-font name="Assistant" href="https://fonts.googleapis.com/css?family=Assistant"></mj-font>
     <mj-title>סיכום הדיונים בישיבה</mj-title>
     <mj-style>

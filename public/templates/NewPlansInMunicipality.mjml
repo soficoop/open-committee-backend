@@ -2,6 +2,7 @@
 <!-- Edited code should be exported to NewMeeting.html -->
 <mjml>
   <mj-head>
+    <mj-preview>שלום {{user.firstName}}, ישנן תכניות חדשות ב{{municipality.sid}}.</mj-preview>
     <mj-font name="Assistant" href="https://fonts.googleapis.com/css?family=Assistant"></mj-font>
     <mj-title>תכנית חדשה במערכת ועדה פתוחה</mj-title>
     <mj-style>

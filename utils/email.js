@@ -11,11 +11,11 @@ handlebars.registerHelper('shortenText', (text) => {
   }
   return text;
 });
-  
+
 handlebars.registerHelper('appUrl', () => strapi.config.server.appUrl);
 handlebars.registerHelper('strapiUrl', () => strapi.config.server.strapiUrl);
-
 handlebars.registerHelper('formatMeetingTitle', meeting => meeting.title || `ישיבה מספר ${meeting.number}`);
+handlebars.registerHelper('or', (arg1, arg2) => arg1 || arg2);
 
 /**
  * Parses an HTML email template from templates dir
@@ -28,7 +28,7 @@ async function parseTemplate(templateFile, doc) {
   const template = handlebars.compile(data);
   return template(doc);
 }
-  
+
 /**
    * Sends an email using email plugin
    * @param {string} to recipient
@@ -47,7 +47,7 @@ async function sendMail(to, subject, html) {
     strapi.log.error(e.stack);
   }
 }
-  
+
 /**
    * for every user, email every updated plan that is located in the user's location subscription radius
    * @param {Date} from minimum updatedAt value for plans
@@ -60,7 +60,7 @@ async function sendLocationSubscriptionEmails(from = new Date()) {
     for (const location of user.subscribedLocations) {
       plansToEmail.push(...await getPlansAroundLocation(location, plans));
     }
-    const token =  strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id }, { expiresIn: '7d' });
+    const token = strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id }, { expiresIn: '7d' });
     const subject = `תכניות חדשות במיקומים במעקב שלך | ${formatDate(new Date())}`;
     if (plansToEmail.length)
       await sendMail(user.email, subject, await parseTemplate('NewPlansInRadius.html', { user, token, plans }));

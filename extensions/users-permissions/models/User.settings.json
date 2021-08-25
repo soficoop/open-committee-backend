@@ -101,8 +101,8 @@
       "via": "user"
     },
     "subscribedTags": {
-      "collection": "tag",
-      "via": "subscribedUsers"
+      "via": "subscribedUsers",
+      "collection": "tag"
     },
     "subscribedMunicipalities": {
       "collection": "municipality",

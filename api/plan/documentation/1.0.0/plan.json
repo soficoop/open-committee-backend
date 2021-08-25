@@ -796,6 +796,9 @@
                     "type": "string"
                   }
                 },
+                "keywords": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },

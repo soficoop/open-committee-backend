@@ -28,6 +28,9 @@
       "plugin": "users-permissions",
       "collection": "user",
       "dominant": true
+    },
+    "keywords": {
+      "type": "text"
     }
   }
 }

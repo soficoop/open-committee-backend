@@ -731,6 +731,9 @@
                 }
               }
             }
+          },
+          "keywords": {
+            "type": "string"
           }
         }
       },
@@ -755,6 +758,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "keywords": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"

@@ -1,5 +1,5 @@
 'use strict';
-const { parseTemplate, sendMail } = require('../../../utils/email');
+const { sendMail, parseTemplate } = require('../../../utils/email');
 
 module.exports = {
   /**
@@ -22,20 +22,18 @@ module.exports = {
    */
   async tagPlan(ctx) {
     const params = ctx.request.body;
-    const planService = strapi.services.plan;
-    const plan = await planService.findOne({ id: params.planId });
-    const relvantTags = params.tags.filter(tag => plan.tags.every(planTag => planTag.name !== tag));
-    let tagsToAdd = await strapi.services.tag.getOrCreateMany(relvantTags);
-    const updatedPlan = await planService.update(
-      { id: params.planId },
-      { tags: [...plan.tags, ...tagsToAdd] }
-    );
-    for (const tag of tagsToAdd) {
+    const plan =  await strapi.services.plan.tagPlan(params.planId, params.tags);
+    const tags = await strapi.services.tag.find({ name_in: params.tags });
+    for (const tag of tags) {
       for (const user of tag.subscribedUsers) {
         const token =  strapi.plugins['users-permissions'].services.jwt.issue({ id: user.id }, { expiresIn: '7d' });
-        await sendMail(user.email, `תכנית חדשה בועדה פתוחה - ${plan.name}`, await parseTemplate('NewTaggedPlan.html',{ tag: tag.name, user, plan: updatedPlan, token }));
+        await sendMail(
+          user.email,
+          `תכנית חדשה בועדה פתוחה - ${plan.name}`,
+          await parseTemplate('NewTaggedPlan.html',{ tag: tag.name, user, plan, token })
+        );
       }
     }
-    return { plan: updatedPlan };
+    return { plan };
   }
 };

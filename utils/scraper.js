@@ -11,7 +11,6 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const pluralize = require('pluralize');
-const { sendLocationSubscriptionEmails } = require('./email');
 
 
 /**
@@ -90,9 +89,7 @@ class Scraper {
     for (const parser of this.parsers) {
       await this.scrapeByParser(parser);
     }
-    strapi.services.meeting.emailNewMeetings(this.scrapingStart);
-    strapi.services.municipality.emailUpdatedMunicipalities(this.scrapingStart);
-    sendLocationSubscriptionEmails(this.scrapingStart);
+    strapi.services.plan.tagNewPlans(this.scrapingStart);
   }
 
   /**

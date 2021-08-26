@@ -1,5 +1,6 @@
 'use strict';
 const moment  = require('moment');
+const { sendLocationSubscriptionEmails } = require('../../utils/email');
 const Scraper = require('../../utils/scraper');
 
 /**
@@ -22,6 +23,11 @@ module.exports = {
   '0 0 8 * * *': async () => {
     const parsers = await strapi.services.parser.find({ active: true, _sort: 'createdAt:asc' }, false);
     const scraper = new Scraper(parsers);
+    const scrapingStart = new Date();
     await scraper.scrapeAll();
+    strapi.services.meeting.emailNewMeetings(scrapingStart);
+    strapi.services.municipality.emailUpdatedMunicipalities(scrapingStart);
+    strapi.services.tag.emailUpdatedTags(scrapingStart);
+    sendLocationSubscriptionEmails(scrapingStart);
   }
 };

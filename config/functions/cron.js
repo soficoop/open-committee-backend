@@ -21,13 +21,15 @@ module.exports = {
   },
   // every day at 8AM
   '0 0 8 * * *': async () => {
+    const scrapingStart = new Date();
     const parsers = await strapi.services.parser.find({ active: true, _sort: 'createdAt:asc' }, false);
     const scraper = new Scraper(parsers);
-    const scrapingStart = new Date();
     await scraper.scrapeAll();
-    strapi.services.meeting.emailNewMeetings(scrapingStart);
-    strapi.services.municipality.emailUpdatedMunicipalities(scrapingStart);
-    strapi.services.tag.emailUpdatedTags(scrapingStart);
-    sendLocationSubscriptionEmails(scrapingStart);
+    strapi.log.info('📧 Sending emails...');
+    await strapi.services.meeting.emailNewMeetings(scrapingStart);
+    await strapi.services.municipality.emailUpdatedMunicipalities(scrapingStart);
+    await strapi.services.tag.emailUpdatedTags(scrapingStart);
+    await sendLocationSubscriptionEmails(scrapingStart);
+    strapi.log.info('📧 Sending emails ended.');
   }
 };

@@ -89,7 +89,9 @@ class Scraper {
     for (const parser of this.parsers) {
       await this.scrapeByParser(parser);
     }
-    strapi.services.plan.tagNewPlans(this.scrapingStart);
+    strapi.log.info('🏷️ Tagging new plans...');
+    await strapi.services.plan.tagNewPlans(this.scrapingStart);
+    strapi.log.info('🏷️ Tagging plans ended.');
   }
 
   /**

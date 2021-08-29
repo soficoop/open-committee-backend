@@ -55,10 +55,6 @@
                 {{/if}} {{/if}}
               {{number}}
             </h4>
-            <h4 style="color: #846154">תגיות:</h4>
-            {{#each plan.tags}}
-              <span style="background-color:#d2c4b6;margin-left:4px; padding: 4px 8px;border-radius:20px;">{{name}}</span>
-            {{/each}}
             {{#if location}}
               <h4 style="color: #846154">מיקום התכנית:</h4>
               {{{location}}}

@@ -1,6 +1,7 @@
 module.exports = ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
+  url: env('URL_PREFIX', ''),
   templatesDir: 'public/templates/',
   appUrl: env('APP_URL', 'https://app.sviva.net'),
   strapiUrl: env('STRAPI_URL', 'https://admin.oc.soficoop.com'),

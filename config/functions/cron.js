@@ -1,5 +1,5 @@
 'use strict';
-const moment  = require('moment');
+const moment = require('moment');
 const { sendLocationSubscriptionEmails } = require('../../utils/email');
 const Scraper = require('../../utils/scraper');
 

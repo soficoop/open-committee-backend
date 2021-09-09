@@ -20,7 +20,7 @@ module.exports = {
       const planText = plan.name + plan.targets + plan.sections;
       const regex = new RegExp([...keywordsMap.keys()].join('|'), 'g');
       const matches = [...new Set(planText.match(regex))];
-      this.tagPlan(plan.id, matches.map(match => keywordsMap.get(match)));
+      await this.tagPlan(plan.id, matches.map(match => keywordsMap.get(match)));
     }
   },
   /**

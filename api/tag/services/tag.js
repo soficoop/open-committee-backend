@@ -45,6 +45,10 @@ module.exports = {
     }
   },
 
+  /**
+   * Emails newly updated tags
+   * @param {Date} from minimal tag.updatedAt value
+   */
   async emailUpdatedTags(from = new Date()) {
     const tags = await strapi.services.tag.find({ updatedAt_gt: from });
     for (const tag of tags) {

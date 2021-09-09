@@ -17,7 +17,13 @@ module.exports = {
     const result = [];
     for (const plan of plans) {
       const geometry = JSON.parse(plan.geometry);
-      const planPolygon = polygon(geometry);
+      let planPolygon;
+      try {
+        planPolygon = polygon(geometry);
+      } catch (e) {
+        console.error(e);
+        continue;
+      }
       if (booleanIntersects(subscriptionCircle, planPolygon)) {
         result.push(plan);
       }

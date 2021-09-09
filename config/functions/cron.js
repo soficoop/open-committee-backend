@@ -25,11 +25,9 @@ module.exports = {
     const parsers = await strapi.services.parser.find({ active: true, _sort: 'createdAt:asc' }, false);
     const scraper = new Scraper(parsers);
     await scraper.scrapeAll();
-    strapi.log.info('📧 Sending emails...');
-    await strapi.services.meeting.emailNewMeetings(scrapingStart);
-    await strapi.services.municipality.emailUpdatedMunicipalities(scrapingStart);
-    await strapi.services.tag.emailUpdatedTags(scrapingStart);
-    await sendLocationSubscriptionEmails(scrapingStart);
-    strapi.log.info('📧 Sending emails ended.');
+    strapi.services.meeting.emailNewMeetings(scrapingStart);
+    strapi.services.municipality.emailUpdatedMunicipalities(scrapingStart);
+    strapi.services.tag.emailUpdatedTags(scrapingStart);
+    sendLocationSubscriptionEmails(scrapingStart);
   }
 };

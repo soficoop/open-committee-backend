@@ -50,7 +50,7 @@ module.exports = {
    * @param {Date} from minimal tag.updatedAt value
    */
   async emailUpdatedTags(from = new Date()) {
-    const tags = await strapi.services.tag.find({ updatedAt_gt: from });
+    const tags = await strapi.services.tag.find({ updatedAt_gt: from }, ['plans', 'subscribedUsers']);
     for (const tag of tags) {
       const plans = tag.plans.filter(p => p.createdAt.getTime() >= from.getTime());
       await this.emailSubscribers(tag, plans);

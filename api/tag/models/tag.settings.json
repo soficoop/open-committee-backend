@@ -21,7 +21,8 @@
     "plans": {
       "via": "tags",
       "collection": "plan",
-      "dominant": true
+      "dominant": true,
+      "autoPopulate": false
     },
     "subscribedUsers": {
       "via": "subscribedTags",

@@ -6,7 +6,7 @@ module.exports = {
    * @param {Date} from minimum updatedAt value
    */
   async getNewPlans(from) {
-    return strapi.services.plan.find({ updatedAt_gt: from });
+    return strapi.services.plan.find({ createdAt_gt: from });
   },
   /**
    * Tags all plans that were updated after a specific time using configured keywords

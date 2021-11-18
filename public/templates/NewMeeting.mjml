@@ -54,6 +54,7 @@
         <mj-column>
           <mj-text>
             {{#each meeting.plans}}
+            {{#if (or targets location)}}
           </mj-text>
           <mj-text align="right" align="right" color="#004359" font-family="Assistant,Arial">
             <h4 style="color: #47AA7C; font-size:18px">
@@ -76,6 +77,7 @@
             הצטרפו לדיון
           </mj-button>
           <mj-text>
+            {{/if}}
             {{/each}}
           </mj-text>
           <mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />

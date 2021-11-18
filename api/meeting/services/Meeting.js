@@ -9,7 +9,7 @@ module.exports = {
    * @param {boolean} isNew Whether the meeting is new
    */
   async emailSubscribers(meetingId, isNew) {
-    const meeting = await strapi.services.meeting.findOne({ id: meetingId });
+    const meeting = await strapi.services.meeting.findOne({ id: meetingId }, ['plans']);
     if (!meeting.committee) {
       return;
     }

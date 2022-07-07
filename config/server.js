@@ -9,8 +9,9 @@ module.exports = ({ env }) => ({
     enabled: env.bool('CRON_ENABLED', true),
   },
   admin: {
+    url: env('ADMIN_URL', 'admin'),
     auth: {
-      url: 'admin',
+      url:  env('ADMIN_URL', 'admin'),
       secret: env('ADMIN_JWT_SECRET', 'someSecretKey'),
     },
   },
